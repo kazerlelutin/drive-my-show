@@ -32,6 +32,7 @@ export default function AdminManage({ token }: props) {
               <EditShowTitle title={data.title} token={token}/>
               <p>bouton générer de nouveaux liens</p>
               <p>delete show</p>
+              <p>Delete chroniqueur, avec chiffre de chronique attaché</p>
             </div>
           </div>
         )}

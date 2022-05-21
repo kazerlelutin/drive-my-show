@@ -1,22 +1,20 @@
-import { useRouter } from "next/router";
 import ConductorReader from "../../../libs/ConductorReader/ConductorReader";
 import Layout from "../../../libs/Layout/Layout";
 
 interface props {
-    token: string
+  readonly token: string;
+  readonly type: string;
 }
-export default function conductor({token}:props) {
+export default function conductor({ token, type }: props) {
   return (
     <Layout title={"Conductor"}>
-      <ConductorReader token={token}/>
+      <ConductorReader token={token} type={type} />
     </Layout>
   );
 }
 
-
-export async function getServerSideProps({ query, req }) {
-    return {
-      props: { token: query.token },
-    };
-  }
-  
+export async function getServerSideProps({ query }) {
+  return {
+    props: { token: query.token, type: query.type },
+  };
+}

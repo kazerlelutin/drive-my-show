@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
 import { PrismaClient } from "@prisma/client";
 import commonControl from "../../utils/commonControl.middleware";
+import refreshConductorSignal from "../../utils/refreshConductorSignal";
 const prisma = new PrismaClient();
 
 export default async function deleteMedia(
@@ -41,7 +42,7 @@ export default async function deleteMedia(
         id: body.id,
       },
     });
-    
+    refreshConductorSignal('admin',show.admin);
     res.send(await prisma.media.findMany({where:{chronicleId: body.chronicleId}, orderBy:{position:'asc'}}));
   } else {
     res.status(403).send("problem with show.");

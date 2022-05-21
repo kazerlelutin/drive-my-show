@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import FullscreenModale from "../FullscreenModale/FullscreenModale";
 import classes from "./ChronicleDeleteModale.module.css";
 import useTranslate from "../../hooks/useTranslate";
