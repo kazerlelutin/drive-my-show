@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Show {
+  id         Int         @id @default(autoincrement())
+  title      String
+  prefix     String      @unique @db.VarChar(30)
+  admin      String      @unique @db.VarChar(255)
+  editor     String      @unique @db.VarChar(255)
+  reader     String      @unique @db.VarChar(255)
+  trigger    DateTime    @default(now()) @db.Timestamp(6) //trigger actions
+  updatedAt  DateTime    @updatedAt
+  createdAt  DateTime    @default(now()) @db.Timestamp(6)
+  chronicles Chronicle[]
+  columnists Columnist[]
+}
+
+model Chronicle {
+  id          Int       @id @default(autoincrement())
+  title       String
+  content     String?   @db.LongText
+  link        String?   @db.LongText
+  position    Int
+  duration    Int? // minute
+  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime  @default(now()) @db.Timestamp(6)
+  show        Show      @relation(fields: [showId], references: [id])
+  showId      Int
+  columnist   Columnist @relation(fields: [columnistId], references: [id])
+  columnistId Int
+  medias      Media[]
+}
+
+model Columnist {
+  id         Int         @id @default(autoincrement())
+  name       String
+  updatedAt  DateTime    @updatedAt
+  show       Show        @relation(fields: [showId], references: [id])
+  showId     Int
+  chronicles Chronicle[]
+}
+
+enum MediaType {
+  image
+  video
+  sound
+}
+
+model Media {
+  id          Int       @id @default(autoincrement())
+  title       String
+  type        MediaType
+  link        String?   @db.LongText
+  data        String?   @db.LongText //base64
+  source      String?   @db.LongText
+  position    Int
+  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime  @default(now()) @db.Timestamp(6)
+  chronicle   Chronicle @relation(fields: [chronicleId], references: [id])
+  chronicleId Int
+}

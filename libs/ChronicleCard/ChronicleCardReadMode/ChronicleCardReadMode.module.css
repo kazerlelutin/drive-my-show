@@ -1,0 +1,47 @@
+.container {
+    border: 2px solid var(--color-border);
+    border-radius: 5px;
+    padding:15px;
+    background: var(--color-bg-accent);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+  }
+  
+  .title {
+    color: var(--color-link);
+    font-size: 1.2em;
+  }
+  
+  .columnist {
+    font-style: italic;
+  }
+  
+  .duration::before {
+    content: " ~"
+  }
+  
+  .duration::after {
+    content: " min"
+  }
+  .duration {
+    font-style: italic;
+    color: green;
+  }
+  
+  .link {
+    overflow: hidden;
+    font-style: italic;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }

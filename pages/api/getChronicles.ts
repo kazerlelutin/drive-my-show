@@ -1,0 +1,29 @@
+import { NextApiRequest, NextApiResponse } from "next";
+import _ from "lodash";
+import { PrismaClient } from "@prisma/client";
+import commonControl from "../../utils/commonControl.middleware";
+const prisma = new PrismaClient();
+
+export default async function getChronicles(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const type = commonControl(req, res, ["admin", "editor"]);
+  if (type) {
+    const chronicles = await prisma.chronicle.findMany({
+      where: {
+        show: {[type]: req.body.token},
+      },
+      include: {
+        columnist: true,
+        medias:true
+      },
+      orderBy:{
+        position: 'asc'
+      }
+    });
+    return chronicles
+      ? res.json(chronicles)
+      : res.status(404).send("not found");
+  }
+}

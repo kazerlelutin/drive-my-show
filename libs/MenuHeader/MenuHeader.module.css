@@ -1,0 +1,9 @@
+
+.container {
+  display: flex;
+  gap: 8px;
+}
+
+.link::first-letter {
+  text-transform: uppercase;
+}
