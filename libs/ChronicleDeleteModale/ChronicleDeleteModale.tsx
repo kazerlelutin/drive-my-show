@@ -37,7 +37,7 @@ export default function ChronicleDeleteModale({ id, title, onClose,refetch }: pr
       <div className={classes.container}>
         {t("Delete the chronicle")} {`"${title}"`}
         <div className={classes.buttons}>
-          <button disabled={loading} onClick={() => onClose} className="cancel">
+          <button disabled={loading} onClick={() => onClose()} className="cancel">
             {t("Cancel")}
           </button>
           <button disabled={loading} onClick={() => fetch({ id,token: query.token })}>{t("Delete")}</button>
