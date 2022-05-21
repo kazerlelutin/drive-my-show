@@ -21,7 +21,7 @@ interface props {
 
 export default function Layout({ children, title }: props) {
   const t = useTranslate(layoutTranslate),
-    { locale, query } = useRouter(),
+    { locale } = useRouter(),
     availableLocale = { fr, en };
 
   useEffect(() => {
@@ -40,12 +40,22 @@ export default function Layout({ children, title }: props) {
       </Head>
       <header className={classes.header}>
         <div className={classes.logo}>
-          <Link href="/">D.M.S</Link>
+          <Link href="/" passHref>
+            <a>
+              <Image src="/dms_logo.svg" width={25} height={25} alt="Logo" />
+            </a>
+          </Link>
         </div>
         <MenuHeader />
-        <div className={classes.param}>
+        <a
+          className={classes.coffe}
+          href="https://ko-fi.com/kazerlelutin"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div className={classes.buy}>Buy me a coffee</div>
           <Image src="/kofi_logo.svg" width={30} height={20} alt="kofi logo" />
-        </div>
+        </a>
       </header>
       <main className={classes.main}>{children}</main>
       <footer className={classes.footer}>

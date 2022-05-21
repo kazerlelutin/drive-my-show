@@ -36,7 +36,7 @@ export default function AdminLinks({ token }: props) {
               <ClipBoard
                 txt={l("slider/" + data.reader)}
                 typeTxt="input"
-                label={t("slider link")}
+                label={t('Add this link as "Browser" source in OBS')}
               />
             </div>
             <div className={classes.block}>

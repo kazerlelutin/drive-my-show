@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
 import { PrismaClient } from "@prisma/client";
 import commonControl from "../../utils/commonControl.middleware";
+import refreshConductorSignal from "../../utils/refreshConductorSignal";
 const prisma = new PrismaClient();
 
 export default async function updateChronicle(
@@ -10,7 +11,11 @@ export default async function updateChronicle(
 ) {
   const type = commonControl(req, res, ["admin", "editor"]),
     { body } = req;
-  if (type) {
+  if (type && body) {
+    const show = await prisma.show.findFirst({ where: { [type]: body.token } });
+
+    if (!show) res.status(403).send("problem with show.");
+
     const chronicle = await prisma.chronicle.update({
       where: {
         id: body.id,
@@ -28,7 +33,11 @@ export default async function updateChronicle(
       },
     });
 
-    await prisma.show.update({where: {id: chronicle.showId}, data:{ trigger: new Date()}});
+    await prisma.show.update({
+      where: { id: chronicle.showId },
+      data: { trigger: new Date() },
+    });
+    refreshConductorSignal("admin", show.admin);
     res.send(chronicle);
   } else {
     res.status(403).send("problem with show.");

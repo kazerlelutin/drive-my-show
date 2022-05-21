@@ -1,19 +1,24 @@
 import classes from "./EditShowTitle.module.css";
-import { useState, useEffect, ReactEventHandler, FormEventHandler, FormEvent } from "react";
+import {
+  useState,
+  useEffect,
+  ReactEventHandler,
+  FormEventHandler,
+  FormEvent,
+} from "react";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import useLazyFetch from "../../hooks/useLazyFetch";
 import { toast } from "react-toastify";
-import useTranslate from '../../hooks/useTranslate';
+import useTranslate from "../../hooks/useTranslate";
 import pageTranslate from "../../translate/page.translate";
 
 interface props {
   readonly title: string;
   readonly token: string;
 }
-export default function EditShowTitle({ title, token }:props) {
-  const 
-    t = useTranslate(pageTranslate),
-    { loading, data, fetch } = useLazyFetch("/upateShowTitle"),
+export default function EditShowTitle({ title, token }: props) {
+  const t = useTranslate(pageTranslate),
+    { loading, data, fetch } = useLazyFetch("/updateShowTitle"),
     [isEdit, setIsEdit] = useState<boolean>(false),
     [value, setValue] = useState<string>(title);
 
@@ -24,9 +29,9 @@ export default function EditShowTitle({ title, token }:props) {
     }
   }, [data]);
 
-  function handleSubmit(e:FormEvent){
-      e.preventDefault();
-      fetch({title:value,token});
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    fetch({ title: value, token });
   }
   return (
     <div className={classes.container}>
@@ -38,7 +43,9 @@ export default function EditShowTitle({ title, token }:props) {
       ) : (
         <div className={classes.title}>{data?.title || title}</div>
       )}
-      <button onClick={()=>setIsEdit(!isEdit)}>{t(isEdit ? 'Cancel':'Edit')}</button>
+      <button onClick={() => setIsEdit(!isEdit)}>
+        {t(isEdit ? "Cancel" : "Edit")}
+      </button>
     </div>
   );
 }

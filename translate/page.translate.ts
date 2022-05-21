@@ -3,7 +3,7 @@ const pageTranslate = {
     fr: "Expire",
   },
   "admin link": {
-    fr: "lien admin",
+    fr: "lien administrateur",
   },
   "editor link": {
     fr: "lien éditeur",
@@ -96,40 +96,49 @@ const pageTranslate = {
     fr: "nom",
   },
   file: {
-    fr:"fichier"
+    fr: "fichier",
   },
-  video:{
-    fr:'vidéo'
+  video: {
+    fr: "vidéo",
   },
-  media:{
-    fr:"média"
+  media: {
+    fr: "média",
   },
-  medias:{
-    fr:'médias'
+  medias: {
+    fr: "médias",
   },
-  Media:{
-    fr:'Média'
+  Media: {
+    fr: "Média",
   },
   Medias: {
-    fr: "Médias"
+    fr: "Médias",
   },
   Close: {
-    fr:'Fermer'
+    fr: "Fermer",
   },
-  Broadcast:{
-    fr: 'Diffuser'
+  Broadcast: {
+    fr: "Diffuser",
   },
-  'Media sended to slider !':{
-    fr:'Media envoyé au slider !'
+  "Media sended to slider !": {
+    fr: "Media envoyé au slider !",
   },
-  'Clear slider ?':{
-    fr:'Effacer le slider ?'
+  "Clear slider ?": {
+    fr: "Effacer le slider ?",
   },
-  "special command":{
-    fr: 'commande spéciale'
+  "special command": {
+    fr: "commande spéciale",
   },
   "Clear slider": {
-    fr: "Effacer le slider"
+    fr: "Effacer le slider",
+  },
+  'Add this link as "Browser" source in OBS': {
+    fr: 'Ajouter ce lien comme source "Browser" dans OBS',
+  },
+  'Buy me a coffee':{
+    fr: "Payez moi un café"
+  },
+  "Update detected, reload the page.":{
+    fr:"Mise à jour détecté, rechargez la page."
   }
 };
 

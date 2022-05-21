@@ -9,6 +9,7 @@ import SliderVideo from './SliderVideo/SliderVideo';
 interface props {
   readonly token: string;
 }
+
 export default function Slider({ token }: props) {
   const [media, setMedia] = useState<Media|undefined>(undefined);
 

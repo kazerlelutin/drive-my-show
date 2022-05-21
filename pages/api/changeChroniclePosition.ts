@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
 import { PrismaClient } from "@prisma/client";
 import commonControl from "../../utils/commonControl.middleware";
+import refreshConductorSignal from "../../utils/refreshConductorSignal";
 const prisma = new PrismaClient();
 
 export default async function changeChroniclePosition(
@@ -11,7 +12,10 @@ export default async function changeChroniclePosition(
   const type = commonControl(req, res, ["admin", "editor"]),
     { body } = req;
 
-  if (type) {
+  if (type && body) {
+    const show = await prisma.show.findFirst({ where: { [type]: body.token } });
+    if (!show) res.status(403).send("problem with show.");
+
     const { position, direction, lastPosition, chronicle } = body;
 
     if (position === 0 && direction === "up") {
@@ -49,6 +53,7 @@ export default async function changeChroniclePosition(
       });
     }
 
+    refreshConductorSignal('admin',show.admin);
     return res.send("ok");
   } else {
     res.status(403).send("problem with show.");
