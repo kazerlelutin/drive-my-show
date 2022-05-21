@@ -1,0 +1,30 @@
+.content {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+
+.counters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-end;
+}
+
+
+.counter:after {
+    content: ' / '
+}
+.counter:last-child:after {
+    content: ''
+}
+
+@media screen and (max-width: 500px) {
+
+    .content {
+        flex-direction: column;
+    }
+    
+    
+}

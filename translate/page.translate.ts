@@ -139,6 +139,9 @@ const pageTranslate = {
   },
   "Update detected, reload the page.":{
     fr:"Mise à jour détecté, rechargez la page."
+  },
+  "Chronicle":{
+    fr:"Chronique"
   }
 };
 

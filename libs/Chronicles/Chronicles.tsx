@@ -8,6 +8,7 @@ import UpAndDownChronicles from "../UpAndDownChronicles/UpAndDownChronicles";
 import classes from "./Chronicles.module.css";
 import ChroniclesTranslate from "./Chronicles.translate";
 import MediasForCard from '../MediasForCard/MediasForCard';
+import CounterColumnists from "../CounterColumnists/CounterColumnists";
 
 interface props {
   readonly token: string;
@@ -32,9 +33,7 @@ export default function Chronicles({ token }:props) {
   return (
     <div className={classes.container}>
       <div className={classes.counter}>
-        {loading
-          ? "..."
-          : `${data.length} ${t("Chronicle")}${data.length > 1 ? "s" : ""}`}
+        <CounterColumnists token={token}/>
       </div>
       {loading ? (
         <div className={classes.loading}></div>

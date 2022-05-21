@@ -36,7 +36,7 @@ export default function Admin({ token }: props) {
             <header className={classes.header}>
               <h1>{data.title}</h1>
               <div className={classes.expire}>
-                {t("Expires")} {dayjs(data.trigger).add(90, "days").fromNow()}
+                {t("Expires")} {dayjs(data.trigger).add(30, "days").fromNow()}
               </div>
             </header>
             <div className={classes.actions}>
