@@ -1,0 +1,39 @@
+.page {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-size: 1.8em;
+  padding: 5px;
+  text-align: center;
+  background: var(--color-bg-accent);
+  border-radius: 5px;
+}
+
+.chronicle {
+  border-bottom: 1px solid var(--color-bg-accent);
+  font-size: 1.1em;
+}
+
+.columnist {
+  font-style: italic;
+}
+
+.chronicleTitle::first-letter {
+  text-transform: uppercase;
+}
+
+.duration::before {
+  content: " ~";
+}
+
+.duration::after {
+  content: " min";
+}
+.duration {
+  font-style: italic;
+  color: green;
+}

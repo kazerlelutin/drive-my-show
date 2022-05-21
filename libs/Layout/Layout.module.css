@@ -1,0 +1,31 @@
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  background: var(--color-bg-accent);
+}
+
+.container {
+  background: var(--color-bg);
+}
+
+.logo {
+  text-align: left;
+}
+
+.param {
+  text-align: right;
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+}
+
+.footer {
+  background: var(--color-bg-accent);
+}

@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin: auto;
+}
+
+.types {
+  display: flex;
+  font-size: 1.2em;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  transition: 200ms ease-in-out;
+}
+
+.type {
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.type:hover {
+  color: white;
+}
+
+.type[data-current="true"] {
+  border-bottom: 2px solid var(--color-link);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: calc(100% - 20px);
+}
+
+.fieldset {
+    display: flex;
+    width: calc(100% - 20px);
+}
+
+.or {
+    text-align: center;
+    font-size: 2em;
+}
+
+
+@media screen and (max-width: 450px) {
+   .container{
+       width: calc(100% - 40px);
+   } 
+   .fieldset {
+    display: flex;
+    width: 100%;
+}
+.fieldset input {
+    width: 100%;
+}
+}

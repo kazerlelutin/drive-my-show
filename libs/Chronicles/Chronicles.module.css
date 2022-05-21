@@ -1,0 +1,14 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+
+}
+
+.counter {
+    width: 100%;
+    text-align: right;
+    padding: 0 10px;
+}
