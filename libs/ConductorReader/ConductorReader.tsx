@@ -64,7 +64,7 @@ export default function ConductorReader({ token, type }: props) {
                 )}
               </div>
               <ReactMarkdown>{chronicle.content}</ReactMarkdown>
-              {type === 'reader' ? <MediasForConductor chronicle={chronicle} token={token} /> :<MediasForCard chronicle={chronicle} token={token}/>}
+                <MediasForConductor chronicle={chronicle} token={token} />
             </div>
           ))}
           <div className={classes.menu}>

@@ -5,7 +5,6 @@ import Media from "../../interfaces/medias.interface";
 import MediaCreator from "../MediaCreator/MediaCreator";
 import useTranslate from "../../hooks/useTranslate";
 import MediaModaleToDelete from "../MediaModaleToDelete/MediaModaleToDelete";
-import MediasTitleForBroadcast from "./MediasTitleForBroadcast";
 
 interface props {
   readonly chronicle: Chronicle;
@@ -41,7 +40,7 @@ export default function MediasForCard({ chronicle, token }: props) {
       <div className={classes.medias}>
         {medias.map((media) => (
           <div className={classes.media}  key={media.id} >
-            <div className={classes.mediaTitle}><MediasTitleForBroadcast media={media} token={token}/></div>
+            <div className={classes.mediaTitle}>{media.title}</div>
             <div className={classes.type}>{media.type}</div>
             <div className={classes.delete} onClick={()=>setIsOpenToDelete(media)}>{t('Delete')}</div>
           </div>
