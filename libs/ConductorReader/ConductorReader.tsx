@@ -10,6 +10,7 @@ import { io } from "socket.io-client";
 import { toast } from "react-toastify";
 import useTranslate from '../../hooks/useTranslate';
 import Link from "next/link";
+import MediasForCard from "../MediasForCard/MediasForCard";
 
 interface props {
   readonly token: string;
@@ -63,7 +64,7 @@ export default function ConductorReader({ token, type }: props) {
                 )}
               </div>
               <ReactMarkdown>{chronicle.content}</ReactMarkdown>
-              <MediasForConductor chronicle={chronicle} token={token} />
+              {type === 'reader' ? <MediasForConductor chronicle={chronicle} token={token} /> :<MediasForCard chronicle={chronicle} token={token}/>}
             </div>
           ))}
           <div className={classes.menu}>
