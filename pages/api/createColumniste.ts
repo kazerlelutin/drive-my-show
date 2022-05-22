@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
-import { PrismaClient } from "@prisma/client";
 import commonControl from "../../utils/commonControl.middleware";
-const prisma = new PrismaClient();
+import {prisma} from '../../db/db';
 
 export default async function createColumniste(
   req: NextApiRequest,
