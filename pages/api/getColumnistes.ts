@@ -34,7 +34,7 @@ export default async function getColumnistes(
         },
       });
       res.json(
-        _.get(show, "columnists", []).map((o: Columnist) => ({
+        _.get(show, "columnists", []).sort((a,b)=> a.name.localeCompare(b.name)).map((o: Columnist) => ({
           label: o.name,
           value: o.id,
         }))
