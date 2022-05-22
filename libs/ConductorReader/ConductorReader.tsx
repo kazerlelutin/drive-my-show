@@ -2,13 +2,14 @@
 import classes from "./ConductorReader.module.css";
 import useFetch from "../../hooks/useFetch";
 import LayoutConductorManager from "../LayoutConductorManager/LayoutConductorManager";
-import Chronicle from "../../interfaces/chronicle.interface";
+import Chronicle from '../../interfaces/chronicle.interface';
 import ReactMarkdown from "react-markdown";
 import MediasForConductor from "../MediasForConductor/MediasForConductor";
 import { useEffect, useState } from 'react';
 import { io } from "socket.io-client";
 import { toast } from "react-toastify";
 import useTranslate from '../../hooks/useTranslate';
+import Link from "next/link";
 
 interface props {
   readonly token: string;
@@ -43,7 +44,7 @@ export default function ConductorReader({ token, type }: props) {
         <div className={classes.page}>
           <h1 className={classes.title}>{data.title}</h1>
           {data.chronicles.map((chronicle: Chronicle) => (
-            <div className={classes.chronicle} key={chronicle.id}>
+            <div className={classes.chronicle} key={chronicle.id} id={`${chronicle.id}`}>
               {chronicle.link.match("/http/") ? (
                 <a href={chronicle.link} target="_blank" rel="noreferrer">
                   <h2
@@ -65,6 +66,13 @@ export default function ConductorReader({ token, type }: props) {
               <MediasForConductor chronicle={chronicle} token={token} />
             </div>
           ))}
+          <div className={classes.menu}>
+          {data.chronicles.map((chronicle: Chronicle) => (
+            <div className={classes.menuElement} key={chronicle.id}>
+              <Link href={`#` + chronicle.id}>{`#${chronicle.position} ${chronicle.title}`}</Link>
+            </div>
+          ))}
+          </div>
         </div>
       )}
     </LayoutConductorManager>
