@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
-import { PrismaClient } from "@prisma/client";
+import {prisma} from '../../db/db';
 import commonControl from "../../utils/commonControl.middleware";
 import refreshConductorSignal from "../../utils/refreshConductorSignal";
-const prisma = new PrismaClient();
 
 export default async function deleteMedia(
   req: NextApiRequest,

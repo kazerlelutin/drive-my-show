@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import _ from 'lodash';
-import { PrismaClient } from '@prisma/client';
+import {prisma} from '../../db/db';
 import commonControl from '../../utils/commonControl.middleware';
-const prisma = new PrismaClient();
 
 export default async function getAdminShow(
   req: NextApiRequest,

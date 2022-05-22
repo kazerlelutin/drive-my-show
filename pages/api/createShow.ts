@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import generator from 'generate-password';
 import _ from 'lodash';
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import {prisma} from '../../db/db';
 
 export default async function createShow(
   req: NextApiRequest,
