@@ -1,0 +1,27 @@
+.counters {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.counter {
+  display: flex;
+  gap: 10px;
+}
+
+.del {
+  color: rgb(192, 81, 81);
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+
+.del:hover {
+  color: rgb(191, 29, 29);
+}
+
+.title {
+  font-size: 1.1em;
+  font-weight: bold;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}

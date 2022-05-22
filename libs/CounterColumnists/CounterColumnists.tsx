@@ -9,8 +9,6 @@ interface props {
 export default function CounterColumnists({ token }: props) {
   const { loading, data } = useFetch("/getColoumnistsCounters", { token }),
     t = useTranslate();
-
-  console.log(data);
   return (
     <div className={classes.container}>
       {loading ? (

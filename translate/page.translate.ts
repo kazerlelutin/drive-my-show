@@ -142,6 +142,9 @@ const pageTranslate = {
   },
   "Chronicle":{
     fr:"Chronique"
+  },
+  "All attached chronicles will be deleted. You can assign the chronicles before deleting the columnist.":{
+    fr:'Toutes les chroniques jointes seront supprimées. Vous pouvez attribuer les chroniques avant de supprimer le chroniqueur.'
   }
 };
 
