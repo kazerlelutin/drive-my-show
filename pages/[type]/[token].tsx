@@ -27,7 +27,7 @@ export default function Admin({ token }: props) {
   const t = useTranslate(pageTranslate),
     [showChronicleForm, setShowChronicleForm] = useState<boolean>(false),
     { loading, error, data }: Fetch = useFetch("/getAdminShow", { token });
-    
+
   return (
     <Layout title={_.get(data, "title")}>
       <LayoutConductorManager error={error} loading={loading}>

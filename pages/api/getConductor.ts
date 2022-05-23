@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
 import commonControl from "../../utils/commonControl.middleware";
-import {prisma} from '../../db/db';
+import { prisma } from "../../db/db";
 
 export default async function getConductor(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const type = commonControl(req, res, ["admin", "editor","reader"]);
+  const type = commonControl(req, res, ["admin", "editor", "reader"]);
 
   if (type) {
     const show = await prisma.show.findUnique({
@@ -17,7 +17,7 @@ export default async function getConductor(
         trigger: true,
         chronicles: {
           select: {
-            id:true,
+            id: true,
             title: true,
             link: true,
             content: true,
@@ -27,8 +27,8 @@ export default async function getConductor(
             medias: true,
           },
           orderBy: {
-            position:'asc'
-          }
+            position: "asc",
+          },
         },
       },
     });

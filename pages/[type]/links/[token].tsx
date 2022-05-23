@@ -28,9 +28,8 @@ export default function AdminLinks({ token }: props) {
 
   return (
     <Layout title={_.get(data, "title")}>
-          <LayoutConductorManager error={error} loading={loading}>
-
-          {data && (
+      <LayoutConductorManager error={error} loading={loading}>
+        {data && (
           <>
             <div className={classes.block}>
               <ClipBoard
@@ -58,8 +57,7 @@ export default function AdminLinks({ token }: props) {
             </div>
           </>
         )}
-          </LayoutConductorManager>
-
+      </LayoutConductorManager>
     </Layout>
   );
 }

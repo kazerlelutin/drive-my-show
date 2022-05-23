@@ -4,6 +4,7 @@ interface props {
   readonly isLoading: boolean;
   readonly txt: string;
 }
+
 export default function SubmitButton({ isLoading, txt }: props) {
   return (
     <button className={classes.container} disabled={isLoading}>

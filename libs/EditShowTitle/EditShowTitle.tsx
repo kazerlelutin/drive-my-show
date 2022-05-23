@@ -2,8 +2,6 @@ import classes from "./EditShowTitle.module.css";
 import {
   useState,
   useEffect,
-  ReactEventHandler,
-  FormEventHandler,
   FormEvent,
 } from "react";
 import SubmitButton from "../SubmitButton/SubmitButton";
@@ -18,7 +16,7 @@ interface props {
 }
 export default function EditShowTitle({ title, token }: props) {
   const t = useTranslate(pageTranslate),
-    { loading, data, fetch } = useLazyFetch("/updateShowTitle"),
+    { loading, data, api } = useLazyFetch("/updateShowTitle"),
     [isEdit, setIsEdit] = useState<boolean>(false),
     [value, setValue] = useState<string>(title);
 
@@ -31,8 +29,9 @@ export default function EditShowTitle({ title, token }: props) {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    fetch({ title: value, token });
+    api({ title: value, token });
   }
+
   return (
     <div className={classes.container}>
       {isEdit ? (

@@ -15,7 +15,7 @@ interface props {
   readonly refetch: Function
 }
 export default function ChronicleDeleteModale({ id, title, onClose,refetch }: props) {
-  const { loading, data, error, fetch } = useLazyFetch("/deleteChronicle"),
+  const { loading, data, error, api } = useLazyFetch("/deleteChronicle"),
   {query}= useRouter(),
     t = useTranslate(pageTranslate);
 
@@ -41,7 +41,7 @@ export default function ChronicleDeleteModale({ id, title, onClose,refetch }: pr
           <button disabled={loading} onClick={() => onClose()} className="cancel">
             {t("Cancel")}
           </button>
-          <button disabled={loading} onClick={() => fetch({ id,token: query.token })}>{t("Delete")}</button>
+          <button disabled={loading} onClick={() => api({ id,token: query.token })}>{t("Delete")}</button>
         </div>
       </div>
     </FullscreenModale>

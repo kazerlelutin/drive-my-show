@@ -10,7 +10,7 @@ interface Fetch {
   readonly refetch: Function
 }
 
-export default function useFetch(url: string, body: Object):Fetch {
+export default function useFetch(url: string, body: object):Fetch {
   const [data, setData] = useState<any>(),
     [error, setError] = useState<Error>(),
     [loading, setLoading] = useState<boolean>(false);

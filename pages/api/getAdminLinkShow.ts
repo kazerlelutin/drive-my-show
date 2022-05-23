@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import _ from 'lodash';
-import commonControl from '../../utils/commonControl.middleware';
-import {prisma} from '../../db/db';
+import { NextApiRequest, NextApiResponse } from "next";
+import _ from "lodash";
+import commonControl from "../../utils/commonControl.middleware";
+import { prisma } from "../../db/db";
 
 export default async function getAdminLinkShow(
   req: NextApiRequest,
@@ -13,11 +13,11 @@ export default async function getAdminLinkShow(
       where: { admin: req.body.token },
       select: {
         title: true,
-        admin:true,
-        reader:true,
-        editor:true,
+        admin: true,
+        reader: true,
+        editor: true,
       },
     });
-    return show ? res.json(show): res.status(404).send('not found');
-  } 
+    return show ? res.json(show) : res.status(404).send("not found");
+  }
 }

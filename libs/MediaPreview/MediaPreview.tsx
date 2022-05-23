@@ -7,19 +7,19 @@ import useTranslate from "../../hooks/useTranslate";
 import useLazyFetch from "../../hooks/useLazyFetch";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import Media from '../../interfaces/medias.interface';
+import Media from "../../interfaces/medias.interface";
 
 interface props {
-    readonly media: Media |'clear',
-    readonly token : string
-    readonly onClose: Function 
+  readonly media: Media | "clear";
+  readonly token: string;
+  readonly onClose: Function;
 }
-export default function MediaPreview({ media, token, onClose }:props) {
+export default function MediaPreview({ media, token, onClose }: props) {
   const t = useTranslate(),
-    { data, loading, fetch } = useLazyFetch("/broadcast");
+    { data, loading, api } = useLazyFetch("/broadcast");
 
   function handleClick() {
-    fetch({ token, media });
+    api({ token, media });
   }
 
   useEffect(() => {
@@ -32,22 +32,30 @@ export default function MediaPreview({ media, token, onClose }:props) {
   return (
     <FullscreenModale>
       <div className={classes.container}>
-       {media === 'clear' ? <div className={classes.message}>{t('Clear slider ?')}</div>:<div className={classes.media}>
-          {media.type === "image" && (
-            <img className={classes.image} src={media.link} alt={media.title} />
-          )}
-          {media.type === "video" && (
-            <ReactPlayer
-              url={media.link}
-              controls={false}
-              volume={0}
-              loop={true}
-              playing={true}
-              width={"100%"}
-              height={175}
-            />
-          )}
-        </div> }
+        {media === "clear" ? (
+          <div className={classes.message}>{t("Clear slider ?")}</div>
+        ) : (
+          <div className={classes.media}>
+            {media.type === "image" && (
+              <img
+                className={classes.image}
+                src={media.link}
+                alt={media.title}
+              />
+            )}
+            {media.type === "video" && (
+              <ReactPlayer
+                url={media.link}
+                controls={false}
+                volume={0}
+                loop={true}
+                playing={true}
+                width={"100%"}
+                height={175}
+              />
+            )}
+          </div>
+        )}
         <div className={classes.buttons}>
           <button onClick={() => onClose()}>{t("Close")}</button>
           <button disabled={loading} onClick={handleClick}>

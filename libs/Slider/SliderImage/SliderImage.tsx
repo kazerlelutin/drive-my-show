@@ -3,14 +3,14 @@ import Media from "../../../interfaces/medias.interface";
 import classes from "./SliderImage.module.css";
 
 interface props {
-    readonly media : Media
+  readonly media: Media;
 }
-export default function SliderImage({media}:props){
-
-    return <div className={classes.container}>
- {media.link && (
+export default function SliderImage({ media }: props) {
+  return (
+    <div className={classes.container}>
+      {media.link && (
         <div className={classes.blurContainer}>
-          <img src={media.link} className={classes.blur} alt={media.title}/>
+          <img src={media.link} className={classes.blur} alt={media.title} />
         </div>
       )}
       {media.link && (
@@ -20,4 +20,5 @@ export default function SliderImage({media}:props){
         />
       )}
     </div>
+  );
 }

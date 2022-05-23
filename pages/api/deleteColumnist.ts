@@ -4,7 +4,6 @@ import {prisma} from '../../db/db';
 import commonControl from "../../utils/commonControl.middleware";
 import refreshConductorSignal from "../../utils/refreshConductorSignal";
 
-
 export default async function deleteColumnist(
   req: NextApiRequest,
   res: NextApiResponse
@@ -28,7 +27,8 @@ export default async function deleteColumnist(
         id: body.columnist.id,
       },
     });
-    const transaction = await prisma.$transaction([deleteColumnistChronicles, deleteColumnist])
+    
+    await prisma.$transaction([deleteColumnistChronicles, deleteColumnist])
 
     refreshConductorSignal("admin", show.admin);
     res.send("done");

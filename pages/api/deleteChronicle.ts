@@ -4,7 +4,6 @@ import {prisma} from '../../db/db';
 import commonControl from "../../utils/commonControl.middleware";
 import refreshConductorSignal from "../../utils/refreshConductorSignal";
 
-
 export default async function deleteChronicle(
   req: NextApiRequest,
   res: NextApiResponse

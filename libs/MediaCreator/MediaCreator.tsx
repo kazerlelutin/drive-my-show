@@ -26,7 +26,7 @@ export default function MediaCreator({
     [title, setTitle] = useState<string>(""),
     [dataImg, setData] = useState<string>(""),
     [link, setLink] = useState<string>(""),
-    { loading, data, fetch } = useLazyFetch("/createMedia");
+    { loading, data, api } = useLazyFetch("/createMedia");
 
   async function getBase64(file: File) {
     const reader = new FileReader();
@@ -51,7 +51,7 @@ export default function MediaCreator({
 
   function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
-    fetch({
+    api({
       title,
       type: currentType,
       token,

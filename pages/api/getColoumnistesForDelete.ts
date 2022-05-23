@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
 import commonControl from "../../utils/commonControl.middleware";
-import {prisma} from '../../db/db';
+import { prisma } from "../../db/db";
 
 export default async function getColoumnistsCounters(
   req: NextApiRequest,
@@ -19,8 +19,7 @@ export default async function getColoumnistsCounters(
         _count: {
           select: { chronicles: true },
         },
-
-      }
+      },
     });
 
     return columnists
