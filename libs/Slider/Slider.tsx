@@ -1,24 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import classes from "./Slider.module.css";
-import { useEffect, useState } from "react";
-import { io } from "socket.io-client";
+import { useEffect, useState, useContext } from 'react';
 import SliderImage from "./SliderImage/SliderImage";
 import Media from "../../interfaces/medias.interface";
 import SliderVideo from './SliderVideo/SliderVideo';
+import { UiContext } from "../../store/ui.store";
 
 interface props {
   readonly token: string;
 }
 
 export default function Slider({ token }: props) {
-  const [media, setMedia] = useState<Media|undefined>(undefined);
+  const 
+    {socket} = useContext(UiContext),
+    [media, setMedia] = useState<Media|undefined>(undefined);
 
   useEffect(() => {
-    const socket = io(process.env.NEXT_PUBLIC_URL_LIVE);
-
     socket.on("connect", () => {
-      socket.on(`slider-${token}`, (msg) => {
-
+      socket.on(`slider-${token}`, (msg:any) => {
         setMedia(msg);
       });
     });

@@ -9,7 +9,7 @@ import io from 'socket.io-client';
 const socket = io(process.env.NEXT_PUBLIC_URL_LIVE)
 
 function MyApp({ Component, pageProps }) {
-  return <UiContext.Provider value={socket} >
+  return <UiContext.Provider value={{socket}} >
     <Component {...pageProps} />
   </UiContext.Provider>
 }

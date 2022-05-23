@@ -5,12 +5,12 @@ import LayoutConductorManager from "../LayoutConductorManager/LayoutConductorMan
 import Chronicle from '../../interfaces/chronicle.interface';
 import ReactMarkdown from "react-markdown";
 import MediasForConductor from "../MediasForConductor/MediasForConductor";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { io } from "socket.io-client";
 import { toast } from "react-toastify";
 import useTranslate from '../../hooks/useTranslate';
 import Link from "next/link";
-import MediasForCard from "../MediasForCard/MediasForCard";
+import { UiContext } from "../../store/ui.store";
 
 interface props {
   readonly token: string;
@@ -18,16 +18,17 @@ interface props {
 }
 
 export default function ConductorReader({ token, type }: props) {
-  const { loading, error, data, refetch } = useFetch("/getConductor", {
+  const 
+  {socket} = useContext(UiContext),
+  { loading, error, data } = useFetch("/getConductor", {
     token: token,
   }),
   t = useTranslate(),
   [refresh,setRefresh] = useState<string>('')
 
   useEffect(() => {
-    const socket = io(process.env.NEXT_PUBLIC_URL_LIVE);
     socket.on("connect", () => {
-      socket.on(`conductor-${type}-${token}`, (msg) => {
+      socket.on(`conductor-${type}-${token}`, () => {
         setRefresh('refresh')
         toast.info(t('Update detected, reload the page.'), {
           toastId: refresh
