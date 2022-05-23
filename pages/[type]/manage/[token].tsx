@@ -8,6 +8,7 @@ import pageTranslate from "../../../translate/page.translate";
 import Error from "../../../interfaces/error.interface";
 import EditShowTitle from "../../../libs/EditShowTitle/EditShowTitle";
 import ColumnistToDelete from "../../../libs/ColumnistToDelete/ColumnistToDelete";
+import LayoutConductorManager from "../../../libs/LayoutConductorManager/LayoutConductorManager";
 
 interface props {
   readonly token: string;
@@ -21,9 +22,10 @@ interface Fetch {
 
 export default function AdminManage({ token }: props) {
   const t = useTranslate(pageTranslate),
-    { loading, data }: Fetch = useFetch("/getAdminLinkShow", { token });
+    { loading, data,error }: Fetch = useFetch("/getAdminLinkShow", { token });
   return (
     <Layout title={_.get(data, "title")}>
+      <LayoutConductorManager error={error} loading={loading} >
       <div className={classes.container}>
         {loading && <div className={classes.page}>...</div>}
         {data && (
@@ -38,6 +40,8 @@ export default function AdminManage({ token }: props) {
           </div>
         )}
       </div>
+      </LayoutConductorManager>
+
     </Layout>
   );
 }

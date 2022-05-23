@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import _ from "lodash";
 import MenuHeader from "../MenuHeader/MenuHeader";
+import setLastShowesInLocalStorage from "../../utils/setLastShowesInLocalStorage";
 interface props {
   readonly children: ReactChild;
   readonly title?: string;
@@ -21,12 +22,18 @@ interface props {
 
 export default function Layout({ children, title }: props) {
   const t = useTranslate(layoutTranslate),
-    { locale } = useRouter(),
+    { locale,query } = useRouter(),
     availableLocale = { fr, en };
 
   useEffect(() => {
     dayjs.locale(availableLocale[locale]);
   }, [locale]);
+
+  useEffect(() => {
+    if(query && query.type && query.token){
+      setLastShowesInLocalStorage(query);
+    }
+  }, [query]);
 
   return (
     <div className={classes.container}>

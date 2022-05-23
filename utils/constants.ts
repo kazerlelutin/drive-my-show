@@ -1,0 +1,1 @@
+export const LS_LAST_SHOW='dmsLastShow';
