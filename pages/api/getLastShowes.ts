@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import _, { sortBy } from "lodash";
+import { prisma } from "../../db/db";
 
 export default async function getLastShowes(
   req: NextApiRequest,
