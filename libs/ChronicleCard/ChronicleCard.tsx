@@ -1,9 +1,8 @@
 import Chronicle from "../../interfaces/chronicle.interface";
 import classes from "./ChronicleCard.module.css";
-import { ReactElement, useContext, useState, useEffect } from 'react';
+import { ReactElement, useState } from 'react';
 import ChronicleEditor from "../ChronicleEditor/ChronicleEditor";
 import ChronicleCardReadMode from "./ChronicleCardReadMode/ChronicleCardReadMode";
-import { UiContext } from "../../store/ui.store";
 interface props {
   readonly chronicle: Chronicle;
   readonly UpAndDownChronicles: ReactElement;
@@ -16,16 +15,7 @@ export default function ChronicleCard({
   MediasForCard,
   refetch,
 }: props) {
-  const 
-    {socket} = useContext(UiContext),
-    [editMode, setEditMode] = useState<Chronicle>();
-
-
-    useEffect(()=>{
-  
-      /*TODO ABO;*/
-
-    },[editMode])
+  const [editMode, setEditMode] = useState<Chronicle>();
   return editMode ? (
     <div className={classes.editor}>
       <ChronicleEditor
