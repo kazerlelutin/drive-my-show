@@ -134,18 +134,23 @@ const pageTranslate = {
   'Add this link as "Browser" source in OBS': {
     fr: 'Ajouter ce lien comme source "Browser" dans OBS',
   },
-  'Buy me a coffee':{
-    fr: "Payez moi un café"
+  "Buy me a coffee": {
+    fr: "Payez moi un café",
   },
-  "Update detected, reload the page.":{
-    fr:"Mise à jour détecté, rechargez la page."
+  "Update detected, reload the page.": {
+    fr: "Mise à jour détecté, rechargez la page.",
   },
-  "Chronicle":{
-    fr:"Chronique"
+  Chronicle: {
+    fr: "Chronique",
   },
-  "All attached chronicles will be deleted. You can assign the chronicles before deleting the columnist.":{
-    fr:'Toutes les chroniques jointes seront supprimées. Vous pouvez attribuer les chroniques avant de supprimer le chroniqueur.'
-  }
+  "All attached chronicles will be deleted. You can assign the chronicles before deleting the columnist.":
+    {
+      fr: "Toutes les chroniques jointes seront supprimées. Vous pouvez attribuer les chroniques avant de supprimer le chroniqueur.",
+    },
+  "Search for recent conductors...": {
+    fr: "Recherche de conducteurs récents...",
+  },
+  "Recent conductors": { fr: "Conducteurs récents" },
 };
 
 export default pageTranslate;
