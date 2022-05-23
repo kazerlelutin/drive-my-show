@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
 import commonControl from "../../utils/commonControl.middleware";
 import refreshConductorSignal from "../../utils/refreshConductorSignal";
-import {prisma} from '../../db/db';
+import { prisma } from "../../db/db";
 
 export default async function updateShowTitle(
   req: NextApiRequest,
@@ -21,10 +21,10 @@ export default async function updateShowTitle(
       },
       data: {
         title: title,
-        trigger: new Date()
+        trigger: new Date(),
       },
     });
-    refreshConductorSignal(type,token);
+    refreshConductorSignal(type, token);
     res.send(show);
   } else {
     res.status(403).send("problem with show.");

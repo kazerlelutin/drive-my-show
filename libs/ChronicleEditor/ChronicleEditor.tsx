@@ -29,17 +29,16 @@ export default function ChronicleEditor({
 }: props) {
   const t = useTranslate(pageTranslate),
     { query } = useRouter(),
-    { loading, error, data, fetch } = useLazyFetch(
+    { loading, error, data, api } = useLazyFetch(
       chronicle ? "/updateChronicle" : "/createChronicle"
     ),
     [state, dispatch] = useReducer(reducer, chronicle || initialState);
 
-  async function handleSubmit() {
+  function handleSubmit() {
     if (loading) return;
     if (!state.title) return toast.warning(t("Title is required"));
     if (!state.columnist) return toast.warning(t("Need a columnist"));
-    await fetch({ ...state, token: query.token });
-    //
+    api({ ...state, token: query.token });
   }
 
   useEffect(() => {
@@ -57,13 +56,8 @@ export default function ChronicleEditor({
 
   useEffect(() => {
     if (data) {
-      if (chronicle && refetch) {
-        refetch();
-        toast.success(t("Chronicle updated !"));
-      } else {
-        toast.success(t("Chronicle created !"));
-      }
-
+      toast.success(t(chronicle && refetch ? "Chronicle updated !":"Chronicle created !"));
+      refetch();
       onClose();
     }
   }, [data]);

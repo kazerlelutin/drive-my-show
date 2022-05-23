@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
 import commonControl from "../../utils/commonControl.middleware";
-import {prisma} from '../../db/db';
+import { prisma } from "../../db/db";
 
 export default async function getColoumnistsCounters(
   req: NextApiRequest,
@@ -32,7 +32,7 @@ export default async function getColoumnistsCounters(
         },
       },
     });
-    const response = {columnists, total: countChronicles };
+    const response = { columnists, total: countChronicles };
     if (res) return res.json(response);
     return res.status(404).send("not found");
   }

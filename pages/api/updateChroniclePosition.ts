@@ -5,7 +5,7 @@ import commonControl from "../../utils/commonControl.middleware";
 import refreshConductorSignal from "../../utils/refreshConductorSignal";
 const prisma = new PrismaClient();
 
-export default async function changeChroniclePosition(
+export default async function updateChroniclePosition(
   req: NextApiRequest,
   res: NextApiResponse
 ) {

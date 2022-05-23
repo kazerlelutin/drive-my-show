@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import useLazyFetch from "../../hooks/useLazyFetch";
 import classes from "./UpAndDownChronicles.module.css";
@@ -6,13 +7,11 @@ export default function UpAndDownChronicles({
   chronicle,
   onChange,
   lastPosition,
-  token
+  token,
 }) {
-  const { fetch,data } = useLazyFetch(
-    "/changeChroniclePosition"
-  );
-  function handleClick(direction:'up'|'down') {
-    fetch({ direction, lastPosition, chronicle,token });
+  const { api, data } = useLazyFetch("/updateChroniclePosition");
+  function handleClick(direction: "up" | "down") {
+    api({ direction, lastPosition, chronicle, token });
   }
 
   useEffect(() => {

@@ -1,15 +1,14 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import generator from 'generate-password';
-import _ from 'lodash';
-import {prisma} from '../../db/db';
+import { NextApiRequest, NextApiResponse } from "next";
+import generator from "generate-password";
+import _ from "lodash";
+import { prisma } from "../../db/db";
 
 export default async function createShow(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-
-  if (req.method === 'POST') {
-    if (_.get(req, 'body.title')) {
+  if (req.method === "POST") {
+    if (_.get(req, "body.title")) {
       const { title }: { title: string } = req.body;
       //use prefix for not check 3 tokens (admin,reader, editor).
       let prefix = undefined;
@@ -52,9 +51,9 @@ export default async function createShow(
       });
       return res.send(show.admin);
     } else {
-      res.status(400).send('No title in body');
+      res.status(400).send("No title in body");
     }
   } else {
-    res.status(405).send('Please, use POST');
+    res.status(405).send("Please, use POST");
   }
 }

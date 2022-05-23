@@ -10,5 +10,4 @@ const ClipBoardTranslate = {
   }
 }
 
-
 export default ClipBoardTranslate;

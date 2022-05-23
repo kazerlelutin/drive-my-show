@@ -5,7 +5,6 @@ import classes from "../../../styles/Links.module.css";
 import Show from "../../../interfaces/show.interface";
 import useTranslate from "../../../hooks/useTranslate";
 import pageTranslate from "../../../translate/page.translate";
-import useCreateLink from "../../../hooks/useCreateLink";
 import Error from "../../../interfaces/error.interface";
 import EditShowTitle from "../../../libs/EditShowTitle/EditShowTitle";
 import ColumnistToDelete from "../../../libs/ColumnistToDelete/ColumnistToDelete";
@@ -30,8 +29,8 @@ export default function AdminManage({ token }: props) {
         {data && (
           <div className={classes.page}>
             <div className={classes.block}>
-              <EditShowTitle title={data.title} token={token}/>
-              <ColumnistToDelete token={token}/>
+              <EditShowTitle title={data.title} token={token} />
+              <ColumnistToDelete token={token} />
               <h3>Coming next : </h3>
               <p>bouton générer de nouveaux liens</p>
               <p>delete show</p>

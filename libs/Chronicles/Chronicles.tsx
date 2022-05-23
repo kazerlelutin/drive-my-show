@@ -25,7 +25,6 @@ export default function Chronicles({ token }:props) {
   const t = useTranslate(ChroniclesTranslate),
     {
       loading,
-      error,
       refetch,
       data = [],
     }: Fetch = useFetch("/getChronicles", { token });
@@ -33,7 +32,7 @@ export default function Chronicles({ token }:props) {
   return (
     <div className={classes.container}>
       <div className={classes.counter}>
-        <CounterColumnists token={token}/>
+        <CounterColumnists token={token} dataShow={data} />
       </div>
       {loading ? (
         <div className={classes.loading}></div>

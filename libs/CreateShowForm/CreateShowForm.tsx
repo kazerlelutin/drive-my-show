@@ -11,14 +11,14 @@ import useLazyFetch from '../../hooks/useLazyFetch';
 export default function CreateShowForm() {
   const 
     [value, setValue] = useState<string>(''),
-    {data,loading,error, fetch} = useLazyFetch('/createShow'),
+    {data,loading,error, api} = useLazyFetch('/createShow'),
     router = useRouter(),
     t = useTranslate(CreateShowFormTranslate);
 
   async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
     if (!value) return toast.error(t('You must enter a title !'));
-    fetch({ title: value })
+    api({ title: value })
   };
 
   useEffect(()=>{

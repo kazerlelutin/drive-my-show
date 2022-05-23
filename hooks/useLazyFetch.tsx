@@ -21,7 +21,7 @@ export default function useLazyFetch(url: string) {
   }
 
   return {
-    fetch: handleFetch,
+    api: handleFetch,
     data,
     error,
     loading,

@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
 import commonControl from "../../utils/commonControl.middleware";
-import {prisma} from '../../db/db';
+import { prisma } from "../../db/db";
 
 export default async function getChronicles(
   req: NextApiRequest,
@@ -11,15 +11,15 @@ export default async function getChronicles(
   if (type) {
     const chronicles = await prisma.chronicle.findMany({
       where: {
-        show: {[type]: req.body.token},
+        show: { [type]: req.body.token },
       },
       include: {
         columnist: true,
-        medias:true
+        medias: true,
       },
-      orderBy:{
-        position: 'asc'
-      }
+      orderBy: {
+        position: "asc",
+      },
     });
     return chronicles
       ? res.json(chronicles)

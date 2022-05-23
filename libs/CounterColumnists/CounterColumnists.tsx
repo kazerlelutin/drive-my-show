@@ -1,14 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import classes from "./CounterColumnists.module.css";
 import useFetch from "../../hooks/useFetch";
 import useTranslate from "../../hooks/useTranslate";
+import { useEffect } from "react";
 
 interface props {
   readonly token: string;
+  readonly dataShow?: any;
 }
 
-export default function CounterColumnists({ token }: props) {
-  const { loading, data } = useFetch("/getColoumnistsCounters", { token }),
+export default function CounterColumnists({ token, dataShow }: props) {
+  const { loading, data, refetch } = useFetch("/getColoumnistsCounters", {
+      token,
+    }),
     t = useTranslate();
+
+  useEffect(() => {
+    if (dataShow) refetch();
+  }, [dataShow]);
+
   return (
     <div className={classes.container}>
       {loading ? (

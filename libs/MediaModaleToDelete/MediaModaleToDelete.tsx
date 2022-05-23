@@ -24,10 +24,10 @@ export default function MediaModaleToDelete({
   setMedias,
 }) {
   const t = useTranslate(),
-    { loading, data, fetch } = useLazyFetch("/deleteMedia");
+    { loading, data, api } = useLazyFetch("/deleteMedia");
 
   function handleClick() {
-    fetch({
+    api({
       chronicleId,
       id: media.id,
       token,
@@ -40,7 +40,6 @@ export default function MediaModaleToDelete({
     }
   }, [data]);
 
-  //TODO setMedias = media filter
   return (
     <FullscreenModale>
       <div className={classes.container}>

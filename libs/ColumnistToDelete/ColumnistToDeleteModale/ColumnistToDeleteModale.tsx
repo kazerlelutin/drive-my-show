@@ -12,11 +12,11 @@ export default function ColumnistToDeleteModale({
   onClose,
   refetch,
 }) {
-  const { loading, data, fetch } = useLazyFetch("deleteColumnist"),
+  const { loading, data, api } = useLazyFetch("deleteColumnist"),
     t = useTranslate();
 
   function handleClick() {
-    fetch({ token, columnist });
+    api({ token, columnist });
   }
 
   useEffect(() => {
@@ -30,8 +30,8 @@ export default function ColumnistToDeleteModale({
   return (
     <FullscreenModale>
       <div className={classes.container}>
-      <p>  {t("Delete")} {columnist.name} {"?"}</p>
-      <p>   {t("All attached chronicles will be deleted. You can assign the chronicles before deleting the columnist.")}</p>
+      <p>{t("Delete")} {columnist.name} {"?"}</p>
+      <p>{t("All attached chronicles will be deleted. You can assign the chronicles before deleting the columnist.")}</p>
         <div className={classes.buttons}>
           <button
             disabled={loading}

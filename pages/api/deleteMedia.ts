@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
-import {prisma} from '../../db/db';
+import { prisma } from "../../db/db";
 import commonControl from "../../utils/commonControl.middleware";
 import refreshConductorSignal from "../../utils/refreshConductorSignal";
 
@@ -12,13 +12,12 @@ export default async function deleteMedia(
     { body } = req;
 
   if (type) {
-    const  
-    show = await prisma.show.findUnique({
-        where: { [type]: body.token },
-      });
-      if(!show) return res.send('No show find.');
+    const show = await prisma.show.findUnique({
+      where: { [type]: body.token },
+    });
+    if (!show) return res.send("No show find.");
 
-      const currentMedia = await prisma.media.findUnique({
+    const currentMedia = await prisma.media.findUnique({
       where: { id: body.id },
     });
     await prisma.media.updateMany({
@@ -35,14 +34,22 @@ export default async function deleteMedia(
       },
     });
 
-    await prisma.show.update({where: {id: show.id}, data:{ trigger: new Date()}});
+    await prisma.show.update({
+      where: { id: show.id },
+      data: { trigger: new Date() },
+    });
     await prisma.media.delete({
       where: {
         id: body.id,
       },
     });
-    refreshConductorSignal('admin',show.admin);
-    res.send(await prisma.media.findMany({where:{chronicleId: body.chronicleId}, orderBy:{position:'asc'}}));
+    refreshConductorSignal("admin", show.admin);
+    res.send(
+      await prisma.media.findMany({
+        where: { chronicleId: body.chronicleId },
+        orderBy: { position: "asc" },
+      })
+    );
   } else {
     res.status(403).send("problem with show.");
   }
