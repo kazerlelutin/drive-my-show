@@ -3,13 +3,23 @@ import classes from "./CounterColumnists.module.css";
 import useFetch from "../../hooks/useFetch";
 import useTranslate from "../../hooks/useTranslate";
 import { useEffect } from "react";
+import ColumnistSelector from "../ColumnistSelector/ColumnistSelector";
+import ColumnistFilter from '../ColumnistFilter/ColumnistFilter';
+import _ from "lodash";
 
 interface props {
   readonly token: string;
   readonly dataShow?: any;
+  readonly setFilters: Function;
+  readonly filters: any;
 }
 
-export default function CounterColumnists({ token, dataShow }: props) {
+export default function CounterColumnists({
+  token,
+  dataShow,
+  setFilters,
+  filters,
+}: props) {
   const { loading, data, refetch } = useFetch("/getColoumnistsCounters", {
       token,
     }),
@@ -19,6 +29,25 @@ export default function CounterColumnists({ token, dataShow }: props) {
     if (dataShow) refetch();
   }, [dataShow]);
 
+  useEffect(() => {
+    if (data) {
+      setFilters({
+        ...filters,
+        columnists: data.columnists.map((o:any) => ({
+          label: `${o.name} (${o._count?.chronicles})`,
+          value: o,
+        }))})
+    }
+  }, [data]);
+
+  function handleChange(selected:any) {
+    setFilters({
+      ...filters,
+      columnists: _.uniqBy(selected,'label').map((o:any) => ({
+        label: `${o.value.name} (${o.value._count?.chronicles})`,
+        value: o.value,
+      }))})
+  }
   return (
     <div className={classes.container}>
       {loading ? (
@@ -30,14 +59,12 @@ export default function CounterColumnists({ token, dataShow }: props) {
               {`${data.total} ${t("Chronicle")}${data.total > 1 ? "s" : ""}`}
             </div>
             <div className={classes.counters}>
-              {data.columnists.map((columnist: any) => (
-                <div key={columnist.id} className={classes.counter}>
-                  {columnist.name}
-                  <span
-                    className={classes.count}
-                  >{`(${columnist._count.chronicles})`}</span>
-                </div>
-              ))}
+              {filters && filters.columnists && (
+                <ColumnistFilter
+                  onChange={handleChange}
+                  value={filters.columnists}
+                />
+              )}
             </div>
           </div>
         )

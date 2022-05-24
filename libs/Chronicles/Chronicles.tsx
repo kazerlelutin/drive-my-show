@@ -7,7 +7,8 @@ import ChronicleCard from "../ChronicleCard/ChronicleCard";
 import UpAndDownChronicles from "../UpAndDownChronicles/UpAndDownChronicles";
 import classes from "./Chronicles.module.css";
 import ChroniclesTranslate from "./Chronicles.translate";
-import MediasForCard from '../MediasForCard/MediasForCard';
+import MediasForCard from "../MediasForCard/MediasForCard";
+import { ReactElement, useState } from "react";
 import CounterColumnists from "../CounterColumnists/CounterColumnists";
 
 interface props {
@@ -21,8 +22,9 @@ interface Fetch {
   readonly data: Array<Chronicle>;
 }
 
-export default function Chronicles({ token }:props) {
+export default function Chronicles({ token }: props) {
   const t = useTranslate(ChroniclesTranslate),
+    [filters, setFilters] = useState({}),
     {
       loading,
       refetch,
@@ -32,24 +34,36 @@ export default function Chronicles({ token }:props) {
   return (
     <div className={classes.container}>
       <div className={classes.counter}>
-        <CounterColumnists token={token} dataShow={data} />
+        <CounterColumnists
+          token={token}
+          dataShow={data}
+          setFilters={setFilters}
+          filters={filters}
+        />
       </div>
       {loading ? (
         <div className={classes.loading}></div>
       ) : (
-        data.map((chronicle) => (
-          <ChronicleCard
-            key={chronicle.id}
-            chronicle={chronicle}
-            refetch={refetch}
-            UpAndDownChronicles={
-              <UpAndDownChronicles chronicle={chronicle} token={token} onChange={refetch} lastPosition={_.last(data).position}/>
-            }
-            MediasForCard={
-              <MediasForCard chronicle={chronicle} token={token}/>
-            }
-          />
-        ))
+        data
+          .filter((o) => !!_.get(filters, "columnists", []).find((col) => col.value.id === o.columnistId))
+          .map((chronicle) => (
+            <ChronicleCard
+              key={chronicle.id}
+              chronicle={chronicle}
+              refetch={refetch}
+              UpAndDownChronicles={
+                <UpAndDownChronicles
+                  chronicle={chronicle}
+                  token={token}
+                  onChange={refetch}
+                  lastPosition={_.last(data).position}
+                />
+              }
+              MediasForCard={
+                <MediasForCard chronicle={chronicle} token={token} />
+              }
+            />
+          ))
       )}
     </div>
   );

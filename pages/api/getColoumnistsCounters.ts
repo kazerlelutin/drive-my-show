@@ -9,8 +9,13 @@ export default async function getColoumnistsCounters(
 ) {
   const type = commonControl(req, res, ["admin", "editor"]);
   if (type) {
+
+    console.log(req.body)
     const columnists = await prisma.columnist.findMany({
       where: {
+        name: {
+          contains: req.body.search
+        },
         chronicles: {
           some: {
             show: {
@@ -25,6 +30,7 @@ export default async function getColoumnistsCounters(
         },
       },
     });
+
     const countChronicles = await prisma.chronicle.count({
       where: {
         show: {

@@ -20,6 +20,7 @@ const reactSelectStyle = {
   }),
   input: (provided, state) => ({
     ...provided,
+    minWidth: '100px',
     color: "var(--color-txt)",
   }),
   indicatorSeparator: () => ({
@@ -55,8 +56,8 @@ const reactSelectStyle = {
   }),
   multiValue: (provided: any) => ({
     ...provided,
-    background: "var(--color-link)",
-    color: "white",
+    background: "var(--color-bg)",
+    color: "var(--color-text)",
   }),
   multiValueLabel: (provided: any) => ({
     ...provided,

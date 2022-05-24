@@ -6,6 +6,7 @@ export default interface Chronicle {
   title: string;
   content: string;
   link: string;
+  columnistId: number;
   columnist: Columnist;
   reader: string;
   position: number;

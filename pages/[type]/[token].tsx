@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Layout from "../../libs/Layout/Layout";
 import useFetch from "../../hooks/useFetch";
-import _ from "lodash";
+import _, { filter } from "lodash";
 import classes from "../../styles/Admin.module.css";
 import Show from "../../interfaces/show.interface";
 import dayjs from "dayjs";
@@ -10,7 +10,7 @@ import pageTranslate from "../../translate/page.translate";
 import ChronicleEditor from "../../libs/ChronicleEditor/ChronicleEditor";
 import LayoutConductorManager from "../../libs/LayoutConductorManager/LayoutConductorManager";
 import Error from "../../interfaces/error.interface";
-import { useState } from "react";
+import { useState } from 'react';
 import Chronicles from "../../libs/Chronicles/Chronicles";
 
 interface props {
@@ -21,13 +21,16 @@ interface Fetch {
   readonly loading: boolean;
   readonly error: Error;
   readonly data: Show;
-  readonly refetch: Function
+  readonly refetch: Function;
 }
 
 export default function Admin({ token }: props) {
   const t = useTranslate(pageTranslate),
+
     [showChronicleForm, setShowChronicleForm] = useState<boolean>(false),
-    { loading, error, data,refetch }: Fetch = useFetch("/getAdminShow", { token });
+    { loading, error, data, refetch }: Fetch = useFetch("/getAdminShow", {
+      token,
+    });
 
   return (
     <Layout title={_.get(data, "title")}>
@@ -46,9 +49,12 @@ export default function Admin({ token }: props) {
               </button>
             </div>
             {showChronicleForm ? (
-              <ChronicleEditor onClose={() => setShowChronicleForm(false)} refetch={refetch}/>
+              <ChronicleEditor
+                onClose={() => setShowChronicleForm(false)}
+                refetch={refetch}
+              />
             ) : (
-              <Chronicles token={token} />
+              <Chronicles token={token}/>
             )}
           </>
         )}
