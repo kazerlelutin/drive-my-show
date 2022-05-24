@@ -21,12 +21,13 @@ interface Fetch {
   readonly loading: boolean;
   readonly error: Error;
   readonly data: Show;
+  readonly refetch: Function
 }
 
 export default function Admin({ token }: props) {
   const t = useTranslate(pageTranslate),
     [showChronicleForm, setShowChronicleForm] = useState<boolean>(false),
-    { loading, error, data }: Fetch = useFetch("/getAdminShow", { token });
+    { loading, error, data,refetch }: Fetch = useFetch("/getAdminShow", { token });
 
   return (
     <Layout title={_.get(data, "title")}>
@@ -45,7 +46,7 @@ export default function Admin({ token }: props) {
               </button>
             </div>
             {showChronicleForm ? (
-              <ChronicleEditor onClose={() => setShowChronicleForm(false)} />
+              <ChronicleEditor onClose={() => setShowChronicleForm(false)} refetch={refetch}/>
             ) : (
               <Chronicles token={token} />
             )}

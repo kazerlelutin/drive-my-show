@@ -21,9 +21,12 @@ export default function LastShowes() {
       });
 
   useEffect(() => {
-    toast.promise(handleFetch, {
-      pending: t("Search for recent conductor..."),
-    });
+    if(getLastShowesInLocalStorage().length > 0){
+      toast.promise(handleFetch, {
+        pending: t("Search for recent conductors..."),
+      });
+    }
+
   }, []);
 
   return (
