@@ -26,7 +26,7 @@ export default function CounterColumnists({
     t = useTranslate();
 
   useEffect(() => {
-    if (dataShow) refetch();
+    if (dataShow && !data) refetch();
   }, [dataShow]);
 
   useEffect(() => {
