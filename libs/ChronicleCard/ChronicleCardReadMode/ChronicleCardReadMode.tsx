@@ -27,7 +27,7 @@ export default function ChronicleCardReadMode({
   return (
     <>
     {isDelete && <ChronicleDeleteModale refetch={refetch} id={chronicle.id} title={chronicle.title} onClose={setIsDelete} />}
-    <div className={classes.container}>
+    <div className={classes.container} id={`${chronicle.id}`}>
       <div className={classes.drag}>{UpAndDownChronicles}</div>
       <div className={classes.content}>
         <div className={classes.title}>{chronicle.title}</div>

@@ -7,10 +7,10 @@ import ChronicleCard from "../ChronicleCard/ChronicleCard";
 import UpAndDownChronicles from "../UpAndDownChronicles/UpAndDownChronicles";
 import classes from "./Chronicles.module.css";
 import ChroniclesTranslate from "./Chronicles.translate";
-import MediasForCard from "../MediasForCard/MediasForCard";
-import { ReactElement, useState } from "react";
+import { useState } from "react";
 import CounterColumnists from "../CounterColumnists/CounterColumnists";
 import MediasForConductor from "../MediasForConductor/MediasForConductor";
+import Link from "next/link";
 
 interface props {
   readonly token: string;
@@ -46,7 +46,12 @@ export default function Chronicles({ token }: props) {
         <div className={classes.loading}></div>
       ) : (
         data
-          .filter((o) => !!_.get(filters, "columnists", []).find((col) => col.value.id === o.columnistId))
+          .filter(
+            (o) =>
+              !!_.get(filters, "columnists", []).find(
+                (col) => col.value.id === o.columnistId
+              )
+          )
           .map((chronicle) => (
             <ChronicleCard
               key={chronicle.id}
@@ -61,11 +66,24 @@ export default function Chronicles({ token }: props) {
                 />
               }
               MediasForCard={
-                <MediasForConductor chronicle={chronicle} token={token} disableErase />
+                <MediasForConductor
+                  chronicle={chronicle}
+                  token={token}
+                  disableErase
+                />
               }
             />
           ))
       )}
+      <div className={classes.menu}>
+        {data.map((chronicle: Chronicle) => (
+          <div className={classes.menuElement} key={chronicle.id}>
+            <Link
+              href={`#` + chronicle.id}
+            >{`#${chronicle.position} ${chronicle.title} (${chronicle.columnist.name})`}</Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
