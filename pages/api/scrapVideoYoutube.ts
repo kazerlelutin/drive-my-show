@@ -14,10 +14,9 @@ export default async function scrapVideoYoutube(
     const { link } = req.body,
       { data } = await axios.get(link),
       dom: any = new JSDOM(data),
-      preview = dom.window.document.querySelector('meta[property="og:image"]').content,
-      title = dom.window.document.querySelector('meta[property="og:title"]').content,
-      shortLink =  dom.window.document.querySelector('link[rel="shortlinkUrl"]').href;
-
+      preview = dom.window.document.querySelector('meta[property="og:image"]')?.content,
+      title = dom.window.document.querySelector('meta[property="og:title"]')?.content,
+      shortLink =  dom.window.document.querySelector('link[rel="shortlinkUrl"]')?.href;
     res.send({preview,title,link,source:shortLink, type:'video'});
   } else {
     res.status(403).send('Problem with payload');

@@ -29,6 +29,8 @@ export default function MediaCreatorLinkTab({
     [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function getVideoYoutube(url: string) {
+
+    console.log(url)
     const params = url.split("?");
     let videoLink: string;
     if (params.length > 1) {
@@ -95,7 +97,12 @@ export default function MediaCreatorLinkTab({
       const url: string = video.src.match(/http/)
         ? video.src
         : `https:${video.src}`;
-      videos.push(await getVideoYoutube(url.replace("embed/", "watch?v=")));
+        if(url.match(/youtu/)){
+          videos.push(await getVideoYoutube(url.replace("embed/", "watch?v=")));
+        }else {
+          videos.push(video)
+        }
+     
     }
     newMedias.push(...videos);
     setMediasForSelect(newMedias);
