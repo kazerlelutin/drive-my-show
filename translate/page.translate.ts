@@ -151,6 +151,12 @@ const pageTranslate = {
     fr: "Recherche de conducteurs récents...",
   },
   "Recent conductors": { fr: "Conducteurs récents" },
+  "Select all": {
+    fr:'Tout sélectionner'
+  },
+  "Unselect all": {
+    fr:'Tout désélectionner'
+  }
 };
 
 export default pageTranslate;

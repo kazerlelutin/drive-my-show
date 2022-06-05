@@ -134,3 +134,28 @@ label {
 .cancel {
   background: rgb(84, 14, 14);
 }
+
+.checkbox {
+  --size-checkbox:15px;
+  width: var(--size-checkbox);
+  position: relative;
+  height: var(--size-checkbox);
+  border: 1px solid var(--color-link);
+  background: black;
+  transition: 200ms ease-in-out;
+}
+
+.checkbox:before{
+  --size-checkbox-before:50%;
+  content:'';
+  position: absolute;
+  top:var(--size-checkbox-before);
+  right:var(--size-checkbox-before);
+  bottom:var(--size-checkbox-before);
+  left:var(--size-checkbox-before);
+  background: var(--color-link);
+}
+
+.checkbox[data-checked='true']:before{
+  --size-checkbox-before:2px;
+}

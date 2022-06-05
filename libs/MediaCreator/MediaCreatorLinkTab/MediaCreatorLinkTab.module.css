@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin: auto;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: calc(100% - 20px);
+}
+
+.fieldset {
+  display: flex;
+  width: calc(100% - 20px);
+}
+
+.subtitle {
+  text-align: center;
+  font-style: italic;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.3em;
+}
+
+@media screen and (max-width: 450px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+  .fieldset {
+    display: flex;
+    width: 100%;
+  }
+  .fieldset input {
+    width: 100%;
+  }
+}

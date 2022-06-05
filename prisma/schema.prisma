@@ -57,10 +57,10 @@ enum MediaType {
 
 model Media {
   id          Int       @id @default(autoincrement())
-  title       String
+  title       String?
   type        MediaType
   link        String?   @db.LongText
-  data        String?   @db.LongText //base64
+  preview     String?   @db.LongText
   source      String?   @db.LongText
   position    Int
   updatedAt   DateTime  @updatedAt
