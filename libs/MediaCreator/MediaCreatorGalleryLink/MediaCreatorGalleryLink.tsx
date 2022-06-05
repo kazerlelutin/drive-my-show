@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { mediaScrap } from '../../../interfaces/mediaList';
 import classes from './MediaCreatorGalleryLink.module.css';
 import { useState } from 'react';
@@ -21,6 +22,7 @@ export default function MediaCreatorGalleryLink({
   const t = useTranslate(),
     [selected, setSelected] = useState<Array<mediaScrap>>([]);
 
+    console.log(mediasForSelect)
   function selectItem(item: mediaScrap) {
     const isSelect = selected.find((o) => o.link === item.link);
     if (isSelect) {
@@ -58,7 +60,7 @@ export default function MediaCreatorGalleryLink({
                 />
               </div>
               {media.type === 'image' && (
-                <img className={classes.img} src={media.link} />
+                <img className={classes.img} src={media.link} alt={media.title}/>
               )}
               {media.type === 'video' && (
                 <ReactPlayer

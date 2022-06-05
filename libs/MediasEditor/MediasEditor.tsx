@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import classes from './MediasEditor.module.css';
 import Chronicle from '../../interfaces/chronicle.interface';
 import { useState } from 'react';
@@ -20,9 +21,6 @@ export default function MediasEditor({ token, sendMedias, medias }: props) {
     [isOpenToDelete, setIsOpenToDelete] = useState<Media | undefined>(
       undefined
     );
-
-    console.log(medias)
-
   return (
     <div className={classes.container}>
       {isOpen && (
@@ -46,7 +44,7 @@ export default function MediasEditor({ token, sendMedias, medias }: props) {
         {medias.map((media) => (
           <div className={classes.media} key={media.id}>
             {media.type === 'image' && (
-              <img className={classes.img} src={media.link} />
+              <img className={classes.img} src={media.link} alt={media.title}/>
             )}
             {media.type === 'video' && (
               <ReactPlayer

@@ -49,7 +49,6 @@ export default async function scrapMedias(
       link: video.src,
       type: 'video',
     }));
-
     res.send(medias);
   } else {
     res.status(403).send('Problem with payload');

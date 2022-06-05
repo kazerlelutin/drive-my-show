@@ -1,11 +1,11 @@
-import { SyntheticEvent, useState } from 'react';
-import useTranslate from '../../../hooks/useTranslate';
-import classes from './MediaCreatorLinkTab.module.css';
-import queryString from 'query-string';
-import axios from 'axios';
-import SubmitButton from '../../SubmitButton/SubmitButton';
-import MediaCreatorLinkTabTranslate from './MediaCreatorLinkTag.translate';
-import { mediaScrap, mediaList } from '../../../interfaces/mediaList';
+import { SyntheticEvent, useState } from "react";
+import useTranslate from "../../../hooks/useTranslate";
+import classes from "./MediaCreatorLinkTab.module.css";
+import queryString from "query-string";
+import axios from "axios";
+import SubmitButton from "../../SubmitButton/SubmitButton";
+import MediaCreatorLinkTabTranslate from "./MediaCreatorLinkTag.translate";
+import { mediaScrap, mediaList } from "../../../interfaces/mediaList";
 
 interface props {
   readonly token: string;
@@ -25,22 +25,22 @@ export default function MediaCreatorLinkTab({
   medias,
 }: props) {
   const t = useTranslate(MediaCreatorLinkTabTranslate),
-    [link, setLink] = useState<string>(''),
+    [link, setLink] = useState<string>(""),
     [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function getVideoYoutube(url: string) {
-    const params = url.split('?');
+    const params = url.split("?");
     let videoLink: string;
     if (params.length > 1) {
       const { t, v } = queryString.parse(params[1]);
       videoLink = `https://www.youtube.com/watch?v=${v}&t=${t || 0}`;
     } else if (url.match(/(youtu.be)/)) {
-      const splitLink = url.split('/');
+      const splitLink = url.split("/");
       videoLink =
-        'https://www.youtube.com/watch?v=' + splitLink[splitLink.length - 1];
+        "https://www.youtube.com/watch?v=" + splitLink[splitLink.length - 1];
     }
 
-    const { data } = await axios.post('/api/scrapVideoYoutube', {
+    const { data } = await axios.post("/api/scrapVideoYoutube", {
       token,
       link: videoLink,
     });
@@ -69,34 +69,38 @@ export default function MediaCreatorLinkTab({
       isImg = await testImg;
 
     if (isImg) {
-      const linkArray = link.split('://'),
-        domainArray = linkArray[1].split('/');
+      const linkArray = link.split("://"),
+        domainArray = linkArray[1].split("/");
       setMedias([
         ...medias,
         {
           link,
           source: domainArray[0],
-          type: 'image',
+          type: "image",
         },
       ]);
       onClose();
       return;
     }
 
-    const { data } = await axios.post('/api/scrapMedias', { token, link }),
-      newMedias = [...data.imgs, data?.cover],
+    const { data } = await axios.post("/api/scrapMedias", { token, link }),
+      newMedias = [...data.imgs],
       videos = [];
+
+    if (data.cover) {
+      newMedias.push(data.cover);
+    }
 
     for (const video of data.videos) {
       const url: string = video.src.match(/http/)
         ? video.src
         : `https:${video.src}`;
-      videos.push(await getVideoYoutube(url.replace('embed/', 'watch?v=')));
+      videos.push(await getVideoYoutube(url.replace("embed/", "watch?v=")));
     }
     newMedias.push(...videos);
     setMediasForSelect(newMedias);
     setIsLoading(false);
-    setTab('gallery');
+    setTab("gallery");
   }
 
   return (
@@ -106,28 +110,28 @@ export default function MediaCreatorLinkTab({
       encType="multipart/form-data"
     >
       {isLoading ? (
-        <div className={classes.loading}>{t('Search contents...')}</div>
+        <div className={classes.loading}>{t("Search contents...")}</div>
       ) : (
         <fieldset className={classes.fieldset}>
-          <label htmlFor="link">{t('Add media or page link')}</label>
+          <label htmlFor="link">{t("Add media or page link")}</label>
           <input
             type="text"
-            placeholder={t('link')}
+            placeholder={t("link")}
             name="link"
             id="link"
             value={link}
             onChange={(e) => setLink(e.target.value)}
           />
           <div className={classes.subtitle}>
-            {t('MediaCreatorLinkTabSubtitle')}
+            {t("MediaCreatorLinkTabSubtitle")}
           </div>
         </fieldset>
       )}
       <div className={classes.buttons}>
         <button className="Cancel" onClick={() => onClose()}>
-          {t('Cancel')}
+          {t("Cancel")}
         </button>
-        <SubmitButton txt={t('Add')} isLoading={isLoading} />
+        <SubmitButton txt={t("Add")} isLoading={isLoading} />
       </div>
     </form>
   );
