@@ -35,6 +35,7 @@
 .type {
   color: var(--color-link);
   word-break: break-all;
+  font-size: .8em;
 }
 
 .delete {
