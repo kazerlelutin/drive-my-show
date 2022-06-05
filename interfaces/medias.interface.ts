@@ -7,4 +7,5 @@ export default interface Media {
   source: string;
   position: number;
   updatedAt: Date;
+  preview?:string
 }

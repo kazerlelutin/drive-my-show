@@ -9,4 +9,5 @@ export interface mediaScrap {
   title?:string,
   type: string
   source?:string
+  preview?:string
 }
