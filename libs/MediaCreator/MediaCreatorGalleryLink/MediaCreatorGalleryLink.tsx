@@ -62,14 +62,24 @@ export default function MediaCreatorGalleryLink({
               {media.type === 'image' && (
                 <img className={classes.img} src={media.link} alt={media.title}/>
               )}
-              {media.type === 'video' && (
-                <ReactPlayer
-                  url={media.link}
-                  width={'100%'}
-                  height="120px"
-                  controls
-                />
-              )}
+            {media.type === "image" && (
+              <img className={classes.img} src={media.link} alt={media.title} />
+            )}
+            {media.type === "video" && media.preview && (
+              <img
+                className={classes.img}
+                src={media.preview}
+                alt={media.title}
+              />
+            )}
+            {media.type === "video" && !media.preview && (
+              <ReactPlayer
+                url={media.link}
+                width={"100%"}
+                height="120px"
+                controls
+              />
+            )}
             </div>
           ))}
         </div>

@@ -71,7 +71,7 @@ export default function ConductorReader({ token, type }: props) {
           <div className={classes.menu}>
           {data.chronicles.map((chronicle: Chronicle) => (
             <div className={classes.menuElement} key={chronicle.id}>
-              <Link href={`#` + chronicle.id}>{`#${chronicle.position} ${chronicle.title}`}</Link>
+              <Link href={`#` + chronicle.id}>{`#${chronicle.position} ${chronicle.title} (${chronicle.columnist.name})`}</Link>
             </div>
           ))}
           </div>
