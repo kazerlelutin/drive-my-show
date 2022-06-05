@@ -13,6 +13,10 @@ const MenuHeaderData = {
       label: 'manage'
     },
     {
+      link: '/admin/resume/',
+      label: 'resume'
+    },
+    {
       link: '/admin/conductor/',
       label: 'conductor'
     }
@@ -21,6 +25,10 @@ const MenuHeaderData = {
     {
       link: '/editor/',
       label: 'manage'
+    },
+    {
+      link: '/admin/resume/',
+      label: 'resume'
     },
     {
       link: '/editor/conductor/',
