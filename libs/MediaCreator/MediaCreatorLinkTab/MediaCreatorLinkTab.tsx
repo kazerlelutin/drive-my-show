@@ -75,8 +75,8 @@ export default function MediaCreatorLinkTab({
         ...medias,
         {
           link,
-          source: domainArray,
-          type: 'img',
+          source: domainArray[0],
+          type: 'image',
         },
       ]);
       onClose();
@@ -110,7 +110,6 @@ export default function MediaCreatorLinkTab({
       ) : (
         <fieldset className={classes.fieldset}>
           <label htmlFor="link">{t('Add media or page link')}</label>
-
           <input
             type="text"
             placeholder={t('link')}

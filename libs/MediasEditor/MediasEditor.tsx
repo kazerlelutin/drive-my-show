@@ -21,6 +21,8 @@ export default function MediasEditor({ token, sendMedias, medias }: props) {
       undefined
     );
 
+    console.log(medias)
+
   return (
     <div className={classes.container}>
       {isOpen && (
