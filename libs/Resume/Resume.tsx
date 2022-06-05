@@ -42,7 +42,7 @@ export default function Resume({ token, type }: props){
         <h1 className={classes.title}>{data.title}</h1>
         {data.chronicles.map((chronicle: Chronicle) => (
           <div className={classes.chronicle} key={chronicle.id} id={`${chronicle.id}`}>
-            <div className={classes.title}>{`#${chronicle.position}-${chronicle.title}`}</div>
+            <div className={classes.title}>{`#${chronicle.position} ${chronicle.title}`}</div>
             <div className={classes.columnist}>{chronicle.columnist.name}</div>
             {chronicle.link && <ClipBoard txt={chronicle.title}  typeTxt='input' label={t('title')}/> }
             {chronicle.link && <ClipBoard txt={chronicle.link}  typeTxt='input' label={t('link')}/> }
