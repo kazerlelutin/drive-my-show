@@ -70,6 +70,7 @@
 
 .type {
   color: var(--color-link);
+  word-break: break-all;
 }
 
 .delete {
