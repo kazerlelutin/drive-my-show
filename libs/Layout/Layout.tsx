@@ -60,7 +60,7 @@ export default function Layout({ children, title }: props) {
           target="_blank"
           rel="noreferrer"
         >
-          <div className={classes.buy}>Buy me a coffee</div>
+          <div className={classes.buy}>{t('Buy me a coffee')}</div>
           <Image src="/kofi_logo.svg" width={30} height={20} alt="kofi logo" />
         </a>
       </header>
