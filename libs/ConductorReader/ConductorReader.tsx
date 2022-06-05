@@ -47,7 +47,7 @@ export default function ConductorReader({ token, type }: props) {
           <h1 className={classes.title}>{data.title}</h1>
           {data.chronicles.map((chronicle: Chronicle) => (
             <div className={classes.chronicle} key={chronicle.id} id={`${chronicle.id}`}>
-              {chronicle.link.match("/http/") ? (
+              {chronicle.link.match(/http/) ? (
                 <a href={chronicle.link} target="_blank" rel="noreferrer">
                   <h2
                     className={classes.chronicleTitle}
