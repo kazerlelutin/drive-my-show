@@ -1,19 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import classes from "./ChronicleEditor.module.css";
-import dynamic from "next/dynamic";
-import "@uiw/react-md-editor/markdown-editor.css";
-import "@uiw/react-markdown-preview/markdown.css";
-import { useReducer, useEffect } from "react";
-import ColumnistSelector from "../ColumnistSelector/ColumnistSelector";
-import { reducer, initialState, ActionKind } from "./ChronicleEditor.reducer";
-import useTranslate from "../../hooks/useTranslate";
-import pageTranslate from "../../translate/page.translate";
-import SubmitButton from "../SubmitButton/SubmitButton";
-import useLazyFetch from "../../hooks/useLazyFetch";
-import { toast } from "react-toastify";
-import { useRouter } from "next/router";
-import Chronicle from "../../interfaces/chronicle.interface";
-const MarkdownEditor = dynamic(() => import("@uiw/react-md-editor"), {
+import classes from './ChronicleEditor.module.css';
+import dynamic from 'next/dynamic';
+import '@uiw/react-md-editor/markdown-editor.css';
+import '@uiw/react-markdown-preview/markdown.css';
+import { useReducer, useEffect } from 'react';
+import ColumnistSelector from '../ColumnistSelector/ColumnistSelector';
+import { reducer, initialState, ActionKind } from './ChronicleEditor.reducer';
+import useTranslate from '../../hooks/useTranslate';
+import pageTranslate from '../../translate/page.translate';
+import SubmitButton from '../SubmitButton/SubmitButton';
+import useLazyFetch from '../../hooks/useLazyFetch';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+import Chronicle from '../../interfaces/chronicle.interface';
+import MediasForCard from '../MediasForCard/MediasForCard';
+import MediasEditor from '../MediasEditor/MediasEditor';
+
+const MarkdownEditor = dynamic(() => import('@uiw/react-md-editor'), {
   ssr: false,
 });
 
@@ -29,18 +32,18 @@ export default function ChronicleEditor({
 }: props) {
   const t = useTranslate(pageTranslate),
     { query } = useRouter(),
+    { token } = query,
     { loading, error, data, api } = useLazyFetch(
-      chronicle ? "/updateChronicle" : "/createChronicle"
+      chronicle ? '/updateChronicle' : '/createChronicle'
     ),
     [state, dispatch] = useReducer(reducer, chronicle || initialState);
 
   function handleSubmit() {
     if (loading) return;
-    if (!state.title) return toast.warning(t("Title is required"));
-    if (!state.columnist) return toast.warning(t("Need a columnist"));
-    api({ ...state, token: query.token });
+    if (!state.title) return toast.warning(t('Title is required'));
+    if (!state.columnist) return toast.warning(t('Need a columnist'));
+    api({ ...state, token });
   }
-
   useEffect(() => {
     // clean to close (on open in real life)
     dispatch(
@@ -56,7 +59,9 @@ export default function ChronicleEditor({
 
   useEffect(() => {
     if (data) {
-      toast.success(t(chronicle && refetch ? "Chronicle updated !":"Chronicle created !"));
+      toast.success(
+        t(chronicle && refetch ? 'Chronicle updated !' : 'Chronicle created !')
+      );
       refetch();
       onClose();
     }
@@ -65,19 +70,18 @@ export default function ChronicleEditor({
   return (
     <div className={classes.container}>
       <fieldset>
-        <label>{t("title")}</label>
+        <label>{t('title')}</label>
         <input
           type="text"
           value={state.title}
-          placeholder={t("required")}
+          placeholder={t('required')}
           onChange={(e) =>
             dispatch({ type: ActionKind.setTitle, payload: e.target.value })
           }
         />
       </fieldset>
-
       <fieldset>
-        <label>{t("columnist")}</label>
+        <label>{t('columnist')}</label>
         <ColumnistSelector
           onChange={(value: Object) =>
             dispatch({ type: ActionKind.setColumnist, payload: value })
@@ -85,25 +89,23 @@ export default function ChronicleEditor({
           value={state.columnist}
         />
       </fieldset>
-
       <fieldset>
-        <label>{t("link")}</label>
+        <label>{t('link')}</label>
         <input
           type="text"
           value={state.link}
-          placeholder={t("optional")}
+          placeholder={t('optional')}
           onChange={(e) =>
             dispatch({ type: ActionKind.setLink, payload: e.target.value })
           }
         />
       </fieldset>
-
       <fieldset>
-        <label>{t("duration (in min)")}</label>
+        <label>{t('duration (in min)')}</label>
         <input
           type="number"
           value={state.duration}
-          placeholder={t("optional")}
+          placeholder={t('optional')}
           onChange={(e) =>
             dispatch({ type: ActionKind.setDuration, payload: e.target.value })
           }
@@ -119,17 +121,25 @@ export default function ChronicleEditor({
           dispatch({ type: ActionKind.setContent, payload: value })
         }
       />
-
+      {typeof token === 'string' && (
+        <MediasEditor
+          token={token}
+          medias={state.medias}
+          sendMedias={(value: any) =>
+            dispatch({ type: ActionKind.setMedias, payload: value })
+          }
+        />
+      )}{' '}
       <div className={classes.buttons} data-alone={!!chronicle}>
         {chronicle && (
           <div onClick={() => onClose()} className={classes.button}>
-            <SubmitButton isLoading={loading} txt={t("close")} />
+            <SubmitButton isLoading={loading} txt={t('close')} />
           </div>
         )}
         <div onClick={handleSubmit} className={classes.button}>
           <SubmitButton
             isLoading={loading}
-            txt={t(chronicle ? "update" : "publish")}
+            txt={t(chronicle ? 'update' : 'publish')}
           />
         </div>
       </div>

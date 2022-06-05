@@ -10,6 +10,7 @@ import ChroniclesTranslate from "./Chronicles.translate";
 import MediasForCard from "../MediasForCard/MediasForCard";
 import { ReactElement, useState } from "react";
 import CounterColumnists from "../CounterColumnists/CounterColumnists";
+import MediasForConductor from "../MediasForConductor/MediasForConductor";
 
 interface props {
   readonly token: string;
@@ -60,7 +61,7 @@ export default function Chronicles({ token }: props) {
                 />
               }
               MediasForCard={
-                <MediasForCard chronicle={chronicle} token={token} />
+                <MediasForConductor chronicle={chronicle} token={token} disableErase />
               }
             />
           ))

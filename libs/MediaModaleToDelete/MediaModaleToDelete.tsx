@@ -8,31 +8,26 @@ import useLazyFetch from "../../hooks/useLazyFetch";
 import { useEffect } from "react";
 
 interface props {
-  readonly chronicleId: number;
   readonly media: Media;
-  readonly token: string;
   readonly medias: Array<Media>;
   readonly onClose: Function;
   readonly setMedias: Function;
 }
 
 export default function MediaModaleToDelete({
-  chronicleId,
   media,
-  token,
   onClose,
+  medias,
   setMedias,
-}) {
+}:props) {
   const t = useTranslate(),
     { loading, data, api } = useLazyFetch("/deleteMedia");
 
   function handleClick() {
-    api({
-      chronicleId,
-      id: media.id,
-      token,
-    });
+    setMedias(medias.filter(o=>o.link !== media.link));
+    onClose();
   }
+
   useEffect(() => {
     if (data) {
       setMedias(data);

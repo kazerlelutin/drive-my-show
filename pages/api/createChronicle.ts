@@ -50,8 +50,12 @@ export default async function createChronicle(
               id: body.columnist.value,
             },
           },
+          medias:{
+            create:body.medias
+          }
         },
       });
+
       await prisma.show.update({
         where: { id: show.id },
         data: { trigger: new Date() },

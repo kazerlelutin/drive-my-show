@@ -20,9 +20,9 @@ export default function CreateShowForm() {
     if (!value) return toast.error(t('You must enter a title !'));
     api({ title: value })
   };
-
+  
   useEffect(()=>{
-    if(data) router.push('/admin/' + data);
+    if(data) router.push('/' + router.locale + '/admin/' + data);
   },[data]);
 
   useEffect(()=>{

@@ -5,6 +5,7 @@ export type State = {
   duration?:number
   content: string
   columnist:number
+  medias:Array<any>
 }
 
 const initialState: State = {
@@ -12,7 +13,8 @@ const initialState: State = {
   link:undefined,
   duration: undefined,
   content:'',
-  columnist:undefined
+  columnist:undefined,
+  medias:[]
 };
 
 export type Action = {
@@ -27,7 +29,8 @@ enum ActionKind {
   setColumnist = 'setColumnist',
   setContent = 'setContent',
   setReset = 'setReset',
-  setChronicle= 'setChronicle'
+  setChronicle= 'setChronicle',
+  setMedias = 'setMedias'
 }
 
 function reducer(state: State, action: Action)  {
@@ -58,16 +61,20 @@ function reducer(state: State, action: Action)  {
     },
     setChronicle: ()=>{
       const newState = {...action.payload};
-
       newState.title =action.payload.title;
       newState.link =action.payload?.link;
       newState.duration =action.payload?.duration;
       newState.content =action.payload.content;
+      newState.medias =action.payload.medias;
       newState.columnist = {
         label: action.payload.columnist.name,
         value: action.payload.columnist.id
       }
       return newState;
+    },
+    setMedias: ()=>{
+      oldState.medias = action.payload;
+      return {...oldState};
     }
   });
 
