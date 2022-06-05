@@ -62,7 +62,7 @@ model Media {
   link        String?   @db.LongText
   preview     String?   @db.LongText
   source      String?   @db.LongText
-  position    Int       @default(1)
+  position    Int?       @default(1)
   updatedAt   DateTime  @updatedAt
   createdAt   DateTime  @default(now()) @db.Timestamp(6)
   chronicle   Chronicle @relation(fields: [chronicleId], references: [id])
