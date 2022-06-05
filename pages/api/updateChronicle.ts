@@ -83,8 +83,8 @@ export default async function updateChronicle(
             }`,
           position:
             o.type === 'image'
-              ? lastImg.position + index + 1
-              : lastVideo.position + index + 1,
+              ? lastImg.position || 0 + index + 1
+              : lastVideo.position || 0 + index + 1,
         })),
       });
     }
