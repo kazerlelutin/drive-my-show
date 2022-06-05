@@ -37,27 +37,3 @@
   font-style: italic;
   color: green;
 }
-
-
-.menu {
-  position: fixed;
-  bottom: 60px;
-  left: 10px;
-  max-width: 250px;
-  top: 100px;
-  overflow-y: auto;
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.menuElement {
-  font-size: .8em;
-}
-
-@media screen and (max-width: 1150px){
-  .menuElement {
-    display: none;
-  }
-}

@@ -12,6 +12,7 @@
     min-height: 100vh;
     width: 700px;
     margin: 20px;
+    padding-bottom: 80px;
   }
 
   .loading {

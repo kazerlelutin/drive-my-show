@@ -1,16 +1,14 @@
 import _ from "lodash";
 import useFetch from "../../hooks/useFetch";
-import useTranslate from "../../hooks/useTranslate";
 import Chronicle from "../../interfaces/chronicle.interface";
 import Error from "../../interfaces/error.interface";
 import ChronicleCard from "../ChronicleCard/ChronicleCard";
 import UpAndDownChronicles from "../UpAndDownChronicles/UpAndDownChronicles";
 import classes from "./Chronicles.module.css";
-import ChroniclesTranslate from "./Chronicles.translate";
 import { useState } from "react";
 import CounterColumnists from "../CounterColumnists/CounterColumnists";
 import MediasForConductor from "../MediasForConductor/MediasForConductor";
-import Link from "next/link";
+import Summary from "../Summary/Summary";
 
 interface props {
   readonly token: string;
@@ -24,8 +22,7 @@ interface Fetch {
 }
 
 export default function Chronicles({ token }: props) {
-  const t = useTranslate(ChroniclesTranslate),
-    [filters, setFilters] = useState({}),
+  const [filters, setFilters] = useState({}),
     {
       loading,
       refetch,
@@ -75,15 +72,7 @@ export default function Chronicles({ token }: props) {
             />
           ))
       )}
-      <div className={classes.menu}>
-        {data.map((chronicle: Chronicle) => (
-          <div className={classes.menuElement} key={chronicle.id}>
-            <Link
-              href={`#` + chronicle.id}
-            >{`#${chronicle.position} ${chronicle.title} (${chronicle.columnist.name})`}</Link>
-          </div>
-        ))}
-      </div>
+      <Summary chronicles={data} />
     </div>
   );
 }

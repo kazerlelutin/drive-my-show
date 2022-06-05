@@ -7,6 +7,8 @@
   align-content: center;
   gap: 10px;
   background: var(--color-bg-accent);
+  position: sticky;
+  top: 0
 }
 
 .container {

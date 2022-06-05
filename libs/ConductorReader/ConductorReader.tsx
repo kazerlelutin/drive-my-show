@@ -6,11 +6,10 @@ import Chronicle from '../../interfaces/chronicle.interface';
 import ReactMarkdown from "react-markdown";
 import MediasForConductor from "../MediasForConductor/MediasForConductor";
 import { useEffect, useState, useContext } from 'react';
-import { io } from "socket.io-client";
 import { toast } from "react-toastify";
 import useTranslate from '../../hooks/useTranslate';
-import Link from "next/link";
 import { UiContext } from "../../store/ui.store";
+import Summary from "../Summary/Summary";
 
 interface props {
   readonly token: string;
@@ -68,13 +67,7 @@ export default function ConductorReader({ token, type }: props) {
                 <MediasForConductor chronicle={chronicle} token={token} />
             </div>
           ))}
-          <div className={classes.menu}>
-          {data.chronicles.map((chronicle: Chronicle) => (
-            <div className={classes.menuElement} key={chronicle.id}>
-              <Link href={`#` + chronicle.id}>{`#${chronicle.position} ${chronicle.title} (${chronicle.columnist.name})`}</Link>
-            </div>
-          ))}
-          </div>
+          <Summary chronicles={data.chronicles}/>
         </div>
       )}
     </LayoutConductorManager>

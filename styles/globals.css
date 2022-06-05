@@ -159,3 +159,30 @@ label {
 .checkbox[data-checked='true']:before{
   --size-checkbox-before:2px;
 }
+
+.crossInput {
+  position: absolute;
+  top:2px;
+  bottom: 2px;
+  right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.crossInput::before,.crossInput:after {
+  content:'';
+  position: absolute;
+  height: 2px;
+  width: 15px;
+  background: var(--color-link);
+  transition: 200ms ease-in-out;
+}
+
+.crossInput::before {
+  transform: rotate(45deg);
+}
+.crossInput::after {
+  transform: rotate(-45deg);
+}

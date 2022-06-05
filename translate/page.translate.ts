@@ -156,6 +156,9 @@ const pageTranslate = {
   },
   "Unselect all": {
     fr:'Tout désélectionner'
+  },
+  "Search...":{
+    fr:'Rechercher...'
   }
 };
 
