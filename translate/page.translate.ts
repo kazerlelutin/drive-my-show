@@ -160,9 +160,6 @@ const pageTranslate = {
   "Search...":{
     fr:'Rechercher...'
   },
-  "Buy me a coffee":{
-    fr: 'Payez-moi un café'
-  }
 };
 
 export default pageTranslate;
