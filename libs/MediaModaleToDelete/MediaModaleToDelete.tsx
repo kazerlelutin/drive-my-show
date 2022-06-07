@@ -19,12 +19,12 @@ export default function MediaModaleToDelete({
   onClose,
   medias,
   setMedias,
-}:props) {
+}: props) {
   const t = useTranslate(),
     { loading, data, api } = useLazyFetch("/deleteMedia");
 
   function handleClick() {
-    setMedias(medias.filter(o=>o.link !== media.link));
+    setMedias(medias.filter((o) => o.link !== media.link));
     onClose();
   }
 

@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import { mediaScrap } from '../../../interfaces/mediaList';
-import classes from './MediaCreatorGalleryLink.module.css';
-import { useState } from 'react';
-import ReactPlayer from 'react-player';
-import useTranslate from '../../../hooks/useTranslate';
-import SubmitButton from '../../SubmitButton/SubmitButton';
+import { mediaScrap } from "../../../interfaces/mediaList";
+import classes from "./MediaCreatorGalleryLink.module.css";
+import { useState } from "react";
+import ReactPlayer from "react-player";
+import useTranslate from "../../../hooks/useTranslate";
+import SubmitButton from "../../SubmitButton/SubmitButton";
 
 interface props {
   readonly onClose: Function;
@@ -22,7 +22,6 @@ export default function MediaCreatorGalleryLink({
   const t = useTranslate(),
     [selected, setSelected] = useState<Array<mediaScrap>>([]);
 
-    console.log(mediasForSelect)
   function selectItem(item: mediaScrap) {
     const isSelect = selected.find((o) => o.link === item.link);
     if (isSelect) {
@@ -59,27 +58,35 @@ export default function MediaCreatorGalleryLink({
                   data-checked={!!selected.find((o) => o.link === media.link)}
                 />
               </div>
-              {media.type === 'image' && (
-                <img className={classes.img} src={media.link} alt={media.title}/>
+              {media.type === "image" && (
+                <img
+                  className={classes.img}
+                  src={media.link}
+                  alt={media.title}
+                />
               )}
-            {media.type === "image" && (
-              <img className={classes.img} src={media.link} alt={media.title} />
-            )}
-            {media.type === "video" && media.preview && (
-              <img
-                className={classes.img}
-                src={media.preview}
-                alt={media.title}
-              />
-            )}
-            {media.type === "video" && !media.preview && (
-              <ReactPlayer
-                url={media.link}
-                width={"100%"}
-                height="120px"
-                controls
-              />
-            )}
+              {media.type === "image" && (
+                <img
+                  className={classes.img}
+                  src={media.link}
+                  alt={media.title}
+                />
+              )}
+              {media.type === "video" && media.preview && (
+                <img
+                  className={classes.img}
+                  src={media.preview}
+                  alt={media.title}
+                />
+              )}
+              {media.type === "video" && !media.preview && (
+                <ReactPlayer
+                  url={media.link}
+                  width={"100%"}
+                  height="120px"
+                  controls
+                />
+              )}
             </div>
           ))}
         </div>
@@ -92,11 +99,11 @@ export default function MediaCreatorGalleryLink({
             setSelected(selected.length === medias.length ? [] : medias)
           }
         >
-          {t(selected.length === medias.length ? 'Unselect all' : 'Select all')}
+          {t(selected.length === medias.length ? "Unselect all" : "Select all")}
         </button>
         <span onClick={handleSubmit}>
           <SubmitButton
-            txt={`${t('Submit')} (${selected.length})`}
+            txt={`${t("Submit")} (${selected.length})`}
             isLoading={false}
           />
         </span>

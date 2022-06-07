@@ -32,7 +32,9 @@ export default function LayoutConductorManager({
 
   return (
     <div className={classes.container}>
-      {!router.pathname.match(/links|resume|manage/) && <Summary token={token} />}
+      {!router.pathname.match(/links|resume|manage/) && (
+        <Summary token={token} />
+      )}
       {loading ? (
         <div className={classes.loading}>{t("Loading...")}</div>
       ) : (

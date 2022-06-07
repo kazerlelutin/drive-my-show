@@ -5,7 +5,7 @@ import queryString from "query-string";
 import axios from "axios";
 import SubmitButton from "../../SubmitButton/SubmitButton";
 import MediaCreatorLinkTabTranslate from "./MediaCreatorLinkTag.translate";
-import { mediaScrap, mediaList } from "../../../interfaces/mediaList";
+import { mediaScrap } from "../../../interfaces/mediaList";
 
 interface props {
   readonly token: string;
@@ -29,8 +29,6 @@ export default function MediaCreatorLinkTab({
     [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function getVideoYoutube(url: string) {
-
-    console.log(url)
     const params = url.split("?");
     let videoLink: string;
     if (params.length > 1) {
@@ -97,12 +95,11 @@ export default function MediaCreatorLinkTab({
       const url: string = video.src.match(/http/)
         ? video.src
         : `https:${video.src}`;
-        if(url.match(/youtu/)){
-          videos.push(await getVideoYoutube(url.replace("embed/", "watch?v=")));
-        }else {
-          videos.push(video)
-        }
-     
+      if (url.match(/youtu/)) {
+        videos.push(await getVideoYoutube(url.replace("embed/", "watch?v=")));
+      } else {
+        videos.push(video);
+      }
     }
     newMedias.push(...videos);
     setMediasForSelect(newMedias);

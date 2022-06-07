@@ -6,11 +6,11 @@ import useTranslate from "../../hooks/useTranslate";
 import useFetch from "../../hooks/useFetch";
 
 interface props {
-  readonly token: string
+  readonly token: string;
 }
-export default function Summary({  token }: props) {
+export default function Summary({ token }: props) {
   const t = useTranslate(),
-    {data:chronicles,loading} = useFetch("/getSummary", { token}) ,
+    { data: chronicles, loading } = useFetch("/getSummary", { token }),
     [isOpen, setIsOpen] = useState(false),
     [search, setSearch] = useState("");
 
@@ -29,14 +29,17 @@ export default function Summary({  token }: props) {
       <div className={classes.summary}>
         <div className={classes.chroniclesContainer}>
           <div className={classes.chronicles}>
-            {loading && <p>{'...'}</p>}
-            {chronicles && chronicles.filter(filterChronicles).map((chronicle: Chronicle) => (
-              <div className={classes.menuElement} key={chronicle.id}>
-                <Link
-                  href={`#` + chronicle.id}
-                >{`#${chronicle.position} ${chronicle.title} (${chronicle.columnist.name})`}</Link>
-              </div>
-            ))}
+            {loading && <p>{"..."}</p>}
+            {chronicles &&
+              chronicles
+                .filter(filterChronicles)
+                .map((chronicle: Chronicle) => (
+                  <div className={classes.menuElement} key={chronicle.id}>
+                    <Link
+                      href={`#` + chronicle.id}
+                    >{`#${chronicle.position} ${chronicle.title} (${chronicle.columnist.name})`}</Link>
+                  </div>
+                ))}
           </div>
         </div>
         <div className={classes.search}>

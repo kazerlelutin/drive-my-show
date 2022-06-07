@@ -13,7 +13,6 @@ import useLazyFetch from '../../hooks/useLazyFetch';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import Chronicle from '../../interfaces/chronicle.interface';
-import MediasForCard from '../MediasForCard/MediasForCard';
 import MediasEditor from '../MediasEditor/MediasEditor';
 
 const MarkdownEditor = dynamic(() => import('@uiw/react-md-editor'), {

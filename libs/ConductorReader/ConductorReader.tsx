@@ -71,7 +71,6 @@ export default function ConductorReader({ token, type }: props) {
           ))}
         </div>
       )}
-     
     </LayoutConductorManager>
   );
 }

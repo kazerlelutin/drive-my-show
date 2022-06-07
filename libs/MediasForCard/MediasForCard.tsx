@@ -1,10 +1,10 @@
-import classes from './MediasForCard.module.css';
-import Chronicle from '../../interfaces/chronicle.interface';
-import { useState } from 'react';
-import Media from '../../interfaces/medias.interface';
-import MediaCreator from '../MediaCreator/MediaCreator';
-import useTranslate from '../../hooks/useTranslate';
-import MediaModaleToDelete from '../MediaModaleToDelete/MediaModaleToDelete';
+import classes from "./MediasForCard.module.css";
+import Chronicle from "../../interfaces/chronicle.interface";
+import { useState } from "react";
+import Media from "../../interfaces/medias.interface";
+import MediaCreator from "../MediaCreator/MediaCreator";
+import useTranslate from "../../hooks/useTranslate";
+import MediaModaleToDelete from "../MediaModaleToDelete/MediaModaleToDelete";
 
 interface props {
   readonly chronicle: Chronicle;
@@ -47,7 +47,7 @@ export default function MediasForCard({ chronicle, token }: props) {
               className={classes.delete}
               onClick={() => setIsOpenToDelete(media)}
             >
-              {t('Delete')}
+              {t("Delete")}
             </div>
           </div>
         ))}

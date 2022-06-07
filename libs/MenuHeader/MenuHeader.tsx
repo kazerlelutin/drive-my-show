@@ -8,9 +8,9 @@ import useTranslate from "../../hooks/useTranslate";
 import MenuHeaderTranslate from "./MenuHeader.translate";
 
 interface props {
-  readonly onClick?: Function
+  readonly onClick?: Function;
 }
-export default function MenuHeader({onClick}:props) {
+export default function MenuHeader({ onClick }: props) {
   const { pathname, query } = useRouter(),
     t = useTranslate(MenuHeaderTranslate),
     [menu, setMenu] = useState<Array<{ link: string; label: string }>>();
@@ -30,8 +30,8 @@ export default function MenuHeader({onClick}:props) {
     switchMenu();
   }, [pathname]);
 
-  function handleClick(){
-    if(onClick)onClick()
+  function handleClick() {
+    if (onClick) onClick();
   }
   return (
     <div className={classes.container}>

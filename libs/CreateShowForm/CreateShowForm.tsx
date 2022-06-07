@@ -1,33 +1,32 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
-import useTranslate from '../../hooks/useTranslate';
-import SubmitButton from '../SubmitButton/SubmitButton';
-import classes from './CreateShowForm.module.css';
-import CreateShowFormTranslate from './CreateShowForm.translate';
-import useLazyFetch from '../../hooks/useLazyFetch';
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import useTranslate from "../../hooks/useTranslate";
+import SubmitButton from "../SubmitButton/SubmitButton";
+import classes from "./CreateShowForm.module.css";
+import CreateShowFormTranslate from "./CreateShowForm.translate";
+import useLazyFetch from "../../hooks/useLazyFetch";
 
 export default function CreateShowForm() {
-  const 
-    [value, setValue] = useState<string>(''),
-    {data,loading,error, api} = useLazyFetch('/createShow'),
+  const [value, setValue] = useState<string>(""),
+    { data, loading, error, api } = useLazyFetch("/createShow"),
     router = useRouter(),
     t = useTranslate(CreateShowFormTranslate);
 
   async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    if (!value) return toast.error(t('You must enter a title !'));
-    api({ title: value })
-  };
-  
-  useEffect(()=>{
-    if(data) router.push('/' + router.locale + '/admin/' + data);
-  },[data]);
+    if (!value) return toast.error(t("You must enter a title !"));
+    api({ title: value });
+  }
 
-  useEffect(()=>{
-    if(error)  toast.error(t('e'));
-  },[error]);
+  useEffect(() => {
+    if (data) router.push("/" + router.locale + "/admin/" + data);
+  }, [data]);
+
+  useEffect(() => {
+    if (error) toast.error(t("e"));
+  }, [error]);
 
   return (
     <form className={classes.container} onSubmit={(e) => handleSubmit(e)}>
@@ -37,7 +36,7 @@ export default function CreateShowForm() {
         onChange={(e) => setValue(e.target.value)}
         value={value}
       />
-      <SubmitButton txt={t('Create my conductor')} isLoading={loading} />
+      <SubmitButton txt={t("Create my conductor")} isLoading={loading} />
     </form>
   );
 }

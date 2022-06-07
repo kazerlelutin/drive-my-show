@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import FullscreenModale from '../FullscreenModale/FullscreenModale';
-import classes from './MediaCreator.module.css';
-import { useState } from 'react';
-import MediaCreatorLinkTab from './MediaCreatorLinkTab/MediaCreatorLinkTab';
-import MediaCreatorGalleryLink from './MediaCreatorGalleryLink/MediaCreatorGalleryLink';
-import { mediaScrap } from '../../interfaces/mediaList';
+import FullscreenModale from "../FullscreenModale/FullscreenModale";
+import classes from "./MediaCreator.module.css";
+import { useState } from "react";
+import MediaCreatorLinkTab from "./MediaCreatorLinkTab/MediaCreatorLinkTab";
+import MediaCreatorGalleryLink from "./MediaCreatorGalleryLink/MediaCreatorGalleryLink";
+import { mediaScrap } from "../../interfaces/mediaList";
 
 interface props {
   readonly token: string;
@@ -19,13 +19,13 @@ export default function MediaCreator({
   setMedias,
   medias,
 }: props) {
-  const [tab, setTab] = useState<string>('link'),
+  const [tab, setTab] = useState<string>("link"),
     [mediasForSelect, setMediasForSelect] = useState<Array<mediaScrap>>([]);
 
   return (
     <FullscreenModale>
       <div className={classes.container} data-tab={tab}>
-        {tab === 'link' && (
+        {tab === "link" && (
           <MediaCreatorLinkTab
             setMediasForSelect={setMediasForSelect}
             setMedias={setMedias}
@@ -35,7 +35,7 @@ export default function MediaCreator({
             setTab={setTab}
           />
         )}
-        {tab === 'gallery' && (
+        {tab === "gallery" && (
           <MediaCreatorGalleryLink
             onClose={onClose}
             mediasForSelect={mediasForSelect}

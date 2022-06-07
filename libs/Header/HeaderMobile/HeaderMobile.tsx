@@ -24,7 +24,7 @@ export default function HeaderMobile() {
           <MenuHeader onClick={() => setIsOpen(false)} />
         </div>
       </div>
-      <KofiButton/>
+      <KofiButton />
     </header>
   );
 }

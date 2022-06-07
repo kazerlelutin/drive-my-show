@@ -42,12 +42,12 @@ export default function ColumnistToDelete({ token }: props) {
                     columnist._count.chronicles > 1 ? "s" : ""
                   }`}
                 >
-                 <div className={classes.columnist}>
-                 {columnist.name}
-                  <span
-                    className={classes.count}
-                  >{` (${columnist._count.chronicles})`}</span>
-                 </div>
+                  <div className={classes.columnist}>
+                    {columnist.name}
+                    <span
+                      className={classes.count}
+                    >{` (${columnist._count.chronicles})`}</span>
+                  </div>
                   <div
                     className={classes.del}
                     onClick={() => setIsDelete(columnist)}
