@@ -7,7 +7,10 @@ import Link from "next/link";
 import useTranslate from "../../hooks/useTranslate";
 import MenuHeaderTranslate from "./MenuHeader.translate";
 
-export default function MenuHeader() {
+interface props {
+  readonly onClick?: Function
+}
+export default function MenuHeader({onClick}:props) {
   const { pathname, query } = useRouter(),
     t = useTranslate(MenuHeaderTranslate),
     [menu, setMenu] = useState<Array<{ link: string; label: string }>>();
@@ -27,11 +30,14 @@ export default function MenuHeader() {
     switchMenu();
   }, [pathname]);
 
+  function handleClick(){
+    if(onClick)onClick()
+  }
   return (
     <div className={classes.container}>
       {menu &&
         menu.map((item) => (
-          <div key={item.label} className={classes.link}>
+          <div key={item.label} className={classes.link} onClick={handleClick}>
             <Link href={`${item.link}${query.token ? query.token : ""}`}>
               {t(item.label)}
             </Link>

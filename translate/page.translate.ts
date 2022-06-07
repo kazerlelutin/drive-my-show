@@ -152,17 +152,32 @@ const pageTranslate = {
   },
   "Recent conductors": { fr: "Conducteurs récents" },
   "Select all": {
-    fr:'Tout sélectionner'
+    fr: "Tout sélectionner",
   },
   "Unselect all": {
-    fr:'Tout désélectionner'
+    fr: "Tout désélectionner",
   },
-  "Search...":{
-    fr:'Rechercher...'
+  "Search...": {
+    fr: "Rechercher...",
   },
-  "Resume":{
-    fr:'Résumé'
-  }
+  resume: {
+    fr: "résumé",
+  },
+  delete: {
+    fr: "supprimer",
+  },
+  "Are you sure you want to delete this conductor ?": {
+    fr: "Êtes-vous sûr de vouloir effacer ce conducteur ?",
+  },
+  "Delete this conductor": {
+    fr: "Supprimer ce conducteur",
+  },
+  "Columnists":{
+    fr: 'Chroniqueurs'
+  },
+  "Conductor deleted": {
+    fr: "Conducteur effacé"
+  },
 };
 
 export default pageTranslate;

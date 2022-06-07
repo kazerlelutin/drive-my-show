@@ -36,7 +36,7 @@ export default function Resume({ token, type }: props){
       });
     }, []);
 
-    return <LayoutConductorManager error={error} loading={loading}>
+    return <LayoutConductorManager error={error} loading={loading} token={token}>
     {data && (
       <div className={classes.page}>
         <h1 className={classes.title}>{data.title}</h1>

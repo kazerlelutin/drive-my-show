@@ -1,0 +1,25 @@
+.coffe {
+    justify-self: flex-end;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 0.8em;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .coffe {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: var(--color-bg-accent);
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid var(--color-border);
+      z-index: 50;
+    }
+    
+    .footer {
+      padding: 15px 15px 80px;
+    }
+  }
+  

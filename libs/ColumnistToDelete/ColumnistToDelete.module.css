@@ -1,12 +1,21 @@
 .counters {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
+  padding: 10px 0
 }
 
 .counter {
   display: flex;
   gap: 10px;
+  justify-content: space-between;
+  transition: 200ms ease-in-out;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.counter:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .del {
@@ -15,13 +24,17 @@
   transition: 200ms ease-in-out;
 }
 
+.columnist::first-letter {
+  text-transform: uppercase;
+}
+
 .del:hover {
   color: rgb(191, 29, 29);
 }
 
 .title {
   font-size: 1.1em;
-  font-weight: bold;
   padding-bottom: 5px;
+  font-family: 'Source-bold';
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }

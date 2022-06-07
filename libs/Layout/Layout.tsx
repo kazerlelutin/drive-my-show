@@ -4,17 +4,15 @@ import { ReactChild, useEffect } from "react";
 import classes from "./Layout.module.css";
 import useTranslate from "../../hooks/useTranslate";
 import layoutTranslate from "./layout.translate";
-import Image from "next/image";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import dayjs from "dayjs";
 import fr from "dayjs/locale/fr";
 import en from "dayjs/locale/en";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import _ from "lodash";
-import MenuHeader from "../MenuHeader/MenuHeader";
 import setLastShowesInLocalStorage from "../../utils/setLastShowesInLocalStorage";
+import Header from "../Header/Header";
 interface props {
   readonly children: ReactChild;
   readonly title?: string;
@@ -22,7 +20,7 @@ interface props {
 
 export default function Layout({ children, title }: props) {
   const t = useTranslate(layoutTranslate),
-    { locale,query } = useRouter(),
+    { locale, query } = useRouter(),
     availableLocale = { fr, en };
 
   useEffect(() => {
@@ -30,7 +28,7 @@ export default function Layout({ children, title }: props) {
   }, [locale]);
 
   useEffect(() => {
-    if(query && query.type && query.token){
+    if (query && query.type && query.token) {
       setLastShowesInLocalStorage(query);
     }
   }, [query]);
@@ -45,29 +43,8 @@ export default function Layout({ children, title }: props) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className={classes.header}>
-        <div className={classes.logo}>
-          <Link href="/" passHref>
-            <a>
-              <Image src="/dms_logo.svg" width={25} height={25} alt="Logo" />
-            </a>
-          </Link>
-        </div>
-        <MenuHeader />
-        <a
-          className={classes.coffe}
-          href="https://ko-fi.com/kazerlelutin"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <div className={classes.buy}>{t('Buy me a coffee')}</div>
-          <Image src="/kofi_logo.svg" width={30} height={20} alt="kofi logo" />
-        </a>
-      </header>
-      <main className={classes.main}>{children}</main>
-      <footer className={classes.footer}>
-        Powerd By me - Mentions légales - Cookies ?
-      </footer>
+      <Header />
+      <main className={classes.mainContainer}>{children}</main>
       <ToastContainer
         position="bottom-right"
         autoClose={5000}

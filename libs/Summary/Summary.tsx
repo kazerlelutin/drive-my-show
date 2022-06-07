@@ -3,12 +3,14 @@ import Chronicle from "../../interfaces/chronicle.interface";
 import Link from "next/link";
 import { useState } from "react";
 import useTranslate from "../../hooks/useTranslate";
+import useFetch from "../../hooks/useFetch";
 
 interface props {
-  readonly chronicles: Array<Chronicle>;
+  readonly token: string
 }
-export default function Summary({ chronicles = [] }: props) {
+export default function Summary({  token }: props) {
   const t = useTranslate(),
+    {data:chronicles,loading} = useFetch("/getSummary", { token}) ,
     [isOpen, setIsOpen] = useState(false),
     [search, setSearch] = useState("");
 
@@ -27,7 +29,8 @@ export default function Summary({ chronicles = [] }: props) {
       <div className={classes.summary}>
         <div className={classes.chroniclesContainer}>
           <div className={classes.chronicles}>
-            {chronicles.filter(filterChronicles).map((chronicle: Chronicle) => (
+            {loading && <p>{'...'}</p>}
+            {chronicles && chronicles.filter(filterChronicles).map((chronicle: Chronicle) => (
               <div className={classes.menuElement} key={chronicle.id}>
                 <Link
                   href={`#` + chronicle.id}

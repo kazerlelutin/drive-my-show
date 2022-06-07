@@ -1,24 +1,9 @@
-.header {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  padding: 10px;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  gap: 10px;
-  background: var(--color-bg-accent);
-  position: sticky;
-  top: 0;
-  z-index: 20;
-}
-
 .container {
   background: var(--color-bg);
-}
-
-.logo {
-  text-align: left;
-  display: flex;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .param {
@@ -30,31 +15,34 @@
   gap: 10px;
 }
 
+.mainContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.main {
+  position: absolute;
+  top:0;
+  right: 0;
+  left:0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
 .footer {
   background: var(--color-bg-accent);
   padding: 15px;
 }
 
-.coffe {
-  justify-self: flex-end;
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  font-size: 0.8em;
-}
-
 @media screen and (max-width: 500px) {
-  .coffe {
-    position: fixed;
-    bottom: 15px;
-    background: var(--color-bg-accent);
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid var(--color-border);
-    z-index: 20;
-  }
-  
   .footer {
     padding: 15px 15px 80px;
   }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
 }

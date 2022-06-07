@@ -34,7 +34,7 @@ export default function Admin({ token }: props) {
 
   return (
     <Layout title={_.get(data, "title")}>
-      <LayoutConductorManager error={error} loading={loading}>
+      <LayoutConductorManager error={error} loading={loading} token={token}>
         {data && (
           <>
             <header className={classes.header}>
