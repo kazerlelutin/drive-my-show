@@ -2,6 +2,7 @@
     display: flex;
     gap: 15px;
     flex-direction: column;
+    min-width: 500px;
 }
 
 .title {
@@ -27,4 +28,11 @@
 
 .columnist::first-letter {
     text-transform: uppercase;
+}
+
+@media screen and (max-width: 500px) {
+    .page {
+        min-width: inherit;
+        width: 100%;
+    }
 }

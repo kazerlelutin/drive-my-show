@@ -7,3 +7,10 @@
 .link::first-letter {
   text-transform: uppercase;
 }
+
+@media screen and (max-width: 600px){
+  .container{
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}

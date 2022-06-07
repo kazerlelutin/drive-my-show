@@ -8,7 +8,6 @@ import classes from "./Chronicles.module.css";
 import { useState } from "react";
 import CounterColumnists from "../CounterColumnists/CounterColumnists";
 import MediasForConductor from "../MediasForConductor/MediasForConductor";
-import Summary from "../Summary/Summary";
 
 interface props {
   readonly token: string;
@@ -72,7 +71,6 @@ export default function Chronicles({ token }: props) {
             />
           ))
       )}
-      <Summary chronicles={data} />
     </div>
   );
 }

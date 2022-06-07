@@ -1,8 +1,8 @@
 .container {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 10px;
-  top: 60px;
+  top: 0;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10px;
@@ -10,6 +10,7 @@
   background: var(--color-bg);
   transition: 300ms ease-in-out;
   font-size: 0.8em;
+
 }
 
 .container[data-isopen="false"] {
@@ -21,7 +22,7 @@
   grid-template-rows: 1fr auto;
   width: 255px;
   height: 100%;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .chroniclesContainer {
@@ -79,11 +80,8 @@
 @media screen and (max-width: 500px) {
   .container {
     font-size: 1em;
-    top: 50px;
     bottom: 0;
-
   }
-
 
   .chevron {
     width: 8px;

@@ -1,0 +1,16 @@
+.modale {
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+}
+
+.title {
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}

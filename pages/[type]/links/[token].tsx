@@ -28,7 +28,7 @@ export default function AdminLinks({ token }: props) {
 
   return (
     <Layout title={_.get(data, "title")}>
-      <LayoutConductorManager error={error} loading={loading}>
+      <LayoutConductorManager error={error} loading={loading} token={token}>
         {data && (
           <>
             <div className={classes.block}>

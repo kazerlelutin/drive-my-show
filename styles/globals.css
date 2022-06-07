@@ -26,6 +26,7 @@
   --color-text: rgb(181, 181, 181);
   --color-link: rgb(61, 175, 181);
   --color-border: rgb(34, 59, 56);
+  --color-danger: rgb(111, 39, 39);
 }
 
 html,
@@ -185,4 +186,12 @@ label {
 }
 .crossInput::after {
   transform: rotate(-45deg);
+}
+
+button.danger {
+  background: var(--color-danger);
+}
+
+button:first-letter {
+  text-transform: uppercase;
 }
