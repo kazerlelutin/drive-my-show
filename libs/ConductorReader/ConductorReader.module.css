@@ -1,7 +1,8 @@
+
 .page {
-  max-width: 600px;
   display: flex;
   flex-direction: column;
+  max-width: 100%;
   gap: 10px;
 }
 
@@ -36,4 +37,15 @@
 .duration {
   font-style: italic;
   color: green;
+}
+
+@media screen and (max-width: 600px) {
+  .title{
+    font-size: 1.4em;
+    display: block;
+  }
+
+  .page {
+    padding-top: 35px;
+  }
 }

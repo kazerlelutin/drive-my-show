@@ -1,7 +1,7 @@
 .container {
   position: absolute;
   bottom: 0;
-  left: 10px;
+  left: 0;
   top: 0;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -10,7 +10,7 @@
   background: var(--color-bg);
   transition: 300ms ease-in-out;
   font-size: 0.8em;
-
+  z-index: 50;
 }
 
 .container[data-isopen="false"] {
@@ -22,7 +22,8 @@
   grid-template-rows: 1fr auto;
   width: 255px;
   height: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
+  gap: 8px;
 }
 
 .chroniclesContainer {
@@ -33,7 +34,7 @@
 .chronicles {
   position: absolute;
   display: flex;
-  padding: 5px;
+  padding: 10px;
   top: 0;
   right: 0;
   bottom: 0;
@@ -77,6 +78,10 @@
   transform: rotate(-135deg);
 }
 
+.menuElement:before {
+  content: "- ";
+}
+
 @media screen and (max-width: 500px) {
   .container {
     font-size: 1em;
@@ -89,6 +94,6 @@
   }
 
   .chronicles {
-      padding: 10px;
+    padding: 10px;
   }
 }

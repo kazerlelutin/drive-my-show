@@ -39,3 +39,10 @@
     width: calc(100% - 40px);
   }
 }
+
+@media screen and (max-width: 600px) {
+  .page {
+    padding-top: 35px;
+  }
+}
+
