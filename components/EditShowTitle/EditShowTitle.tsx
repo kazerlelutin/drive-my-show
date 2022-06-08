@@ -1,6 +1,6 @@
 import classes from "./EditShowTitle.module.css";
 import { useState, useEffect, FormEvent } from "react";
-import SubmitButton from "../SubmitButton/SubmitButton";
+import SubmitButton from "../../UI/SubmitButton/SubmitButton";
 import useLazyFetch from "../../hooks/useLazyFetch";
 import { toast } from "react-toastify";
 import useTranslate from "../../hooks/useTranslate";

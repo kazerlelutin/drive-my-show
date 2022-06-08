@@ -1,4 +1,4 @@
-import Layout from "../../../libs/Layout/Layout";
+import Layout from "../../../Layouts/Layout/Layout";
 import useFetch from "../../../hooks/useFetch";
 import _ from "lodash";
 import classes from "../../../styles/Links.module.css";
@@ -6,10 +6,10 @@ import Show from "../../../interfaces/show.interface";
 import useTranslate from "../../../hooks/useTranslate";
 import pageTranslate from "../../../translate/page.translate";
 import Error from "../../../interfaces/error.interface";
-import EditShowTitle from "../../../libs/EditShowTitle/EditShowTitle";
-import ColumnistToDelete from "../../../libs/ColumnistToDelete/ColumnistToDelete";
-import LayoutConductorManager from "../../../libs/LayoutConductorManager/LayoutConductorManager";
-import DeleteShowButton from "../../../libs/DeleteShowButton/DeleteShowButton";
+import EditShowTitle from "../../../components/EditShowTitle/EditShowTitle";
+import ColumnistToDelete from "../../../components/ColumnistToDelete/ColumnistToDelete";
+import LayoutConductorManager from "../../../Layouts/LayoutConductorManager/LayoutConductorManager";
+import DeleteShowButton from "../../../components/DeleteShowButton/DeleteShowButton";
 
 interface props {
   readonly token: string;

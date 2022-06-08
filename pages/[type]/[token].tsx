@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Layout from "../../libs/Layout/Layout";
+import Layout from "../../Layouts/Layout/Layout";
 import useFetch from "../../hooks/useFetch";
-import _, { filter } from "lodash";
+import _ from "lodash";
 import classes from "../../styles/Admin.module.css";
 import Show from "../../interfaces/show.interface";
 import dayjs from "dayjs";
 import useTranslate from "../../hooks/useTranslate";
 import pageTranslate from "../../translate/page.translate";
-import ChronicleEditor from "../../libs/ChronicleEditor/ChronicleEditor";
-import LayoutConductorManager from "../../libs/LayoutConductorManager/LayoutConductorManager";
+import ChronicleEditor from "../../components/ChronicleEditor/ChronicleEditor";
+import LayoutConductorManager from "../../Layouts/LayoutConductorManager/LayoutConductorManager";
 import Error from "../../interfaces/error.interface";
 import { useState } from 'react';
-import Chronicles from "../../libs/Chronicles/Chronicles";
+import Chronicles from "../../components/Chronicles/Chronicles";
 
 interface props {
   readonly token: string;

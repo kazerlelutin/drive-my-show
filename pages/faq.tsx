@@ -1,4 +1,4 @@
-import Layout from "../libs/Layout/Layout";
+import Layout from "../Layouts/Layout/Layout";
 import classes from "../styles/Home.module.css";
 
 export default function Faq() {

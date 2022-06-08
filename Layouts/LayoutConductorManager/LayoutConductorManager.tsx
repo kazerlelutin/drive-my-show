@@ -6,7 +6,7 @@ import LayoutConductorManagerTranslate from "./LayoutConductorManager.translate"
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Error from "../../interfaces/error.interface";
-import Summary from "../Summary/Summary";
+import Summary from "../../components/Summary/Summary";
 
 interface props {
   readonly loading: boolean;

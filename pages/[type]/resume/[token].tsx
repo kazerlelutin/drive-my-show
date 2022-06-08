@@ -1,5 +1,5 @@
-import Layout from "../../../libs/Layout/Layout";
-import Resume from "../../../libs/Resume/Resume";
+import Layout from "../../../Layouts/Layout/Layout";
+import Resume from "../../../components/Resume/Resume";
 
 interface props {
   readonly token: string;

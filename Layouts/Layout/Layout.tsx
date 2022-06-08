@@ -12,7 +12,8 @@ import en from "dayjs/locale/en";
 import { useRouter } from "next/router";
 import _ from "lodash";
 import setLastShowesInLocalStorage from "../../utils/setLastShowesInLocalStorage";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
+
 interface props {
   readonly children: ReactChild;
   readonly title?: string;

@@ -3,9 +3,9 @@ import { toast } from "react-toastify";
 import useFetch from "../../hooks/useFetch";
 import useTranslate from "../../hooks/useTranslate";
 import Chronicle from "../../interfaces/chronicle.interface";
+import LayoutConductorManager from "../../Layouts/LayoutConductorManager/LayoutConductorManager";
 import { UiContext } from "../../store/ui.store";
 import ClipBoard from "../ClipBoard/ClipBoard";
-import LayoutConductorManager from "../LayoutConductorManager/LayoutConductorManager";
 import classes from "./Resume.module.css";
 
 interface props {

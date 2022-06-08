@@ -4,7 +4,7 @@ import classes from "./MediaCreatorGalleryLink.module.css";
 import { useState } from "react";
 import ReactPlayer from "react-player";
 import useTranslate from "../../../hooks/useTranslate";
-import SubmitButton from "../../SubmitButton/SubmitButton";
+import SubmitButton from "../../../UI/SubmitButton/SubmitButton";
 
 interface props {
   readonly onClose: Function;

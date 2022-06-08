@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Layout from "../../../libs/Layout/Layout";
+import Layout from "../../../Layouts/Layout/Layout";
 import useFetch from "../../../hooks/useFetch";
 import _ from "lodash";
 import classes from "../../../styles/Links.module.css";
 import Show from "../../../interfaces/show.interface";
 import useTranslate from "../../../hooks/useTranslate";
 import pageTranslate from "../../../translate/page.translate";
-import ClipBoard from "../../../libs/ClipBoard/ClipBoard";
+import ClipBoard from "../../../components/ClipBoard/ClipBoard";
 import useCreateLink from "../../../hooks/useCreateLink";
-import LayoutConductorManager from "../../../libs/LayoutConductorManager/LayoutConductorManager";
+import LayoutConductorManager from "../../../Layouts/LayoutConductorManager/LayoutConductorManager";
 import Error from "../../../interfaces/error.interface";
 
 interface props {

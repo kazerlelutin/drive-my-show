@@ -1,7 +1,7 @@
 import classes from "./HeaderDesktop.module.css";
 import MenuHeader from "../../MenuHeader/MenuHeader";
-import Logo from "../../Logo/Logo";
-import KofiButton from "../../KofiButton/KofiButton";
+import Logo from "../../../UI/Logo/Logo";
+import KofiButton from "../../../UI/KofiButton/KofiButton";
 
 export default function HeaderDesktop() {
   return (

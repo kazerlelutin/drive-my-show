@@ -1,4 +1,4 @@
-import Slider from "../../libs/Slider/Slider";
+import Slider from "../../Page-Related/Slider/Slider";
 
 interface props {
     readonly token: string

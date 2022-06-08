@@ -1,5 +1,6 @@
-import ConductorReader from "../../../libs/ConductorReader/ConductorReader";
-import Layout from "../../../libs/Layout/Layout";
+import Layout from "../../../Layouts/Layout/Layout";
+import ConductorReader from "../../../Page-Related/ConductorReader/ConductorReader";
+
 
 interface props {
   readonly token: string;
