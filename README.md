@@ -2,6 +2,10 @@
 
 # Drive My Show
 
+## Try this application
+You can use the production app here: 
+[dms.kazerlelutin.space](https://dms.kazerlelutin.space)
+
 ## Getting Started
 
 First, run the development server:
