@@ -10,7 +10,12 @@
 }
 
 .expire {
-  text-align: right;
+  text-align: center;
   width: 100%;
   font-style: italic;
+}
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
