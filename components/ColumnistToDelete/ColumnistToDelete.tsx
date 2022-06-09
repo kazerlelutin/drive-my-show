@@ -59,6 +59,9 @@ export default function ColumnistToDelete({ token }: props) {
           </div>
         )
       )}
+                {(data && data.length === 0 && !loading )  && (
+            <div className="noResult">{t('No columnist found')}</div>
+          )}
     </div>
   );
 }

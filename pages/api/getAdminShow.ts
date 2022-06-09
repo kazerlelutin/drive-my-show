@@ -14,6 +14,10 @@ export default async function getAdminShow(
       select: {
         title: true,
         trigger: true,
+        _count:{
+            select: {chronicles:true}
+          }
+  
       },
     });
     return show ? res.json(show) : res.status(404).send("not found");

@@ -8,6 +8,7 @@ import classes from "./Chronicles.module.css";
 import { useState } from "react";
 import CounterColumnists from "../CounterColumnists/CounterColumnists";
 import MediasForConductor from "../MediasForConductor/MediasForConductor";
+import useTranslate from "../../hooks/useTranslate";
 
 interface props {
   readonly token: string;
@@ -18,10 +19,13 @@ interface Fetch {
   readonly error: Error;
   readonly refetch: Function;
   readonly data: Array<Chronicle>;
+
 }
 
 export default function Chronicles({ token }: props) {
-  const [filters, setFilters] = useState({}),
+  const 
+    t = useTranslate(),
+    [filters, setFilters] = useState({}),
     {
       loading,
       refetch,
@@ -71,6 +75,7 @@ export default function Chronicles({ token }: props) {
             />
           ))
       )}
+      {data.length === 0 && <div className="noResult">{t('No chronicle found')}</div>}
     </div>
   );
 }

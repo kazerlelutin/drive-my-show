@@ -1,12 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import classes from "./MediasEditor.module.css";
-import Chronicle from "../../interfaces/chronicle.interface";
-import { useState } from "react";
-import Media from "../../interfaces/medias.interface";
-import MediaCreator from "../MediaCreator/MediaCreator";
-import useTranslate from "../../hooks/useTranslate";
-import MediaModaleToDelete from "../MediaModaleToDelete/MediaModaleToDelete";
-import ReactPlayer from "react-player";
+import classes from './MediasEditor.module.css';
+import Chronicle from '../../interfaces/chronicle.interface';
+import { useState } from 'react';
+import Media from '../../interfaces/medias.interface';
+import MediaCreator from '../MediaCreator/MediaCreator';
+import useTranslate from '../../hooks/useTranslate';
+import MediaModaleToDelete from '../MediaModaleToDelete/MediaModaleToDelete';
+import ReactPlayer from 'react-player';
+import getMediasLimit from '../../utils/getMediasLimit';
+import getChroniclesLimit from '../../utils/getChroniclesLimit';
 
 interface props {
   readonly chronicle?: Chronicle;
@@ -39,17 +41,19 @@ export default function MediasEditor({ token, sendMedias, medias }: props) {
           onClose={() => setIsOpenToDelete(undefined)}
         />
       )}
-      <div className={classes.title}>Medias: </div>
+      <div className={classes.title}>
+        Medias {`(${medias.length}/${getMediasLimit()})`}:{' '}
+      </div>
       <div className={classes.medias}>
         {medias.map((media) => (
           <div className={classes.media} key={media.id}>
-            {media.type === "image" && (
+            {media.type === 'image' && (
               <img className={classes.img} src={media.link} alt={media.title} />
             )}
-            {media.type === "video" && (
+            {media.type === 'video' && (
               <ReactPlayer
                 url={media.link}
-                width={"100%"}
+                width={'100%'}
                 height="80px"
                 controls
               />
@@ -58,13 +62,15 @@ export default function MediasEditor({ token, sendMedias, medias }: props) {
               className={classes.delete}
               onClick={() => setIsOpenToDelete(media)}
             >
-              {t("Delete")}
+              {t('Delete')}
             </div>
           </div>
         ))}
-        <div className={classes.empty} onClick={() => setIsOpen(true)}>
-          <div className={classes.cross} />
-        </div>
+        {medias.length <= getMediasLimit() && (
+          <div className={classes.empty} onClick={() => setIsOpen(true)}>
+            <div className={classes.cross} />
+          </div>
+        )}
       </div>
     </div>
   );

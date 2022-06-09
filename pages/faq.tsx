@@ -1,14 +1,6 @@
 import Layout from "../Layouts/Layout/Layout";
-import classes from "../styles/Home.module.css";
+import Faq from "../Page-Related/Faq/Faq";
 
-export default function Faq() {
-  return (
-    <Layout>
-      <div className={classes.container}>
-        <div className={classes.home}>
-        {"Soon..."}
-        </div>
-      </div>
-    </Layout>
-  );
+export default function FaqPage() {
+  return <Layout><Faq/></Layout>;
 }

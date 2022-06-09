@@ -195,3 +195,27 @@ button.danger {
 button:first-letter {
   text-transform: uppercase;
 }
+
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid var(--color-bg-accent);
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, .05);
+}
+
+.noResult{
+  text-align: center;
+  font-size: 1.2em;
+  background: rgba(0, 0, 0, .1);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button:disabled {
+  opacity: .5;
+}

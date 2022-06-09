@@ -21,9 +21,9 @@ export default function ChronicleDeleteModale({ id, title, onClose,refetch }: pr
 
   useEffect(() => {
     if (data) {
-      toast.success("Chronicle deleted");
+      refetch();
+      toast.success(t("Chronicle deleted"));
       onClose();
-      refetch()
     }
   }, [data]);
 

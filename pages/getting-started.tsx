@@ -1,14 +1,6 @@
 import Layout from "../Layouts/Layout/Layout";
-import classes from "../styles/Home.module.css";
+import GettingStarted from "../Page-Related/GettingStarted/GettingStarted";
 
-export default function GettingStarted() {
-  return (
-    <Layout>
-      <div className={classes.container}>
-        <div className={classes.home}>
-        {"Soon..."}
-        </div>
-      </div>
-    </Layout>
-  );
+export default function GettingStartedPage() {
+  return <Layout><GettingStarted/></Layout>;
 }

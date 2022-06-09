@@ -69,6 +69,7 @@ export default function ConductorReader({ token, type }: props) {
               <MediasForConductor chronicle={chronicle} token={token} />
             </div>
           ))}
+          {data.chronicles.length === 0 && <div className="noResult">{t('No chronicle found')}</div>}
         </div>
       )}
     </LayoutConductorManager>

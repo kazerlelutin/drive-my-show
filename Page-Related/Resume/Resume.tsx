@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import useFetch from "../../hooks/useFetch";
-import useTranslate from "../../hooks/useTranslate";
-import Chronicle from "../../interfaces/chronicle.interface";
-import LayoutConductorManager from "../../Layouts/LayoutConductorManager/LayoutConductorManager";
-import { UiContext } from "../../store/ui.store";
-import ClipBoard from "../ClipBoard/ClipBoard";
-import classes from "./Resume.module.css";
+import { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import ClipBoard from '../../components/ClipBoard/ClipBoard';
+import useFetch from '../../hooks/useFetch';
+import useTranslate from '../../hooks/useTranslate';
+import Chronicle from '../../interfaces/chronicle.interface';
+import LayoutConductorManager from '../../Layouts/LayoutConductorManager/LayoutConductorManager';
+import { UiContext } from '../../store/ui.store';
+import classes from './Resume.module.css';
 
 interface props {
   readonly token: string;
@@ -15,21 +15,21 @@ interface props {
 
 export default function Resume({ token, type }: props) {
   const { socket } = useContext(UiContext),
-    { loading, error, data } = useFetch("/getConductor", {
+    { loading, error, data } = useFetch('/getConductor', {
       token: token,
     }),
     t = useTranslate(),
-    [refresh, setRefresh] = useState<string>("");
+    [refresh, setRefresh] = useState<string>('');
 
   useEffect(() => {
-    socket.on("connect", () => {
+    socket.on('connect', () => {
       socket.on(`conductor-${type}-${token}`, () => {
-        setRefresh("refresh");
-        toast.info(t("Update detected, reload the page."), {
+        setRefresh('refresh');
+        toast.info(t('Update detected, reload the page.'), {
           toastId: refresh,
         });
         setTimeout(() => {
-          setRefresh("");
+          setRefresh('');
         }, 5000);
       });
     });
@@ -56,18 +56,21 @@ export default function Resume({ token, type }: props) {
                 <ClipBoard
                   txt={chronicle.title}
                   typeTxt="input"
-                  label={t("title")}
+                  label={t('title')}
                 />
               )}
               {chronicle.link && (
                 <ClipBoard
                   txt={chronicle.link}
                   typeTxt="input"
-                  label={t("link")}
+                  label={t('link')}
                 />
               )}
             </div>
           ))}
+          {data.chronicles.length === 0 && (
+            <div className="noResult">{t('No chronicle found')}</div>
+          )}
         </div>
       )}
     </LayoutConductorManager>
