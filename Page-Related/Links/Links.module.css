@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 100vh;
+  max-width: 600px;
+  min-width: 500px;
+  margin: 20px;
+}
+
+.delete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-family: 'Source-semi-bold';
+}
+
+@media screen and (max-width: 500px){
+  .page {
+    min-width: 100%;
+    max-width: inherit;
+  }
+}

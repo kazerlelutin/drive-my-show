@@ -1,17 +1,6 @@
-import CreateShowForm from "../libs/CreateShowForm/CreateShowForm";
-import LastShowes from "../libs/LastShowes/LastShowes";
-import Layout from "../libs/Layout/Layout";
-import classes from "../styles/Home.module.css";
+import Layout from '../Layouts/Layout/Layout';
+import Home from '../Page-Related/Home/Home';
 
-export default function Home() {
-  return (
-    <Layout>
-      <div className={classes.container}>
-        <div className={classes.home}>
-          <CreateShowForm />
-        </div>
-        <LastShowes />
-      </div>
-    </Layout>
-  );
+export default function Index() {
+  return <Layout><Home /></Layout>;
 }

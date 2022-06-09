@@ -9,4 +9,7 @@ export default interface Show {
   reader: string;
   chronicles: Array<Chronicle>;
   columnist: Array<Columnist>;
+  _count: {
+    chronicles: number
+  }
 }

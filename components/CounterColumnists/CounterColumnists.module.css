@@ -1,0 +1,25 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: center;
+}
+
+.columnists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.counters {
+  flex-grow: 2;
+  text-align: left;
+}
+
+@media screen and (max-width: 500px) {
+  .content {
+    flex-direction: column;
+  }
+}

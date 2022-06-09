@@ -1,16 +1,12 @@
-import Layout from "../../../libs/Layout/Layout";
-import Resume from "../../../libs/Resume/Resume";
+import Layout from "../../../Layouts/Layout/Layout";
+import Resume from "../../../Page-Related/Resume/Resume";
 
 interface props {
   readonly token: string;
   readonly type: string;
 }
-export default function resume({ token, type }: props) {
-  return (
-    <Layout title={"Resume"}>
-      <Resume token={token} type={type} />
-    </Layout>
-  );
+export default function resume(props: props) {
+  return <Layout title={"Resume"}><Resume {...props} /></Layout>;
 }
 
 export async function getServerSideProps({ query }) {

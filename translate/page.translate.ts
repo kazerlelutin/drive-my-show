@@ -178,6 +178,21 @@ const pageTranslate = {
   "Conductor deleted": {
     fr: "Conducteur effacé"
   },
+  "No chronicle found":{
+    fr: 'Aucune chronique trouvée'
+  },
+  "No columnist found":{
+    fr: "Aucun chroniqueur trouvé"
+  },
+  "You can't create more chronicles.":{
+    fr:"Vous ne pouvez pas créer plus de chroniques."
+  },
+  "You can't create more media.":{
+    fr:"Vous ne pouvez pas créer plus de media."
+  },
+  "Create a chronicle":{
+    fr: "Créer un chronique"
+  }
 };
 
 export default pageTranslate;
