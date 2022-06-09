@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: 10px;
   min-height: 100vh;
-  max-width: 600px;
+  width: 600px;
   min-width: 500px;
   margin: 20px;
 }
