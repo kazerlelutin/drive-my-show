@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import classes from "./LayoutConductorManager.module.css";
 import { ReactChild, useEffect } from "react";
-import useTranslate from "../../hooks/useTranslate";
+import useTranslate from "../../../hooks/useTranslate";
 import LayoutConductorManagerTranslate from "./LayoutConductorManager.translate";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import Error from "../../interfaces/error.interface";
-import Summary from "../../components/Summary/Summary";
+import Error from "../../../interfaces/error.interface";
+import Summary from "../../Summary/Summary";
 
 interface props {
   readonly loading: boolean;

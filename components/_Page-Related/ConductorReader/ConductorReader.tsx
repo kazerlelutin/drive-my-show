@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import classes from "./ConductorReader.module.css";
-import useFetch from "../../hooks/useFetch";
-import LayoutConductorManager from "../../Layouts/LayoutConductorManager/LayoutConductorManager";
-import Chronicle from "../../interfaces/chronicle.interface";
+import useFetch from "../../../hooks/useFetch";
+import LayoutConductorManager from "../../_Layouts/LayoutConductorManager/LayoutConductorManager";
+import Chronicle from "../../../interfaces/chronicle.interface";
 import ReactMarkdown from "react-markdown";
-import MediasForConductor from "../../components/MediasForConductor/MediasForConductor";
+import MediasForConductor from "../../MediasForConductor/MediasForConductor";
 import { useEffect, useState, useContext } from "react";
 import { toast } from "react-toastify";
-import useTranslate from "../../hooks/useTranslate";
-import { UiContext } from "../../store/ui.store";
+import useTranslate from "../../../hooks/useTranslate";
+import { UiContext } from "../../../store/ui.store";
 
 interface props {
   readonly token: string;

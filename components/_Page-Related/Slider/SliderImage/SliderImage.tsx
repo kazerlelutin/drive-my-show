@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import Media from "../../../interfaces/medias.interface";
+import Media from "../../../../interfaces/medias.interface";
 import classes from "./SliderImage.module.css";
 
 interface props {

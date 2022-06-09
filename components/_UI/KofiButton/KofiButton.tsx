@@ -1,6 +1,6 @@
 import Image from "next/image";
 import classes from "./KofiButton.module.css";
-import useTranslate from "../../hooks/useTranslate";
+import useTranslate from "../../../hooks/useTranslate";
 
 export default function KofiButton() {
   const t = useTranslate();

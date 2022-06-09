@@ -3,7 +3,7 @@ import useTranslate from "../../../hooks/useTranslate";
 import classes from "./MediaCreatorLinkTab.module.css";
 import queryString from "query-string";
 import axios from "axios";
-import SubmitButton from "../../../UI/SubmitButton/SubmitButton";
+import SubmitButton from "../../_UI/SubmitButton/SubmitButton";
 import MediaCreatorLinkTabTranslate from "./MediaCreatorLinkTag.translate";
 import { mediaScrap } from "../../../interfaces/mediaList";
 

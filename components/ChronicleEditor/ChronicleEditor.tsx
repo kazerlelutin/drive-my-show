@@ -8,7 +8,7 @@ import ColumnistSelector from '../ColumnistSelector/ColumnistSelector';
 import { reducer, initialState, ActionKind } from './ChronicleEditor.reducer';
 import useTranslate from '../../hooks/useTranslate';
 import pageTranslate from '../../translate/page.translate';
-import SubmitButton from '../../UI/SubmitButton/SubmitButton';
+import SubmitButton from '../_UI/SubmitButton/SubmitButton';
 import useLazyFetch from '../../hooks/useLazyFetch';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';

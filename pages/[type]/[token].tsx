@@ -1,4 +1,4 @@
-import Write from "../../Page-Related/Write/Write";
+import Write from "../../components/_Page-Related/Write/Write";
 
 interface props {
   readonly token: string;

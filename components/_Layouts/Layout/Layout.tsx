@@ -2,7 +2,7 @@
 import Head from "next/head";
 import { ReactChild, useEffect } from "react";
 import classes from "./Layout.module.css";
-import useTranslate from "../../hooks/useTranslate";
+import useTranslate from "../../../hooks/useTranslate";
 import layoutTranslate from "./layout.translate";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,8 +11,8 @@ import fr from "dayjs/locale/fr";
 import en from "dayjs/locale/en";
 import { useRouter } from "next/router";
 import _ from "lodash";
-import setLastShowesInLocalStorage from "../../utils/setLastShowesInLocalStorage";
-import Header from "../../components/Header/Header";
+import setLastShowesInLocalStorage from "../../../utils/setLastShowesInLocalStorage";
+import Header from "../../Header/Header";
 
 interface props {
   readonly children: ReactChild;

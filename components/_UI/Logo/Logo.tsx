@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import classes from "./Logo.module.css";
-import useTranslate from "../../hooks/useTranslate";
+import useTranslate from "../../../hooks/useTranslate";
 import { LogoTranslate } from "./Logo.translate";
 
 export default function Logo() {

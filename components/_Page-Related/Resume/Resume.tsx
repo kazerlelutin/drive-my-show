@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import ClipBoard from '../../components/ClipBoard/ClipBoard';
-import useFetch from '../../hooks/useFetch';
-import useTranslate from '../../hooks/useTranslate';
-import Chronicle from '../../interfaces/chronicle.interface';
-import LayoutConductorManager from '../../Layouts/LayoutConductorManager/LayoutConductorManager';
-import { UiContext } from '../../store/ui.store';
+import ClipBoard from '../../ClipBoard/ClipBoard';
+import useFetch from '../../../hooks/useFetch';
+import useTranslate from '../../../hooks/useTranslate';
+import Chronicle from '../../../interfaces/chronicle.interface';
+import LayoutConductorManager from '../../_Layouts/LayoutConductorManager/LayoutConductorManager';
+import { UiContext } from '../../../store/ui.store';
 import classes from './Resume.module.css';
 
 interface props {

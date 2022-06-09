@@ -1,4 +1,4 @@
-import Links from "../../../Page-Related/Links/Links";
+import Links from "../../../components/_Page-Related/Links/Links";
 
 interface props {
   readonly token: string;

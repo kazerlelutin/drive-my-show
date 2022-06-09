@@ -3,7 +3,7 @@ import Media from "../../interfaces/medias.interface";
 import FullscreenModale from "../FullscreenModale/FullscreenModale";
 import classes from "./MediaModaleToDelete.module.css";
 import useTranslate from "../../hooks/useTranslate";
-import SubmitButton from "../../UI/SubmitButton/SubmitButton";
+import SubmitButton from "../_UI/SubmitButton/SubmitButton";
 import useLazyFetch from "../../hooks/useLazyFetch";
 import { useEffect } from "react";
 

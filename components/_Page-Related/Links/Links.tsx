@@ -1,10 +1,10 @@
-import ClipBoard from '../../components/ClipBoard/ClipBoard';
-import useCreateLink from '../../hooks/useCreateLink';
-import useFetch from '../../hooks/useFetch';
-import useTranslate from '../../hooks/useTranslate';
-import { Fetch } from '../../interfaces/fetch.interface';
-import Layout from '../../Layouts/Layout/Layout';
-import LayoutConductorManager from '../../Layouts/LayoutConductorManager/LayoutConductorManager';
+import ClipBoard from '../../ClipBoard/ClipBoard';
+import useCreateLink from '../../../hooks/useCreateLink';
+import useFetch from '../../../hooks/useFetch';
+import useTranslate from '../../../hooks/useTranslate';
+import { Fetch } from '../../../interfaces/fetch.interface';
+import Layout from '../../_Layouts/Layout/Layout';
+import LayoutConductorManager from '../../_Layouts/LayoutConductorManager/LayoutConductorManager';
 import classes from './Links.module.css';
 
 interface props {

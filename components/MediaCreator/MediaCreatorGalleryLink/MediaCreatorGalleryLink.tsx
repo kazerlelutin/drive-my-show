@@ -4,7 +4,7 @@ import classes from './MediaCreatorGalleryLink.module.css';
 import { useState } from 'react';
 import ReactPlayer from 'react-player';
 import useTranslate from '../../../hooks/useTranslate';
-import SubmitButton from '../../../UI/SubmitButton/SubmitButton';
+import SubmitButton from '../../_UI/SubmitButton/SubmitButton';
 import getMediasLimit from '../../../utils/getMediasLimit';
 import { toast } from 'react-toastify';
 

@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import Media from "../../../interfaces/medias.interface";
+import Media from "../../../../interfaces/medias.interface";
 import classes from "./SliderVideo.module.css";
 
 interface props {

@@ -1,16 +1,16 @@
 import dayjs from 'dayjs';
 import _ from 'lodash';
 import { useState } from 'react';
-import ChronicleEditor from '../../components/ChronicleEditor/ChronicleEditor';
-import Chronicles from '../../components/Chronicles/Chronicles';
-import useFetch from '../../hooks/useFetch';
-import useTranslate from '../../hooks/useTranslate';
-import { Fetch } from '../../interfaces/fetch.interface';
-import Layout from '../../Layouts/Layout/Layout';
-import LayoutConductorManager from '../../Layouts/LayoutConductorManager/LayoutConductorManager';
+import ChronicleEditor from '../../ChronicleEditor/ChronicleEditor';
+import Chronicles from '../../Chronicles/Chronicles';
+import useFetch from '../../../hooks/useFetch';
+import useTranslate from '../../../hooks/useTranslate';
+import { Fetch } from '../../../interfaces/fetch.interface';
+import Layout from '../../_Layouts/Layout/Layout';
+import LayoutConductorManager from '../../_Layouts/LayoutConductorManager/LayoutConductorManager';
 import classes from './Write.module.css';
 import { toast } from 'react-toastify';
-import getChroniclesLimit from '../../utils/getChroniclesLimit';
+import getChroniclesLimit from '../../../utils/getChroniclesLimit';
 
 interface props {
   readonly token: string;

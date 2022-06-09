@@ -1,6 +1,6 @@
 import { useState } from "react";
-import KofiButton from "../../../UI/KofiButton/KofiButton";
-import Logo from "../../../UI/Logo/Logo";
+import KofiButton from "../../_UI/KofiButton/KofiButton";
+import Logo from "../../_UI/Logo/Logo";
 import MenuHeader from "../../MenuHeader/MenuHeader";
 import classes from "./HeaderMobile.module.css";
 

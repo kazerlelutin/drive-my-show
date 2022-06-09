@@ -1,11 +1,11 @@
-import ColumnistToDelete from '../../components/ColumnistToDelete/ColumnistToDelete';
-import DeleteShowButton from '../../components/DeleteShowButton/DeleteShowButton';
-import EditShowTitle from '../../components/EditShowTitle/EditShowTitle';
-import useFetch from '../../hooks/useFetch';
-import useTranslate from '../../hooks/useTranslate';
-import { Fetch } from '../../interfaces/fetch.interface';
-import Layout from '../../Layouts/Layout/Layout';
-import LayoutConductorManager from '../../Layouts/LayoutConductorManager/LayoutConductorManager';
+import ColumnistToDelete from '../../ColumnistToDelete/ColumnistToDelete';
+import DeleteShowButton from '../../DeleteShowButton/DeleteShowButton';
+import EditShowTitle from '../../EditShowTitle/EditShowTitle';
+import useFetch from '../../../hooks/useFetch';
+import useTranslate from '../../../hooks/useTranslate';
+import { Fetch } from '../../../interfaces/fetch.interface';
+import Layout from '../../_Layouts/Layout/Layout';
+import LayoutConductorManager from '../../_Layouts/LayoutConductorManager/LayoutConductorManager';
 import classes from './Manage.module.css';
 
 interface props {

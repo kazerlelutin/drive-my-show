@@ -1,6 +1,6 @@
 
-import CreateShowForm from "../../components/CreateShowForm/CreateShowForm";
-import LastShowes from "../../components/LastShowes/LastShowes";
+import CreateShowForm from "../../CreateShowForm/CreateShowForm";
+import LastShowes from "../../LastShowes/LastShowes";
 import classes from "./Home.module.css";
 
 export default function Home() {

@@ -1,4 +1,4 @@
-import Manage from "../../../Page-Related/Manage/Manage";
+import Manage from "../../../components/_Page-Related/Manage/Manage";
 
 interface props {
   readonly token: string;

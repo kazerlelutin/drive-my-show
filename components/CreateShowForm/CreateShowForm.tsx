@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import useTranslate from "../../hooks/useTranslate";
-import SubmitButton from "../../UI/SubmitButton/SubmitButton";
+import SubmitButton from "../_UI/SubmitButton/SubmitButton";
 import classes from "./CreateShowForm.module.css";
 import CreateShowFormTranslate from "./CreateShowForm.translate";
 import useLazyFetch from "../../hooks/useLazyFetch";
