@@ -37,7 +37,10 @@ export default function ChronicleCardReadMode({
       <div className={classes.container} id={`${chronicle.id}`}>
         <div className={classes.drag}>{UpAndDownChronicles}</div>
         <div className={classes.content}>
-          <div className={classes.title}>{chronicle.title}</div>
+          <header className={classes.header}>
+            <div className={classes.title}>{chronicle.title}</div>
+            <div className={classes.state} data-state={chronicle.state}>{t(chronicle.state)}</div>
+          </header>
           <div className={classes.columnist}>
             {chronicle?.columnist?.name}
             {chronicle.duration > 0 && (

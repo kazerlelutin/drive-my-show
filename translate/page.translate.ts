@@ -192,6 +192,12 @@ const pageTranslate = {
   },
   "Create a chronicle":{
     fr: "Créer un chronique"
+  },
+  "draft": {
+    fr:"brouillon"
+  },
+  "read":{
+    fr: "lu"
   }
 };
 

@@ -37,10 +37,12 @@ export default function ChronicleEditor({
     ),
     [state, dispatch] = useReducer(reducer, chronicle || initialState);
 
-  function handleSubmit() {
+  function handleSubmit(ChronicleState: string) {
     if (loading) return;
+    if (!state.columnist && ChronicleState !== 'draft')
+      return toast.warning(t('Need a columnist'));
+    if (ChronicleState) state.state = ChronicleState;
     if (!state.title) return toast.warning(t('Title is required'));
-    if (!state.columnist) return toast.warning(t('Need a columnist'));
     api({ ...state, token });
   }
   useEffect(() => {
@@ -85,7 +87,7 @@ export default function ChronicleEditor({
           onChange={(value: Object) =>
             dispatch({ type: ActionKind.setColumnist, payload: value })
           }
-          value={state.columnist}
+          value={state?.columnist}
         />
       </fieldset>
       <fieldset>
@@ -135,7 +137,11 @@ export default function ChronicleEditor({
             <SubmitButton isLoading={loading} txt={t('close')} />
           </div>
         )}
-        <div onClick={handleSubmit} className={classes.button}>
+        <div onClick={() => handleSubmit('draft')} className={classes.button}>
+          <SubmitButton isLoading={loading} txt={t('draft')} />
+        </div>
+
+        <div onClick={()=>handleSubmit('publish')} className={classes.button}>
           <SubmitButton
             isLoading={loading}
             txt={t(chronicle ? 'update' : 'publish')}

@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   gap: 5px;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -16,6 +17,14 @@
 .counters {
   flex-grow: 2;
   text-align: left;
+}
+
+.draft {
+  width: 100%;
+  display: flex;
+  gap: 1px;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 @media screen and (max-width: 500px) {

@@ -16,6 +16,11 @@ export default async function getConductor(
         title: true,
         trigger: true,
         chronicles: {
+          where:{
+            state: {
+              not: "draft"
+            }
+          },
           select: {
             id: true,
             title: true,

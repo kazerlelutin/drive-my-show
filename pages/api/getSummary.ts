@@ -17,6 +17,7 @@ export default async function getChronicles(
         title:true,
         position:true,
         id:true,
+        state:true,
         columnist: {
           select: {
             name:true,

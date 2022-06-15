@@ -34,17 +34,20 @@ export default function CounterColumnists({
 
   useEffect(() => {
     if (data) {
-      setFilters({
-        ...filters,
-        columnists: data.columnists.map((o: any) => ({
+      const columnists = data.columnists.map((o: any) => ({
           label: `${o.name} (${o._count?.chronicles})`,
           value: o,
         })),
+        draft = true;
+      setFilters({
+        ...filters,
+        columnists,
+        draft,
       });
     }
   }, [data]);
 
-  function handleChange(selected: any) {
+  function handleChangeColumnist(selected: any) {
     setFilters({
       ...filters,
       columnists: _.uniqBy(selected, 'label').map((o: any) => ({
@@ -53,6 +56,14 @@ export default function CounterColumnists({
       })),
     });
   }
+
+  function handleChangeState(selected: any) {
+    setFilters({
+      ...filters,
+      draft: !filters.draft,
+    });
+  }
+
   return (
     <div className={classes.container}>
       {loading ? (
@@ -68,10 +79,19 @@ export default function CounterColumnists({
             <div className={classes.columnists}>
               {filters && filters.columnists && (
                 <ColumnistFilter
-                  onChange={handleChange}
+                  onChange={handleChangeColumnist}
                   value={filters.columnists}
                 />
               )}
+            </div>
+            <div className={classes.draft}>
+              <input
+                type="checkbox"
+                id="draft"
+                onClick={handleChangeState}
+                checked={filters.draft}
+              />
+              <label htmlFor="draft"> {t('draft')}</label>
             </div>
           </div>
         )
