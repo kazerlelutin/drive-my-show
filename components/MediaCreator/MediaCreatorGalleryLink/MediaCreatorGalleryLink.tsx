@@ -69,13 +69,6 @@ export default function MediaCreatorGalleryLink({
                   alt={media.title}
                 />
               )}
-              {media.type === 'image' && (
-                <img
-                  className={classes.img}
-                  src={media.link}
-                  alt={media.title}
-                />
-              )}
               {media.type === 'video' && media.preview && (
                 <img
                   className={classes.img}
