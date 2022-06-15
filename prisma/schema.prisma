@@ -24,6 +24,12 @@ model Show {
   columnists Columnist[]
 }
 
+enum ChronicleState {
+  draft
+  publish
+  read
+}
+
 model Chronicle {
   id          Int       @id @default(autoincrement())
   title       String
@@ -31,12 +37,13 @@ model Chronicle {
   link        String?   @db.LongText
   position    Int
   duration    Int? // minute
+  state       ChronicleState  @default(draft)
   updatedAt   DateTime  @updatedAt
   createdAt   DateTime  @default(now()) @db.Timestamp(6)
   show        Show      @relation(fields: [showId], references: [id])
   showId      Int
-  columnist   Columnist @relation(fields: [columnistId], references: [id])
-  columnistId Int
+  columnist   Columnist? @relation(fields: [columnistId], references: [id])
+  columnistId Int?
   medias      Media[]
 }
 

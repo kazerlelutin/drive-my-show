@@ -7,6 +7,12 @@
     grid-template-columns: auto 1fr;
     gap: 10px;
   }
+
+  .header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+  }
   
   .content {
     display: flex;
@@ -44,4 +50,16 @@
   .buttons {
     display: flex;
     justify-content: space-between;
+  }
+
+  .state[data-state='publish'] {
+    color: rgb(29, 116, 39)
+  }
+
+  .state[data-state='read'] {
+    color: rgb(54, 72, 120)
+  }
+  
+  .state[data-state='draft'] {
+    color: rgb(162, 116, 31)
   }

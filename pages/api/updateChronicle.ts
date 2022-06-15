@@ -14,9 +14,13 @@ export default async function updateChronicle(
   if (type && body) {
     const show = await prisma.show.findFirst({ where: { [type]: body.token } });
 
+    if (!body.columnist && body.state !== 'draft') {
+      return res.status(403).send('If not draft,you must have a columnist.');
+    }
+
     if (!show) res.status(403).send('problem with show.');
 
-    const chronicle = await prisma.chronicle.update({
+    const updateData: any = {
       where: {
         id: body.id,
       },
@@ -25,13 +29,20 @@ export default async function updateChronicle(
         content: _.get(body, 'content'),
         link: _.get(body, 'link', ''),
         duration: parseInt(_.get(body, 'duration', 0)),
-        columnist: {
-          connect: {
-            id: body.columnist.value,
-          },
-        },
+        state: _.get(body, 'state', 'draft'),
       },
-    });
+    }
+
+    if(body.columnist){
+      updateData.data.columnist=  {
+        connect: {
+          id: body.columnist.value,
+        },
+      }
+    }else {
+      updateData.data.columnistId = null;
+    }
+    const chronicle = await prisma.chronicle.update(updateData);
 
     await prisma.media.deleteMany({
       where: {

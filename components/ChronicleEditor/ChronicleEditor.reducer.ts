@@ -66,10 +66,13 @@ function reducer(state: State, action: Action)  {
       newState.duration =action.payload?.duration;
       newState.content =action.payload.content;
       newState.medias =action.payload.medias;
-      newState.columnist = {
-        label: action.payload.columnist.name,
-        value: action.payload.columnist.id
+      if(action.payload.columnist){
+        newState.columnist = {
+          label: action.payload.columnist.name,
+          value: action.payload.columnist.id
+        }
       }
+
       return newState;
     },
     setMedias: ()=>{

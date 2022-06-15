@@ -14,6 +14,10 @@ export default async function createChronicle(
     { body } = req;
 
   if (type) {
+    if (!body.columnist && body.state !== 'draft') {
+      return res.status(403).send('If not draft,you must have a columnist.');
+    }
+      
     const show = await prisma.show.findFirst({
         where: {
           [type]: body.token,
@@ -44,7 +48,7 @@ export default async function createChronicle(
       if (count >= getChroniclesLimit())
         return res.status(403).send("You can't create more chronicles.");
 
-      const chronicle = await prisma.chronicle.create({
+      const CreateData: any = {
         data: {
           title: _.get(body, 'title'),
           content: _.get(body, 'content'),
@@ -56,16 +60,20 @@ export default async function createChronicle(
               id: show.id,
             },
           },
-          columnist: {
-            connect: {
-              id: body.columnist.value,
-            },
-          },
           medias: {
             create: body.medias,
           },
         },
-      });
+      };
+
+      if (body.columnist) {
+        CreateData.columnist = {
+          connect: {
+            id: body.columnist.value,
+          },
+        };
+      }
+      const chronicle = await prisma.chronicle.create(CreateData);
 
       await prisma.show.update({
         where: { id: show.id },

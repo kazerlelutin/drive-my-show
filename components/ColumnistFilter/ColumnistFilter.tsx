@@ -37,10 +37,11 @@ export default function ColumnistFilter({ onChange, value }: props) {
       token: query.token,
     });
 
-    const response= data.columnists.map(o=>({
+    const response= data.columnists.map((o:any)=>({
       label: `${o.name} (${o._count?.chronicles})`,
       value: o,
     }));
+    
     callback(response);
     return response;
   }
