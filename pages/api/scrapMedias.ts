@@ -17,7 +17,9 @@ export default async function scrapMedias(
       { data } = await axios.get(link),
       dom: any = new JSDOM(data),
       cover = dom.window.document.querySelector('meta[property="og:image"]'),
-      url = dom.window.document.querySelector('meta[property="og:url"]')?.content,
+      url = dom.window.document.querySelector(
+        'meta[property="og:url"]'
+      )?.content,
       imgs = dom.window.document.querySelectorAll('img'),
       embeds = dom.window.document.querySelectorAll('iframe'),
       medias: mediaList = {
@@ -34,18 +36,29 @@ export default async function scrapMedias(
       };
     }
 
-   // console.log(url.match(/(^https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i))
-
-    medias.imgs = Array.from(imgs)
+    const urlRegex = new RegExp(
+      /(^https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i
+    );
+    const imgsMedia = Array.from(imgs)
       .filter((o: HTMLImageElement) => o.src.match(/http/))
-      .map((img: HTMLImageElement) => ({
+      .map((img: HTMLImageElement, index: number) => ({
         link: img.src,
         source: url,
-        title: img.alt || uuidv4(),
+        title:
+          img.alt || url.match(urlRegex).length >= 3
+            ? `${url.match(urlRegex)[2]}-${index}`
+            : uuidv4(),
         type: 'image',
       }));
 
-    medias.videos = Array.from(embeds).map((video: HTMLImageElement) => ({
+    medias.imgs = imgsMedia.filter((o, index) => {
+      const isExist = imgsMedia
+        .slice(0, index - 1)
+        .find((a) => o.link === a.link);
+      return !isExist;
+    });
+
+    const videosMedia = Array.from(embeds).map((video: HTMLImageElement) => ({
       src: video.src,
       title: video.alt,
       source: url,
@@ -53,7 +66,13 @@ export default async function scrapMedias(
       type: 'video',
     }));
 
-   //console.log(medias)
+    medias.videos = videosMedia.filter((o, index) => {
+      const isExist = videosMedia
+        .slice(0, index - 1)
+        .find((a) => o.link === a.link);
+      return !isExist;
+    });
+
     res.send(medias);
   } else {
     res.status(403).send('Problem with payload');
