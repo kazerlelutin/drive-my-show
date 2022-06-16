@@ -4,6 +4,7 @@ import commonControl from '../../utils/commonControl.middleware';
 import { JSDOM } from 'jsdom';
 import axios from 'axios';
 import { mediaList } from '../../interfaces/mediaList';
+import { v4 as uuidv4 } from 'uuid';
 
 export default async function scrapMedias(
   req: NextApiRequest,
@@ -33,12 +34,14 @@ export default async function scrapMedias(
       };
     }
 
+   // console.log(url.match(/(^https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i))
+
     medias.imgs = Array.from(imgs)
       .filter((o: HTMLImageElement) => o.src.match(/http/))
       .map((img: HTMLImageElement) => ({
         link: img.src,
         source: url,
-        title: img.alt,
+        title: img.alt || uuidv4(),
         type: 'image',
       }));
 
@@ -49,6 +52,8 @@ export default async function scrapMedias(
       link: video.src,
       type: 'video',
     }));
+
+   //console.log(medias)
     res.send(medias);
   } else {
     res.status(403).send('Problem with payload');
