@@ -67,12 +67,13 @@ export default async function createChronicle(
       };
 
       if (body.columnist) {
-        CreateData.columnist = {
+        CreateData.data.columnist = {
           connect: {
             id: body.columnist.value,
           },
         };
       }
+
       const chronicle = await prisma.chronicle.create(CreateData);
 
       await prisma.show.update({

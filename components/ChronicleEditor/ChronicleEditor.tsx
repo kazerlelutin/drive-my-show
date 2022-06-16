@@ -133,15 +133,25 @@ export default function ChronicleEditor({
       )}{' '}
       <div className={classes.buttons} data-alone={!!chronicle}>
         {chronicle && (
-          <div onClick={() => onClose()} className={classes.button}>
-            <SubmitButton isLoading={loading} txt={t('close')} />
-          </div>
+               <button
+               type="reset"
+               onClick={()=>onClose()}
+               className={classes.button}
+               disabled={loading}
+             >
+               {t('close')}
+             </button>
         )}
-        <div onClick={() => handleSubmit('draft')} className={classes.button}>
-          <SubmitButton isLoading={loading} txt={t('draft')} />
-        </div>
 
-        <div onClick={()=>handleSubmit('publish')} className={classes.button}>
+        <button
+          onClick={() => handleSubmit('draft')}
+          className={classes.button}
+          disabled={loading}
+        >
+          {t('draft')}
+        </button>
+
+        <div onClick={() => handleSubmit('publish')} className={classes.button}>
           <SubmitButton
             isLoading={loading}
             txt={t(chronicle ? 'update' : 'publish')}
