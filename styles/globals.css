@@ -27,6 +27,8 @@
   --color-link: rgb(61, 175, 181);
   --color-border: rgb(34, 59, 56);
   --color-danger: rgb(111, 39, 39);
+
+  --color-twitch-purple: #9147ff;
 }
 
 html,
@@ -218,4 +220,25 @@ button:first-letter {
 
 button:disabled {
   opacity: .5;
+}
+
+
+/** alert transition **/
+
+.alert-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.alert-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.alert-exit {
+  opacity: 1;
+}
+.alert-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }

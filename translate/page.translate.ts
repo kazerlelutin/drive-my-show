@@ -198,6 +198,18 @@ const pageTranslate = {
   },
   "read":{
     fr: "lu"
+  },
+  "publish_d": {
+    en:"published",
+    fr:"publié"
+  },
+  "draft_d": {
+    fr:"brouillon",
+    en:"drafted"
+  },
+  "read_d":{
+    fr: "lu",
+    en: "readed"
   }
 };
 

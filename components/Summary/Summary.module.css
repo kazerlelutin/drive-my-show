@@ -70,12 +70,12 @@
   border-right: 2px solid var(--color-link);
   width: 15px;
   height: 15px;
-  transform: rotate(45deg);
+  transform: rotate(-135deg);
   transition: 200ms ease-in-out;
 }
 
 .chevron[data-isopen="false"] {
-  transform: rotate(-135deg);
+  transform: rotate(45deg);
 }
 
 .menuElement:before {
