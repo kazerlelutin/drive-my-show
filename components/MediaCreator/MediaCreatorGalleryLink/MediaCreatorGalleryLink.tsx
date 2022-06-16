@@ -90,7 +90,7 @@ export default function MediaCreatorGalleryLink({
       </div>
 
       <div className={classes.buttons}>
-        <button onClick={() => onClose()}>cancel</button>
+        <button onClick={() => onClose()} type="reset">cancel</button>
         <button
           onClick={() =>
             setSelected(selected.length === medias.length ? [] : medias)

@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Error from "../../../interfaces/error.interface";
 import Summary from "../../Summary/Summary";
+import Tablets from "../../Tablets/Tablets";
 
 interface props {
   readonly loading: boolean;
@@ -33,13 +34,14 @@ export default function LayoutConductorManager({
   return (
     <div className={classes.container}>
       {!router.pathname.match(/links|resume|manage/) && (
-        <Summary token={token} />
+        <Summary token={token} isRefresh={loading}/>
       )}
       {loading ? (
         <div className={classes.loading}>{t("Loading...")}</div>
       ) : (
         <div className={classes.containerPage}>
           <div className={classes.page}>{children}</div>
+          <Tablets/>
         </div>
       )}
     </div>

@@ -39,7 +39,7 @@ export default function ChronicleCardReadMode({
         <div className={classes.content}>
           <header className={classes.header}>
             <div className={classes.title}>{chronicle.title}</div>
-            <div className={classes.state} data-state={chronicle.state}>{t(chronicle.state)}</div>
+            <div className={classes.state} data-state={chronicle.state}>{t(`${chronicle.state}_d`)}</div>
           </header>
           <div className={classes.columnist}>
             {chronicle?.columnist?.name}

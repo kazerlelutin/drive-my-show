@@ -1,19 +1,20 @@
 import classes from './Summary.module.css';
 import Chronicle from '../../interfaces/chronicle.interface';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useTranslate from '../../hooks/useTranslate';
 import useFetch from '../../hooks/useFetch';
 import { useRouter } from 'next/router';
 
 interface props {
   readonly token: string;
+  readonly isRefresh?: boolean
 }
-export default function Summary({ token }: props) {
+export default function Summary({ token, isRefresh=false }: props) {
   const
   t = useTranslate(),
   {route} = useRouter(),
-    { data: chronicles, loading } = useFetch('/getSummary', { token,route }),
+    { data: chronicles, loading,refetch } = useFetch('/getSummary', { token,route }),
     [isOpen, setIsOpen] = useState(false),
     [search, setSearch] = useState('');
 
@@ -26,6 +27,12 @@ export default function Summary({ token }: props) {
     }
     return false;
   }
+
+  useEffect(()=>{
+    if(isRefresh === false && chronicles){
+      refetch()
+    }
+  },[isRefresh])
 
   return (
     <div className={classes.container} data-isopen={isOpen}>

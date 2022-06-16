@@ -132,7 +132,7 @@ export default function MediaCreatorLinkTab({
         </fieldset>
       )}
       <div className={classes.buttons}>
-        <button className="Cancel" onClick={() => onClose()}>
+        <button className="Cancel" onClick={() => onClose()} disabled={isLoading}>
           {t("Cancel")}
         </button>
         <SubmitButton txt={t("Add")} isLoading={isLoading} />
