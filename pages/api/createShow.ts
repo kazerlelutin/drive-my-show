@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import generator from "generate-password";
 import _ from "lodash";
 import { prisma } from "../../db/db";
+import { v4 as uuidv4 } from 'uuid';
 
 export default async function createShow(
   req: NextApiRequest,
@@ -9,21 +10,9 @@ export default async function createShow(
 ) {
   if (req.method === "POST") {
     if (_.get(req, "body.title")) {
-      const { title }: { title: string } = req.body;
-      //use prefix for not check 3 tokens (admin,reader, editor).
-      let prefix = undefined;
-
-      do {
-        const tryPrefix = generator.generate({
-            length: 40,
-            numbers: true,
-          }),
-          isExist = await prisma.show.count({ where: { prefix: tryPrefix } });
-
-        if (isExist === 0) {
-          prefix = tryPrefix;
-        }
-      } while (prefix === undefined);
+      const 
+      { title }: { title: string } = req.body,
+      prefix = uuidv4();
 
       const show = await prisma.show.create({
         data: {

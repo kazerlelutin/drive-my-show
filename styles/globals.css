@@ -131,7 +131,7 @@ label {
   text-transform: uppercase;
 }
 
-
+button[type="reset"],
 .cancel {
   background: rgb(84, 14, 14);
 }
