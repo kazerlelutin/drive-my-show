@@ -4,6 +4,7 @@ import commonControl from '../../utils/commonControl.middleware';
 import refreshConductorSignal from '../../utils/refreshConductorSignal';
 import { prisma } from '../../db/db';
 import getMediasLimit from '../../utils/getMediasLimit';
+import { v4 as uuidv4 } from 'uuid';
 
 export default async function updateChronicle(
   req: NextApiRequest,
@@ -31,15 +32,15 @@ export default async function updateChronicle(
         duration: parseInt(_.get(body, 'duration', 0)),
         state: _.get(body, 'state', 'draft'),
       },
-    }
+    };
 
-    if(body.columnist){
-      updateData.data.columnist=  {
+    if (body.columnist) {
+      updateData.data.columnist = {
         connect: {
           id: body.columnist.value,
         },
-      }
-    }else {
+      };
+    } else {
       updateData.data.columnistId = null;
     }
     const chronicle = await prisma.chronicle.update(updateData);
@@ -55,9 +56,9 @@ export default async function updateChronicle(
       },
     });
 
-    const newMedias = body.medias.filter((o: any) => !o.id);
-
-    const count = await prisma.media.count({ where: { chronicleId: body.id } });
+    const 
+      newMedias = body.medias.filter((o: any) => !o.id),
+      count = await prisma.media.count({ where: { chronicleId: body.id } });
 
     if (count + newMedias.length >= getMediasLimit())
       return res.status(403).send("You can't create more medias.");
@@ -66,20 +67,9 @@ export default async function updateChronicle(
       const select = {
           position: true,
         },
-        lastVideo = await prisma.media.findFirst({
+        lastMedia = await prisma.media.findFirst({
           where: {
             chronicleId: body.id,
-            type: 'video',
-          },
-          orderBy: {
-            position: 'desc',
-          },
-          select,
-        }),
-        lastImg = await prisma.media.findFirst({
-          where: {
-            chronicleId: body.id,
-            type: 'image',
           },
           orderBy: {
             position: 'desc',
@@ -87,30 +77,12 @@ export default async function updateChronicle(
           select,
         });
 
-      //TODO refactor position, it's weird
       await prisma.media.createMany({
         data: newMedias.map((o: any, index: number) => ({
           ...o,
           chronicleId: body.id,
-          title:
-            o.title ||
-            `#${o.type}-${
-              o.type === 'image'
-                ? lastImg
-                  ? lastImg.position
-                  : 0 + index + 1
-                : lastVideo
-                ? lastVideo.position
-                : 0 + index + 1
-            }`,
-          position:
-            o.type === 'image'
-              ? lastImg
-                ? lastImg.position
-                : 0 + index + 1
-              : lastVideo
-              ? lastVideo.position
-              : 0 + index + 1,
+          title: o.title || `${o.type}-${uuidv4()}`,
+          position: lastMedia.position + index + 1,
         })),
       });
     }
