@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import useTranslate from '../../hooks/useTranslate';
 import useFetch from '../../hooks/useFetch';
+import { useRouter } from 'next/router';
 
 interface props {
   readonly token: string;
@@ -11,7 +12,8 @@ interface props {
 export default function Summary({ token }: props) {
   const
   t = useTranslate(),
-    { data: chronicles, loading } = useFetch('/getSummary', { token }),
+  {route} = useRouter(),
+    { data: chronicles, loading } = useFetch('/getSummary', { token,route }),
     [isOpen, setIsOpen] = useState(false),
     [search, setSearch] = useState('');
 
