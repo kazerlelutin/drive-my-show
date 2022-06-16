@@ -1,0 +1,60 @@
+.container {
+  position: relative;
+}
+
+.tablet {
+  --tablet-size: 40px;
+  width: var(--tablet-size);
+  height: var(--tablet-size);
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--color-bg-light);
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+
+.tablet:hover {
+  box-shadow: -1px -1px var(--color-link), -1px 0 var(--color-link),
+    1px 1px var(--color-link), 1px -1px var(--color-link),
+    -1px 1px var(--color-link);
+}
+
+.cross {
+  position: relative;
+  height: 100%;
+  transition: 200ms ease-in-out;
+}
+
+.cross:after,
+.cross:before {
+  content: '';
+  background: var(--color-link);
+  position: absolute;
+  height: 6px;
+  left: 5px;
+  right: 5px;
+  border-radius: 20px;
+  top: calc(50% - 3px);
+}
+
+.cross:after {
+  transform: rotate(-45deg);
+}
+
+.cross:before {
+  transform: rotate(45deg);
+}
+
+.cross:hover {
+  transform: scale(1.1);
+}
+
+.popin {
+  position: absolute;
+  right: calc(100% + 10px);
+  bottom: 5px;
+  border: 1px solid var(--color-link);
+  background: var(--color-bg-accent);
+  padding: 10px;
+  border-radius: 5px;
+}
