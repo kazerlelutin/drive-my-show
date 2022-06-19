@@ -1,16 +1,38 @@
+.container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    font-size: 13px;
+}
+
 .messages {
     display: flex;
     flex-direction: column-reverse;
     gap: 10px;
+    overflow-y: auto;
+    height: 100%;
+ 
 }
 
 .message {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     border-bottom: 1px solid rgba(255,255,255,.05);
     padding-bottom: 5px;
+    word-wrap: break-all;
+  
 }
 
 .name {
-    color: var(--color-link)
+    color: var(--color-link);
+    text-transform: uppercase;
+}
+
+.msg {
+    word-wrap: break-all;
+
 }

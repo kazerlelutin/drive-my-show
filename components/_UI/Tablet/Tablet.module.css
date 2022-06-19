@@ -60,4 +60,5 @@
   border-radius: 5px;
   max-width: calc(100vw - 95px);
   overflow: hidden;
+  z-index: 150;
 }

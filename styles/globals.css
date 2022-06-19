@@ -246,6 +246,10 @@ button:disabled {
   transition: opacity 300ms, transform 300ms;
 }
 
+.emoticon {
+  max-width: 20px;
+}
+
 @media screen and (max-width: 400px) {
   input {
     padding: 5px;

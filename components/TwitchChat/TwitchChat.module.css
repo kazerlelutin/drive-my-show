@@ -1,19 +1,9 @@
 .container {
   display: grid;
-  grid-template-rows: auto 250px auto;
+  grid-template-rows: auto 400px auto;
   gap: 10px;
-  height: 400px;
-}
-
-.chatContainer {
-  position: relative;
 }
 
 .chat {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  overflow-y: auto;
+  position: relative;
 }

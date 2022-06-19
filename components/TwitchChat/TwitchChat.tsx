@@ -12,11 +12,9 @@ export default function TwitchChat({ token }: props) {
   return (
     <div className={classes.container}>
       <TwitchChannelInput channel={channel} setChannel={setChannel} />
-      <div className={classes.chatContainer}>
         <div className={classes.chat}>
           <TwitchMessages channel={channel} token={token} />
         </div>
-      </div>
       <input />
     </div>
   );

@@ -48,7 +48,7 @@ export default function TwitchChannelInput({ channel, setChannel }: props) {
       ) : (
         <div className={classes.channel}>{channel}</div>
       )}
-      <button type="submit">{t(isInput ? "edit" : "submit")}</button>
+      <button type="submit">{t(isInput ? "submit":"edit" )}</button>
     </form>
   );
 }
