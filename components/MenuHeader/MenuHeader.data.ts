@@ -27,7 +27,7 @@ const MenuHeaderData = {
       label: 'manage'
     },
     {
-      link: '/admin/resume/',
+      link: '/editor/resume/',
       label: 'resume'
     },
     {
