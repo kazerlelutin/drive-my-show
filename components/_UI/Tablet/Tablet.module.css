@@ -11,6 +11,7 @@
   background: var(--color-bg-light);
   cursor: pointer;
   transition: 200ms ease-in-out;
+ 
 }
 
 .tablet:hover {
@@ -57,4 +58,6 @@
   background: var(--color-bg-accent);
   padding: 10px;
   border-radius: 5px;
+  max-width: calc(100vw - 95px);
+  overflow: hidden;
 }

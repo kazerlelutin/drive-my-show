@@ -9,7 +9,7 @@ export default function TwitchConnectButton() {
     'https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=' +
       process.env.NEXT_PUBLIC_ID_TWITCH +
       '&redirect_uri=' +
-      window.location.protocol +"//"+ window.location.host + '/twitch' +
+      window.location.protocol +"//"+ window.location.host + '/twitch/' +
       '&scope=chat:read+chat:edit'
   );
 

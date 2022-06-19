@@ -1,0 +1,21 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 5px;
+    align-items: center;
+}
+
+.channel {
+    font-family: "Source-semi-bold";
+}
+
+.channel::first-letter {
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 450px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+}

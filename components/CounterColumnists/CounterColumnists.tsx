@@ -89,7 +89,7 @@ export default function CounterColumnists({
                 type="checkbox"
                 id="draft"
                 onClick={handleChangeState}
-                checked={filters.draft}
+                defaultChecked={filters.draft}
               />
               <label htmlFor="draft"> {t('draft')}</label>
             </div>

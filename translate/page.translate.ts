@@ -210,6 +210,15 @@ const pageTranslate = {
   "read_d":{
     fr: "lu",
     en: "readed"
+  },
+  "Loading":{
+    fr:"Chargement"
+  },
+  "Twitch channel":{
+    fr:"Chaîne Twitch"
+  },
+  "edit":{
+    fr: "éditer"
   }
 };
 

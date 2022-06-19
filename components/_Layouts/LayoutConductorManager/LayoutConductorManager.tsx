@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import Error from "../../../interfaces/error.interface";
 import Summary from "../../Summary/Summary";
 import Tablets from "../../Tablets/Tablets";
+import setCurrentShowInLocalStorage from "../../../utils/setCurrentShowInLocalStorage";
 
 interface props {
   readonly loading: boolean;
@@ -28,6 +29,8 @@ export default function LayoutConductorManager({
     if (error && error.response.status === 404) {
       setTimeout(() => toast.error(t("Conductor not exist.")), 1000);
       router.push("/");
+    } else {
+      setCurrentShowInLocalStorage(token);
     }
   }, [error]);
 
