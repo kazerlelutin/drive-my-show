@@ -82,7 +82,7 @@ export default async function updateChronicle(
           ...o,
           chronicleId: body.id,
           title: o.title || `${o.type}-${uuidv4()}`,
-          position: lastMedia.position + index + 1,
+          position: lastMedia?.position || 1 + index + 1,
         })),
       });
     }
