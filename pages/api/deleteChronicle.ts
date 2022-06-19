@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash";
-import {prisma} from '../../db/db';
+import { prisma } from "../../db/db";
 import commonControl from "../../utils/commonControl.middleware";
 import refreshConductorSignal from "../../utils/refreshConductorSignal";
 
@@ -33,13 +33,27 @@ export default async function deleteChronicle(
       },
     });
 
-    await prisma.show.update({where: {id: currentChronicle.showId}, data:{ trigger: new Date()}});
-    await prisma.chronicle.delete({
-      where: {
-        id: body.id,
-      },
+    await prisma.show.update({
+      where: { id: currentChronicle.showId },
+      data: { trigger: new Date() },
     });
-    refreshConductorSignal('admin',show.admin);
+
+    const deleteColumnistChronicles = prisma.chronicle.delete({
+        where: {
+          id: currentChronicle.id,
+        },
+      }),
+      deleteMedias = prisma.media.deleteMany({
+        where: {
+          chronicle: {
+            showId: show.id,
+          },
+        },
+      });
+
+    await prisma.$transaction([deleteMedias, deleteColumnistChronicles]);
+
+    refreshConductorSignal("admin", show.admin);
     res.send("done");
   } else {
     res.status(403).send("problem with show.");
