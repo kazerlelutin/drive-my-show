@@ -9,65 +9,51 @@ interface props {
   readonly channel: string;
 }
 export default function TwitchMessages({ token, channel }: props) {
-  const [client, setClient] = useState<any>(),
-    [messages, setMessages] = useState<
-      Array<{ username: string; message: string; id: string }>
-    >([]);
+  const [messages, setMessages] = useState<
+    Array<{ username: string; message: string; id: string }>
+  >([]);
 
   useEffect(() => {
-    connect()
-    return ()=>{
-        if(client) client.disconnect();
-    }
-  }, [channel, token]);
-
-  useEffect(() => {
-    connect()
-    return ()=>{
-        if(client) client.disconnect();
-    }
-  }, []);
+    connect();
+  }, [token, channel]);
 
   async function connect() {
     if (channel && token) {
-      setClient(
-        await new tmi.Client({
-          identity: {
-            username: "dms",
-            password: "oauth:" + token,
-          },
-          channels: [channel],
-        })
+      const client = new tmi.Client({
+        identity: {
+          username: "dms",
+          password: "oauth:" + token,
+        },
+        channels: [channel],
+      });
+
+      await client.connect();
+      client.on(
+        "message",
+        (_channel: string, tags: any, message: string, _self: boolean) => {
+          const id = uuidv4();
+
+          messages.splice(0,0,{ username: tags.username, message, id });
+          setMessages(messages.slice(0,25));
+        }
       );
-
-      if (client) {
-        await client.connect();
-        client.on(
-          "message",
-          (_channel: string, tags: any, message: string, self: boolean) => {
-            // Ignore echoed messages.
-            console.log(message);
-            if (self) return;
-            const id = uuidv4();
-            setMessages([
-              ...messages.filter((o) => o.id !== id),
-              { username: tags.username, message, id },
-            ]);
-
-            console.log(messages);
-          }
-        );
-      }
     }
   }
 
+  useEffect(()=>{
+
+    const element = document.getElementById("messages");
+    element.scrollTop = element.scrollHeight;
+
+  },[messages])
+
   return (
     <div className={classes.container}>
-      <div className={classes.messages}>
+      <div className={classes.messages} id="messages" >
         {messages.map((msg) => (
-          <div key={msg.id}>
-            <span className="d">{msg.username}</span>
-            <span className="d">{msg.message}</span>
+          <div key={msg.id} className={classes.message} id={msg.id}>
+            <span className={classes.name}>{msg.username}</span>
+            <span className={classes.msg}>{msg.message}</span>
           </div>
         ))}
       </div>
