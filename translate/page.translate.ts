@@ -219,6 +219,9 @@ const pageTranslate = {
   },
   "edit":{
     fr: "éditer"
+  },
+  "submit": {
+    fr:"envoyer"
   }
 };
 

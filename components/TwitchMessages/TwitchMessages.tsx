@@ -17,7 +17,7 @@ export default function TwitchMessages({ token, channel }: props) {
 
   useEffect(() => {
     connect();
-  }, [token, channel]);
+  }, []);
 
   async function connect() {
     if (channel && token) {

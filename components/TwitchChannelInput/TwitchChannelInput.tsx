@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import classes from "./TwitchChannelInput.module.css";
 import { useState, useEffect } from "react";
 import getTwitchChannel from "../../utils/getTwitchChannel";
@@ -7,8 +8,9 @@ import setTwitchChannel from "../../utils/setTwitchChannel";
 interface props {
   readonly channel: string;
   readonly setChannel: Function;
+  readonly setChannelReady: Function
 }
-export default function TwitchChannelInput({ channel, setChannel }: props) {
+export default function TwitchChannelInput({ channel, setChannel,setChannelReady }: props) {
   const [isInput, setIsInput] = useState<boolean>(!channel),
     [value, setValue] = useState<string>(channel),
     t = useTranslate();
@@ -16,26 +18,26 @@ export default function TwitchChannelInput({ channel, setChannel }: props) {
   useEffect(() => {
     const channelName = getTwitchChannel();
     if (channelName) {
-      setChannel(getTwitchChannel());
       setChannel(channelName);
+      setValue(channelName);
       setIsInput(false);
+      setChannelReady(true);
     }
-  }, [setChannel]);
-
-  useEffect(() => {}, [channel]);
+  }, []);
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
+    setChannelReady(false);
     if (isInput) {
       if (value) {
         setChannel(value);
         setTwitchChannel(value);
       }
-
       setIsInput(false);
     } else {
       setIsInput(true);
     }
+    setTimeout(()=>setChannelReady(true),100);
   }
   return (
     <form className={classes.container} onSubmit={handleSubmit}>

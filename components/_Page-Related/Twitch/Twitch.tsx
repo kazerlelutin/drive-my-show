@@ -7,7 +7,7 @@ import setTwitchAuthToken from "../../../utils/setTwitchAuthToken";
 import getLastShowesInLocalStorage from "../../../utils/getLastShowesInLocalStorage";
 
 export default function Twitch() {
-  const { asPath, push,locale } = useRouter(),
+  const { asPath, push, locale } = useRouter(),
     t = useTranslate();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function Twitch() {
       .split("&")[0];
     setTwitchAuthToken(extractToken);
     const lastShow = getLastShowesInLocalStorage().find((o) => !!o.current);
-    if (lastShow) push(`/${locale}/${lastShow.type}/${lastShow.token}`);
+    if (lastShow) push(`/${lastShow.type}/${lastShow.token}`);
   }
 
   return <div className={classes.container}>{t("Loading")}</div>;

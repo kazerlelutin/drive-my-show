@@ -7,13 +7,15 @@ interface props {
   readonly token: string;
 }
 export default function TwitchChat({ token }: props) {
-  const [channel, setChannel] = useState<string>("");
+  const 
+    [channelReady, setChannelReady] = useState<boolean>(false),
+    [channel, setChannel] = useState<string>("");
 
   return (
     <div className={classes.container}>
-      <TwitchChannelInput channel={channel} setChannel={setChannel} />
+      <TwitchChannelInput channel={channel} setChannel={setChannel} setChannelReady={setChannelReady}/>
         <div className={classes.chat}>
-          <TwitchMessages channel={channel} token={token} />
+        {channelReady && <TwitchMessages channel={channel} token={token} /> }
         </div>
       <input />
     </div>
