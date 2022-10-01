@@ -46,7 +46,7 @@ export default async function deleteChronicle(
       deleteMedias = prisma.media.deleteMany({
         where: {
           chronicle: {
-            showId: show.id,
+            id: currentChronicle.id,
           },
         },
       });
