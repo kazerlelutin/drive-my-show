@@ -39,11 +39,12 @@ export default function ChronicleEditor({
 
   function handleSubmit(ChronicleState: string) {
     if (loading) return;
-    if (!state.columnist && ChronicleState !== 'draft')
+    const newState = {...state}
+    if (!newState.columnist && ChronicleState !== 'draft')
       return toast.warning(t('Need a columnist'));
-    if (ChronicleState) state.state = ChronicleState;
-    if (!state.title) return toast.warning(t('Title is required'));
-    api({ ...state,state:ChronicleState, token });
+    if (ChronicleState) newState.state = ChronicleState;
+    if (!newState.title) return toast.warning(t('Title is required'));
+    api({ ...newState, token });
   }
   useEffect(() => {
     // clean to close (on open in real life)
