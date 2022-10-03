@@ -53,6 +53,7 @@ export default async function createChronicle(
           title: _.get(body, 'title'),
           content: _.get(body, 'content'),
           link: _.get(body, 'link', ''),
+          state: _.get(body, 'state', 'draft'),
           position: _.get(lastPosition, 'position', 0) + 1,
           duration: parseInt(_.get(body, 'duration', 0)),
           show: {
