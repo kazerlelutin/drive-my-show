@@ -43,7 +43,7 @@ export default function ChronicleEditor({
       return toast.warning(t('Need a columnist'));
     if (ChronicleState) state.state = ChronicleState;
     if (!state.title) return toast.warning(t('Title is required'));
-    api({ ...state, token });
+    api({ ...state,state:ChronicleState, token });
   }
   useEffect(() => {
     // clean to close (on open in real life)
