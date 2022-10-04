@@ -37,7 +37,7 @@ export default function Layout({ children, title }: props) {
   return (
     <div className={classes.container}>
       <Head>
-        <title>{title ? `${title} | ` : ""}Drive My Show</title>
+        <title>{title ? `${title} | ` : ""}{"Drive My Show"}</title>
         <meta
           name="description"
           content={t("Manage the conductor of your show.")}

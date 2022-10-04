@@ -32,7 +32,7 @@ export default function Write({ token }: props) {
   }
 
   return (
-    <Layout title={_.get(data, 'title')}>
+    <Layout title={_.get(data, 'title','conducteur')}>
       <LayoutConductorManager error={error} loading={loading} token={token}>
         {data && (
           <>
