@@ -40,12 +40,12 @@ export default async function scrapMedias(
       /(^https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i
     );
     const imgsMedia = Array.from(imgs)
-      .filter((o: HTMLImageElement) => o.src.match(/http/))
+      .filter((o: HTMLImageElement) => o?.src.match(/http/))
       .map((img: HTMLImageElement, index: number) => ({
         link: img.src,
         source: url,
         title:
-          img.alt || url.match(urlRegex).length >= 3
+          img?.alt || url.match(urlRegex).length >= 3
             ? `${url.match(urlRegex)[2]}-${index}`
             : uuidv4(),
         type: 'image',
