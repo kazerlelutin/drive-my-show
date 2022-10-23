@@ -31,13 +31,16 @@ export default function MediaCreatorLinkTab({
   async function getVideoYoutube(url: string) {
     const params = url.split("?");
     let videoLink: string;
-    if (params.length > 1) {
-      const { t, v } = queryString.parse(params[1]);
-      videoLink = `https://www.youtube.com/watch?v=${v}&t=${t || 0}`;
-    } else if (url.match(/(youtu.be)/)) {
+
+    if(url.match(/(youtu.be)/)){
       const splitLink = url.split("/");
       videoLink =
-        "https://www.youtube.com/watch?v=" + splitLink[splitLink.length - 1];
+        "https://www.youtube.com/watch?v=" + splitLink.at(-1);
+    }
+    else if (params.length > 1) {
+      const { t, v } = queryString.parse(params.at(-1));
+      videoLink = `https://www.youtube.com/watch?v=${v}&t=${t || 0}`;
+
     }
 
     const { data } = await axios.post("/api/scrapVideoYoutube", {
