@@ -19,7 +19,7 @@ export default async function scrapMedias(
       cover = dom.window.document.querySelector('meta[property="og:image"]'),
       url = dom.window.document.querySelector(
         'meta[property="og:url"]'
-      )?.content,
+      )?.content || link,
       imgs = dom.window.document.querySelectorAll('img'),
       embeds = dom.window.document.querySelectorAll('iframe'),
       medias: mediaList = {
@@ -39,17 +39,22 @@ export default async function scrapMedias(
     const urlRegex = new RegExp(
       /(^https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i
     );
+
     const imgsMedia = Array.from(imgs)
       .filter((o: HTMLImageElement) => o?.src.match(/http/))
-      .map((img: HTMLImageElement, index: number) => ({
-        link: img.src,
-        source: url,
-        title:
-          img?.alt || url.match(urlRegex).length >= 3
-            ? `${url.match(urlRegex)[2]}-${index}`
-            : uuidv4(),
-        type: 'image',
-      }));
+      .map((img: HTMLImageElement, index: number) => {
+        const title = img.alt ? img.alt : url.match(urlRegex).length >= 3
+        ? `${url.match(urlRegex)[2]}-${index}`
+        : uuidv4() 
+        return {
+          link: img.src,
+          source: url,
+          title,
+          type: 'image',
+        }
+  });
+
+   
 
     medias.imgs = imgsMedia.filter((o, index) => {
       const isExist = imgsMedia
@@ -60,7 +65,7 @@ export default async function scrapMedias(
 
     const videosMedia = Array.from(embeds).map((video: HTMLImageElement) => ({
       src: video.src,
-      title: video.alt,
+      title: video.getAttribute('alt'),
       source: url,
       link: video.src,
       type: 'video',
