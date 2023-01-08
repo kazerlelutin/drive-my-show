@@ -1,18 +1,19 @@
-import classes from './ChronicleCardReadMode.module.css';
-import Chronicle from '../../../interfaces/chronicle.interface';
-import { ReactElement, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import excerpt from '../../../utils/excerpt';
-import useTranslate from '../../../hooks/useTranslate';
-import pageTranslate from '../../../translate/page.translate';
-import ChronicleDeleteModale from '../../ChronicleDeleteModale/ChronicleDeleteModale';
+import classes from './ChronicleCardReadMode.module.css'
+import Chronicle from '../../../interfaces/chronicle.interface'
+import { ReactElement, useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+import excerpt from '../../../utils/excerpt'
+import useTranslate from '../../../hooks/useTranslate'
+import pageTranslate from '../../../translate/page.translate'
+import ChronicleDeleteModale from '../../ChronicleDeleteModale/ChronicleDeleteModale'
+import { getReadTime } from '../../../utils/get-read-time'
 
 interface props {
-  readonly chronicle: Chronicle;
-  readonly UpAndDownChronicles: ReactElement;
-  readonly MediasForCard: ReactElement;
-  readonly updateMode: Function;
-  readonly refetch: Function;
+  readonly chronicle: Chronicle
+  readonly UpAndDownChronicles: ReactElement
+  readonly MediasForCard: ReactElement
+  readonly updateMode: Function
+  readonly refetch: Function
 }
 
 export default function ChronicleCardReadMode({
@@ -23,7 +24,7 @@ export default function ChronicleCardReadMode({
   refetch,
 }: props) {
   const [isDelete, setIsDelete] = useState<boolean>(false),
-    t = useTranslate(pageTranslate);
+    t = useTranslate(pageTranslate)
   return (
     <>
       {isDelete && (
@@ -39,13 +40,15 @@ export default function ChronicleCardReadMode({
         <div className={classes.content}>
           <header className={classes.header}>
             <div className={classes.title}>{chronicle.title}</div>
-            <div className={classes.state} data-state={chronicle.state}>{t(chronicle.state)}</div>
+            <div className={classes.state} data-state={chronicle.state}>
+              {t(chronicle.state)}
+            </div>
           </header>
           <div className={classes.columnist}>
             {chronicle?.columnist?.name}
-            {chronicle.duration > 0 && (
-              <span className={classes.duration}>{chronicle.duration}</span>
-            )}
+            <span className={classes.duration}>
+              {getReadTime(chronicle.content)}
+            </span>
           </div>
           {chronicle.link && (
             <a href={chronicle.link} target="_blank" rel="noreferrer">
@@ -65,5 +68,5 @@ export default function ChronicleCardReadMode({
         </div>
       </div>
     </>
-  );
+  )
 }

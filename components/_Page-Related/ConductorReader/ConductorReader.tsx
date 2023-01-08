@@ -1,41 +1,42 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import classes from "./ConductorReader.module.css";
-import useFetch from "../../../hooks/useFetch";
-import LayoutConductorManager from "../../_Layouts/LayoutConductorManager/LayoutConductorManager";
-import Chronicle from "../../../interfaces/chronicle.interface";
-import ReactMarkdown from "react-markdown";
-import MediasForConductor from "../../MediasForConductor/MediasForConductor";
-import { useEffect, useState, useContext } from "react";
-import { toast } from "react-toastify";
-import useTranslate from "../../../hooks/useTranslate";
-import { UiContext } from "../../../store/ui.store";
+import classes from './ConductorReader.module.css'
+import useFetch from '../../../hooks/useFetch'
+import LayoutConductorManager from '../../_Layouts/LayoutConductorManager/LayoutConductorManager'
+import Chronicle from '../../../interfaces/chronicle.interface'
+import ReactMarkdown from 'react-markdown'
+import MediasForConductor from '../../MediasForConductor/MediasForConductor'
+import { useEffect, useState, useContext } from 'react'
+import { toast } from 'react-toastify'
+import useTranslate from '../../../hooks/useTranslate'
+import { UiContext } from '../../../store/ui.store'
+import { getReadTime } from '../../../utils/get-read-time'
 
 interface props {
-  readonly token: string;
-  readonly type: string;
+  readonly token: string
+  readonly type: string
 }
 
 export default function ConductorReader({ token, type }: props) {
   const { socket } = useContext(UiContext),
-    { loading, error, data } = useFetch("/getConductor", {
+    { loading, error, data } = useFetch('/getConductor', {
       token: token,
     }),
     t = useTranslate(),
-    [refresh, setRefresh] = useState<string>("");
+    [refresh, setRefresh] = useState<string>('')
 
   useEffect(() => {
-    socket.on("connect", () => {
+    socket.on('connect', () => {
       socket.on(`conductor-${type}-${token}`, () => {
-        setRefresh("refresh");
-        toast.info(t("Update detected, reload the page."), {
+        setRefresh('refresh')
+        toast.info(t('Update detected, reload the page.'), {
           toastId: refresh,
-        });
+        })
         setTimeout(() => {
-          setRefresh("");
-        }, 5000);
-      });
-    });
-  }, []);
+          setRefresh('')
+        }, 5000)
+      })
+    })
+  }, [])
 
   return (
     <LayoutConductorManager error={error} loading={loading} token={token}>
@@ -60,18 +61,20 @@ export default function ConductorReader({ token, type }: props) {
                 >{`#${chronicle.position} ${chronicle.title}`}</h2>
               )}
               <div className={classes.columnist}>
-                {chronicle.columnist.name}{" "}
-                {chronicle.duration > 0 && (
-                  <span className={classes.duration}>{chronicle.duration}</span>
-                )}
+                {chronicle.columnist.name}{' '}
+                <span className={classes.duration}>
+                  {getReadTime(chronicle.content)}
+                </span>
               </div>
               <ReactMarkdown>{chronicle.content}</ReactMarkdown>
               <MediasForConductor chronicle={chronicle} token={token} />
             </div>
           ))}
-          {data.chronicles.length === 0 && <div className="noResult">{t('No chronicle found')}</div>}
+          {data.chronicles.length === 0 && (
+            <div className="noResult">{t('No chronicle found')}</div>
+          )}
         </div>
       )}
     </LayoutConductorManager>
-  );
+  )
 }

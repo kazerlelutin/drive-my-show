@@ -1,28 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import classes from './ChronicleEditor.module.css';
-import dynamic from 'next/dynamic';
-import '@uiw/react-md-editor/markdown-editor.css';
-import '@uiw/react-markdown-preview/markdown.css';
-import { useReducer, useEffect } from 'react';
-import ColumnistSelector from '../ColumnistSelector/ColumnistSelector';
-import { reducer, initialState, ActionKind } from './ChronicleEditor.reducer';
-import useTranslate from '../../hooks/useTranslate';
-import pageTranslate from '../../translate/page.translate';
-import SubmitButton from '../_UI/SubmitButton/SubmitButton';
-import useLazyFetch from '../../hooks/useLazyFetch';
-import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
-import Chronicle from '../../interfaces/chronicle.interface';
-import MediasEditor from '../MediasEditor/MediasEditor';
+import classes from './ChronicleEditor.module.css'
+import dynamic from 'next/dynamic'
+import '@uiw/react-md-editor/markdown-editor.css'
+import '@uiw/react-markdown-preview/markdown.css'
+import { useReducer, useEffect } from 'react'
+import ColumnistSelector from '../ColumnistSelector/ColumnistSelector'
+import { reducer, initialState, ActionKind } from './ChronicleEditor.reducer'
+import useTranslate from '../../hooks/useTranslate'
+import pageTranslate from '../../translate/page.translate'
+import SubmitButton from '../_UI/SubmitButton/SubmitButton'
+import useLazyFetch from '../../hooks/useLazyFetch'
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/router'
+import Chronicle from '../../interfaces/chronicle.interface'
+import MediasEditor from '../MediasEditor/MediasEditor'
 
 const MarkdownEditor = dynamic(() => import('@uiw/react-md-editor'), {
   ssr: false,
-});
+})
 
 interface props {
-  readonly onClose: Function;
-  readonly chronicle?: Chronicle;
-  readonly refetch?: Function;
+  readonly onClose: Function
+  readonly chronicle?: Chronicle
+  readonly refetch?: Function
 }
 export default function ChronicleEditor({
   onClose,
@@ -35,16 +35,16 @@ export default function ChronicleEditor({
     { loading, error, data, api } = useLazyFetch(
       chronicle ? '/updateChronicle' : '/createChronicle'
     ),
-    [state, dispatch] = useReducer(reducer, chronicle || initialState);
+    [state, dispatch] = useReducer(reducer, chronicle || initialState)
 
   function handleSubmit(ChronicleState: string) {
-    if (loading) return;
-    const newState = {...state}
+    if (loading) return
+    const newState = { ...state }
     if (!newState.columnist && ChronicleState !== 'draft')
-      return toast.warning(t('Need a columnist'));
-    if (ChronicleState) newState.state = ChronicleState;
-    if (!newState.title) return toast.warning(t('Title is required'));
-    api({ ...newState, token });
+      return toast.warning(t('Need a columnist'))
+    if (ChronicleState) newState.state = ChronicleState
+    if (!newState.title) return toast.warning(t('Title is required'))
+    api({ ...newState, token })
   }
   useEffect(() => {
     // clean to close (on open in real life)
@@ -52,22 +52,22 @@ export default function ChronicleEditor({
       chronicle
         ? { type: ActionKind.setChronicle, payload: chronicle }
         : { type: ActionKind.setReset, payload: undefined }
-    );
-  }, []);
+    )
+  }, [])
 
   useEffect(() => {
-    if (error) toast.error(error);
-  }, [error]);
+    if (error) toast.error(error)
+  }, [error])
 
   useEffect(() => {
     if (data) {
       toast.success(
         t(chronicle && refetch ? 'Chronicle updated !' : 'Chronicle created !')
-      );
-      refetch();
-      onClose();
+      )
+      refetch()
+      onClose()
     }
-  }, [data]);
+  }, [data])
 
   return (
     <div className={classes.container}>
@@ -102,17 +102,6 @@ export default function ChronicleEditor({
           }
         />
       </fieldset>
-      <fieldset>
-        <label>{t('duration (in min)')}</label>
-        <input
-          type="number"
-          value={state.duration}
-          placeholder={t('optional')}
-          onChange={(e) =>
-            dispatch({ type: ActionKind.setDuration, payload: e.target.value })
-          }
-        />
-      </fieldset>
       <MarkdownEditor
         height={400}
         minHeight={300}
@@ -134,14 +123,14 @@ export default function ChronicleEditor({
       )}{' '}
       <div className={classes.buttons} data-alone={!!chronicle}>
         {chronicle && (
-               <button
-               type="reset"
-               onClick={()=>onClose()}
-               className={classes.button}
-               disabled={loading}
-             >
-               {t('close')}
-             </button>
+          <button
+            type="reset"
+            onClick={() => onClose()}
+            className={classes.button}
+            disabled={loading}
+          >
+            {t('close')}
+          </button>
         )}
 
         <button
@@ -160,5 +149,5 @@ export default function ChronicleEditor({
         </div>
       </div>
     </div>
-  );
+  )
 }
