@@ -2,6 +2,13 @@
 
 # Drive My Show
 
+
+## ⚠️ End of life for this app. ⚠️
+
+The new version is here : https://github.com/kazerlelutin/roadcast
+
+**Roadcast** replace **Drive My Show**
+
 ## Try this application
 You can use the production app here: 
 [dms.kazerlelutin.space](https://dms.kazerlelutin.space)
